@@ -1,0 +1,31 @@
+{
+  "name": "reactDemo",
+  "version": "1.0.0",
+  "description": "a test for react",
+  "main": "index.js",
+  "author": "zjx0723",
+  "license": "MIT",
+  "dependencies": {
+    "antd": "^2.13.10",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "jsx-loader": "^0.13.2",
+    "npm": "^3.10.8",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-router": "^4.2.0",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "scripts": {
+    "server": "webpack-dev-server --progress",
+    "start": "webpack --progress",
+    "test": "echo \"Error: no test specifed\" && exit 1"
+  }
+}
