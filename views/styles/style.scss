@@ -1,0 +1,15 @@
+html,
+body {
+    height: 100%;
+    background: lightblue;
+    margin: 0;
+}
+
+#app {
+    height: 100px;
+    div {
+        color: #fff;
+        display: flex;
+        flex-direction: row;
+    }
+}
