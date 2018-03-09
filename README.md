@@ -14,6 +14,9 @@ mobx, mobx-react -----一个类似于redux一样的store
 
 # 命令
 
-yarn watch
+yarn watch || npm run watch 监听文件变化，打包
 
-npm run watch
+
+yarn build || npm run build 压缩文件
+
+
