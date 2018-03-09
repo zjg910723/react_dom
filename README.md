@@ -1,7 +1,7 @@
 # ZJGProject
 
 
-react-dom.
+###react-dom.
 
 
 以node环境搭建react框架
@@ -9,10 +9,12 @@ react-dom.
 
 
 
-#postcss
+#postcss  css预处理，autoprefixer
 
-#babel
+#babel-loader  es6,es7 => es5
 
+
+#mobx
 
 
 
