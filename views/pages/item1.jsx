@@ -12,7 +12,7 @@ import { observer, computed } from "mobx-react"
     render(){
         return (
             <div>
-                < ul >
+                <ul>
                     {
                         this.state.list.map((item,index) => {
                             return(
