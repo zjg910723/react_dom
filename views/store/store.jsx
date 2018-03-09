@@ -16,7 +16,7 @@ class Store {
         });
 
         runInAction(() => {
-            console.log(backer);
+            this.list = backer.data.results;
         })
     }
 
