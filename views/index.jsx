@@ -7,7 +7,6 @@ import Nav from './components/nav'
 import ActiveRouter from './pages/Router'
 
 
-import Store from './store/store'
 import Imagea from './11.jpg'
 
 window.addEventListener('error', (data)=> {
@@ -25,10 +24,10 @@ class Main extends React.Component {
             <Router hashType="noslash">
                 
                 <div>
-                    <FirstNav store={Store} />
+                    <FirstNav />
                     <div>
                         <img src={Imagea} alt=""/>
-                        <FirstActiveRouter store={Store}/>
+                        <FirstActiveRouter />
                     </div>
                 </div>
             </Router>

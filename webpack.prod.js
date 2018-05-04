@@ -28,6 +28,15 @@ module.exports = () => {
                     test: /\.(jsx|js)$/,
                     use: ['babel-loader'],
                     exclude: /node_modules/
+                },
+                {
+                    test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
+                    // use: [
+                    //     `file-loader?name=[name].[ext]&publicPath=../../assets/wow_event/${envFile}/images/&outputPath=./../images/`
+                    // ],
+                    use: [
+                        `url-loader`
+                    ]
                 }
             ],
         },

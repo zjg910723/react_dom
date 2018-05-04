@@ -1,8 +1,6 @@
 import React from 'react';
-import * as mobx from "mobx";
-import { observer, computed } from "mobx-react"
 
-@observer class Item1 extends React.Component {
+class Item1 extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -28,12 +26,7 @@ import { observer, computed } from "mobx-react"
         )
     }
     componentDidMount(){
-        this.props.store.getCustomerList();
-        mobx.autorun(() => {
-            this.setState({
-                list: mobx.toJS(this.props.store.list)
-            })
-        })
+       
     }
 }
 export default Item1;
