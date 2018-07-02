@@ -1,21 +1,2 @@
-html,
-body {
-    height: 100%;
-    background: lightblue;
-    margin: 0;
-}
-
-#app {
-    height: 100px;
-}
-
-#app div {
-        color: #fff;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: row;
-                flex-direction: row;
-    }
+body,html{height:100%;background:#add8e6;margin:0}#app{height:100px}#app div{color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;background:#fff}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zdHlsZXNoZWV0cy9zdHlsZS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/

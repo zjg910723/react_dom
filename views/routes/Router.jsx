@@ -2,9 +2,9 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 
-import About from "./item1"
-import User from "./item2"
-import NoMatch from "./item3"
+import About from "../pages/item1"
+import User from "../pages/item2"
+import NoMatch from "../pages/item3"
 
 class Router extends React.Component{
     render(){
