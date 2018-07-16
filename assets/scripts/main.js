@@ -694,7 +694,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 var bind = __webpack_require__(164);
-var isBuffer = __webpack_require__(421);
+var isBuffer = __webpack_require__(422);
 
 /*global toString:true*/
 
@@ -8411,7 +8411,7 @@ if (typeof __MOBX_DEVTOOLS_GLOBAL_HOOK__ === "object") {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(22);
-var normalizeHeaderName = __webpack_require__(423);
+var normalizeHeaderName = __webpack_require__(424);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -10339,12 +10339,12 @@ module.exports = function bind(fn, thisArg) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(22);
-var settle = __webpack_require__(424);
-var buildURL = __webpack_require__(426);
-var parseHeaders = __webpack_require__(427);
-var isURLSameOrigin = __webpack_require__(428);
+var settle = __webpack_require__(425);
+var buildURL = __webpack_require__(427);
+var parseHeaders = __webpack_require__(428);
+var isURLSameOrigin = __webpack_require__(429);
 var createError = __webpack_require__(166);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(429);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(430);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -10441,7 +10441,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(430);
+      var cookies = __webpack_require__(431);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -10526,7 +10526,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(425);
+var enhanceError = __webpack_require__(426);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -15925,11 +15925,11 @@ var _Router = __webpack_require__(413);
 
 var _Router2 = _interopRequireDefault(_Router);
 
-var _store = __webpack_require__(418);
+var _store = __webpack_require__(419);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _ = __webpack_require__(438);
+var _ = __webpack_require__(439);
 
 var _2 = _interopRequireDefault(_);
 
@@ -38241,6 +38241,10 @@ var _react = __webpack_require__(9);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jquery = __webpack_require__(418);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38259,12 +38263,23 @@ var Item3 = function (_React$Component) {
     }
 
     _createClass(Item3, [{
-        key: 'render',
+        key: "handleClick",
+        value: function handleClick(e) {
+            console.log(e.target);
+            debugger;
+        }
+    }, {
+        key: "render",
         value: function render() {
             return _react2.default.createElement(
-                'div',
+                "div",
                 null,
-                '\u5185\u5BB93'
+                _react2.default.createElement(
+                    "button",
+                    { className: "", onClick: this.handleClick.bind(this) },
+                    "\u665A\u4E0A\u963F\u65AF\u5229\u5EB7\u7684"
+                ),
+                "\u5185\u5BB93"
             );
         }
     }]);
@@ -38276,6 +38291,10377 @@ exports.default = Item3;
 
 /***/ }),
 /* 418 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * jQuery JavaScript Library v3.3.1
+ * https://jquery.com/
+ *
+ * Includes Sizzle.js
+ * https://sizzlejs.com/
+ *
+ * Copyright JS Foundation and other contributors
+ * Released under the MIT license
+ * https://jquery.org/license
+ *
+ * Date: 2018-01-20T17:24Z
+ */
+( function( global, factory ) {
+
+	"use strict";
+
+	if ( typeof module === "object" && typeof module.exports === "object" ) {
+
+		// For CommonJS and CommonJS-like environments where a proper `window`
+		// is present, execute the factory and get jQuery.
+		// For environments that do not have a `window` with a `document`
+		// (such as Node.js), expose a factory as module.exports.
+		// This accentuates the need for the creation of a real `window`.
+		// e.g. var jQuery = require("jquery")(window);
+		// See ticket #14549 for more info.
+		module.exports = global.document ?
+			factory( global, true ) :
+			function( w ) {
+				if ( !w.document ) {
+					throw new Error( "jQuery requires a window with a document" );
+				}
+				return factory( w );
+			};
+	} else {
+		factory( global );
+	}
+
+// Pass this if window is not defined yet
+} )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
+
+// Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
+// throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
+// arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common
+// enough that all such attempts are guarded in a try block.
+"use strict";
+
+var arr = [];
+
+var document = window.document;
+
+var getProto = Object.getPrototypeOf;
+
+var slice = arr.slice;
+
+var concat = arr.concat;
+
+var push = arr.push;
+
+var indexOf = arr.indexOf;
+
+var class2type = {};
+
+var toString = class2type.toString;
+
+var hasOwn = class2type.hasOwnProperty;
+
+var fnToString = hasOwn.toString;
+
+var ObjectFunctionString = fnToString.call( Object );
+
+var support = {};
+
+var isFunction = function isFunction( obj ) {
+
+      // Support: Chrome <=57, Firefox <=52
+      // In some browsers, typeof returns "function" for HTML <object> elements
+      // (i.e., `typeof document.createElement( "object" ) === "function"`).
+      // We don't want to classify *any* DOM node as a function.
+      return typeof obj === "function" && typeof obj.nodeType !== "number";
+  };
+
+
+var isWindow = function isWindow( obj ) {
+		return obj != null && obj === obj.window;
+	};
+
+
+
+
+	var preservedScriptAttributes = {
+		type: true,
+		src: true,
+		noModule: true
+	};
+
+	function DOMEval( code, doc, node ) {
+		doc = doc || document;
+
+		var i,
+			script = doc.createElement( "script" );
+
+		script.text = code;
+		if ( node ) {
+			for ( i in preservedScriptAttributes ) {
+				if ( node[ i ] ) {
+					script[ i ] = node[ i ];
+				}
+			}
+		}
+		doc.head.appendChild( script ).parentNode.removeChild( script );
+	}
+
+
+function toType( obj ) {
+	if ( obj == null ) {
+		return obj + "";
+	}
+
+	// Support: Android <=2.3 only (functionish RegExp)
+	return typeof obj === "object" || typeof obj === "function" ?
+		class2type[ toString.call( obj ) ] || "object" :
+		typeof obj;
+}
+/* global Symbol */
+// Defining this global in .eslintrc.json would create a danger of using the global
+// unguarded in another place, it seems safer to define global only for this module
+
+
+
+var
+	version = "3.3.1",
+
+	// Define a local copy of jQuery
+	jQuery = function( selector, context ) {
+
+		// The jQuery object is actually just the init constructor 'enhanced'
+		// Need init if jQuery is called (just allow error to be thrown if not included)
+		return new jQuery.fn.init( selector, context );
+	},
+
+	// Support: Android <=4.0 only
+	// Make sure we trim BOM and NBSP
+	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+
+jQuery.fn = jQuery.prototype = {
+
+	// The current version of jQuery being used
+	jquery: version,
+
+	constructor: jQuery,
+
+	// The default length of a jQuery object is 0
+	length: 0,
+
+	toArray: function() {
+		return slice.call( this );
+	},
+
+	// Get the Nth element in the matched element set OR
+	// Get the whole matched element set as a clean array
+	get: function( num ) {
+
+		// Return all the elements in a clean array
+		if ( num == null ) {
+			return slice.call( this );
+		}
+
+		// Return just the one element from the set
+		return num < 0 ? this[ num + this.length ] : this[ num ];
+	},
+
+	// Take an array of elements and push it onto the stack
+	// (returning the new matched element set)
+	pushStack: function( elems ) {
+
+		// Build a new jQuery matched element set
+		var ret = jQuery.merge( this.constructor(), elems );
+
+		// Add the old object onto the stack (as a reference)
+		ret.prevObject = this;
+
+		// Return the newly-formed element set
+		return ret;
+	},
+
+	// Execute a callback for every element in the matched set.
+	each: function( callback ) {
+		return jQuery.each( this, callback );
+	},
+
+	map: function( callback ) {
+		return this.pushStack( jQuery.map( this, function( elem, i ) {
+			return callback.call( elem, i, elem );
+		} ) );
+	},
+
+	slice: function() {
+		return this.pushStack( slice.apply( this, arguments ) );
+	},
+
+	first: function() {
+		return this.eq( 0 );
+	},
+
+	last: function() {
+		return this.eq( -1 );
+	},
+
+	eq: function( i ) {
+		var len = this.length,
+			j = +i + ( i < 0 ? len : 0 );
+		return this.pushStack( j >= 0 && j < len ? [ this[ j ] ] : [] );
+	},
+
+	end: function() {
+		return this.prevObject || this.constructor();
+	},
+
+	// For internal use only.
+	// Behaves like an Array's method, not like a jQuery method.
+	push: push,
+	sort: arr.sort,
+	splice: arr.splice
+};
+
+jQuery.extend = jQuery.fn.extend = function() {
+	var options, name, src, copy, copyIsArray, clone,
+		target = arguments[ 0 ] || {},
+		i = 1,
+		length = arguments.length,
+		deep = false;
+
+	// Handle a deep copy situation
+	if ( typeof target === "boolean" ) {
+		deep = target;
+
+		// Skip the boolean and the target
+		target = arguments[ i ] || {};
+		i++;
+	}
+
+	// Handle case when target is a string or something (possible in deep copy)
+	if ( typeof target !== "object" && !isFunction( target ) ) {
+		target = {};
+	}
+
+	// Extend jQuery itself if only one argument is passed
+	if ( i === length ) {
+		target = this;
+		i--;
+	}
+
+	for ( ; i < length; i++ ) {
+
+		// Only deal with non-null/undefined values
+		if ( ( options = arguments[ i ] ) != null ) {
+
+			// Extend the base object
+			for ( name in options ) {
+				src = target[ name ];
+				copy = options[ name ];
+
+				// Prevent never-ending loop
+				if ( target === copy ) {
+					continue;
+				}
+
+				// Recurse if we're merging plain objects or arrays
+				if ( deep && copy && ( jQuery.isPlainObject( copy ) ||
+					( copyIsArray = Array.isArray( copy ) ) ) ) {
+
+					if ( copyIsArray ) {
+						copyIsArray = false;
+						clone = src && Array.isArray( src ) ? src : [];
+
+					} else {
+						clone = src && jQuery.isPlainObject( src ) ? src : {};
+					}
+
+					// Never move original objects, clone them
+					target[ name ] = jQuery.extend( deep, clone, copy );
+
+				// Don't bring in undefined values
+				} else if ( copy !== undefined ) {
+					target[ name ] = copy;
+				}
+			}
+		}
+	}
+
+	// Return the modified object
+	return target;
+};
+
+jQuery.extend( {
+
+	// Unique for each copy of jQuery on the page
+	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
+
+	// Assume jQuery is ready without the ready module
+	isReady: true,
+
+	error: function( msg ) {
+		throw new Error( msg );
+	},
+
+	noop: function() {},
+
+	isPlainObject: function( obj ) {
+		var proto, Ctor;
+
+		// Detect obvious negatives
+		// Use toString instead of jQuery.type to catch host objects
+		if ( !obj || toString.call( obj ) !== "[object Object]" ) {
+			return false;
+		}
+
+		proto = getProto( obj );
+
+		// Objects with no prototype (e.g., `Object.create( null )`) are plain
+		if ( !proto ) {
+			return true;
+		}
+
+		// Objects with prototype are plain iff they were constructed by a global Object function
+		Ctor = hasOwn.call( proto, "constructor" ) && proto.constructor;
+		return typeof Ctor === "function" && fnToString.call( Ctor ) === ObjectFunctionString;
+	},
+
+	isEmptyObject: function( obj ) {
+
+		/* eslint-disable no-unused-vars */
+		// See https://github.com/eslint/eslint/issues/6125
+		var name;
+
+		for ( name in obj ) {
+			return false;
+		}
+		return true;
+	},
+
+	// Evaluates a script in a global context
+	globalEval: function( code ) {
+		DOMEval( code );
+	},
+
+	each: function( obj, callback ) {
+		var length, i = 0;
+
+		if ( isArrayLike( obj ) ) {
+			length = obj.length;
+			for ( ; i < length; i++ ) {
+				if ( callback.call( obj[ i ], i, obj[ i ] ) === false ) {
+					break;
+				}
+			}
+		} else {
+			for ( i in obj ) {
+				if ( callback.call( obj[ i ], i, obj[ i ] ) === false ) {
+					break;
+				}
+			}
+		}
+
+		return obj;
+	},
+
+	// Support: Android <=4.0 only
+	trim: function( text ) {
+		return text == null ?
+			"" :
+			( text + "" ).replace( rtrim, "" );
+	},
+
+	// results is for internal usage only
+	makeArray: function( arr, results ) {
+		var ret = results || [];
+
+		if ( arr != null ) {
+			if ( isArrayLike( Object( arr ) ) ) {
+				jQuery.merge( ret,
+					typeof arr === "string" ?
+					[ arr ] : arr
+				);
+			} else {
+				push.call( ret, arr );
+			}
+		}
+
+		return ret;
+	},
+
+	inArray: function( elem, arr, i ) {
+		return arr == null ? -1 : indexOf.call( arr, elem, i );
+	},
+
+	// Support: Android <=4.0 only, PhantomJS 1 only
+	// push.apply(_, arraylike) throws on ancient WebKit
+	merge: function( first, second ) {
+		var len = +second.length,
+			j = 0,
+			i = first.length;
+
+		for ( ; j < len; j++ ) {
+			first[ i++ ] = second[ j ];
+		}
+
+		first.length = i;
+
+		return first;
+	},
+
+	grep: function( elems, callback, invert ) {
+		var callbackInverse,
+			matches = [],
+			i = 0,
+			length = elems.length,
+			callbackExpect = !invert;
+
+		// Go through the array, only saving the items
+		// that pass the validator function
+		for ( ; i < length; i++ ) {
+			callbackInverse = !callback( elems[ i ], i );
+			if ( callbackInverse !== callbackExpect ) {
+				matches.push( elems[ i ] );
+			}
+		}
+
+		return matches;
+	},
+
+	// arg is for internal usage only
+	map: function( elems, callback, arg ) {
+		var length, value,
+			i = 0,
+			ret = [];
+
+		// Go through the array, translating each of the items to their new values
+		if ( isArrayLike( elems ) ) {
+			length = elems.length;
+			for ( ; i < length; i++ ) {
+				value = callback( elems[ i ], i, arg );
+
+				if ( value != null ) {
+					ret.push( value );
+				}
+			}
+
+		// Go through every key on the object,
+		} else {
+			for ( i in elems ) {
+				value = callback( elems[ i ], i, arg );
+
+				if ( value != null ) {
+					ret.push( value );
+				}
+			}
+		}
+
+		// Flatten any nested arrays
+		return concat.apply( [], ret );
+	},
+
+	// A global GUID counter for objects
+	guid: 1,
+
+	// jQuery.support is not used in Core but other projects attach their
+	// properties to it so it needs to exist.
+	support: support
+} );
+
+if ( typeof Symbol === "function" ) {
+	jQuery.fn[ Symbol.iterator ] = arr[ Symbol.iterator ];
+}
+
+// Populate the class2type map
+jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
+function( i, name ) {
+	class2type[ "[object " + name + "]" ] = name.toLowerCase();
+} );
+
+function isArrayLike( obj ) {
+
+	// Support: real iOS 8.2 only (not reproducible in simulator)
+	// `in` check used to prevent JIT error (gh-2145)
+	// hasOwn isn't used here due to false negatives
+	// regarding Nodelist length in IE
+	var length = !!obj && "length" in obj && obj.length,
+		type = toType( obj );
+
+	if ( isFunction( obj ) || isWindow( obj ) ) {
+		return false;
+	}
+
+	return type === "array" || length === 0 ||
+		typeof length === "number" && length > 0 && ( length - 1 ) in obj;
+}
+var Sizzle =
+/*!
+ * Sizzle CSS Selector Engine v2.3.3
+ * https://sizzlejs.com/
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license
+ * http://jquery.org/license
+ *
+ * Date: 2016-08-08
+ */
+(function( window ) {
+
+var i,
+	support,
+	Expr,
+	getText,
+	isXML,
+	tokenize,
+	compile,
+	select,
+	outermostContext,
+	sortInput,
+	hasDuplicate,
+
+	// Local document vars
+	setDocument,
+	document,
+	docElem,
+	documentIsHTML,
+	rbuggyQSA,
+	rbuggyMatches,
+	matches,
+	contains,
+
+	// Instance-specific data
+	expando = "sizzle" + 1 * new Date(),
+	preferredDoc = window.document,
+	dirruns = 0,
+	done = 0,
+	classCache = createCache(),
+	tokenCache = createCache(),
+	compilerCache = createCache(),
+	sortOrder = function( a, b ) {
+		if ( a === b ) {
+			hasDuplicate = true;
+		}
+		return 0;
+	},
+
+	// Instance methods
+	hasOwn = ({}).hasOwnProperty,
+	arr = [],
+	pop = arr.pop,
+	push_native = arr.push,
+	push = arr.push,
+	slice = arr.slice,
+	// Use a stripped-down indexOf as it's faster than native
+	// https://jsperf.com/thor-indexof-vs-for/5
+	indexOf = function( list, elem ) {
+		var i = 0,
+			len = list.length;
+		for ( ; i < len; i++ ) {
+			if ( list[i] === elem ) {
+				return i;
+			}
+		}
+		return -1;
+	},
+
+	booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
+
+	// Regular expressions
+
+	// http://www.w3.org/TR/css3-selectors/#whitespace
+	whitespace = "[\\x20\\t\\r\\n\\f]",
+
+	// http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
+	identifier = "(?:\\\\.|[\\w-]|[^\0-\\xa0])+",
+
+	// Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
+	attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace +
+		// Operator (capture 2)
+		"*([*^$|!~]?=)" + whitespace +
+		// "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
+		"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + identifier + "))|)" + whitespace +
+		"*\\]",
+
+	pseudos = ":(" + identifier + ")(?:\\((" +
+		// To reduce the number of selectors needing tokenize in the preFilter, prefer arguments:
+		// 1. quoted (capture 3; capture 4 or capture 5)
+		"('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|" +
+		// 2. simple (capture 6)
+		"((?:\\\\.|[^\\\\()[\\]]|" + attributes + ")*)|" +
+		// 3. anything else (capture 2)
+		".*" +
+		")\\)|)",
+
+	// Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
+	rwhitespace = new RegExp( whitespace + "+", "g" ),
+	rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" ),
+
+	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
+	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
+
+	rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*?)" + whitespace + "*\\]", "g" ),
+
+	rpseudo = new RegExp( pseudos ),
+	ridentifier = new RegExp( "^" + identifier + "$" ),
+
+	matchExpr = {
+		"ID": new RegExp( "^#(" + identifier + ")" ),
+		"CLASS": new RegExp( "^\\.(" + identifier + ")" ),
+		"TAG": new RegExp( "^(" + identifier + "|[*])" ),
+		"ATTR": new RegExp( "^" + attributes ),
+		"PSEUDO": new RegExp( "^" + pseudos ),
+		"CHILD": new RegExp( "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace +
+			"*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace +
+			"*(\\d+)|))" + whitespace + "*\\)|)", "i" ),
+		"bool": new RegExp( "^(?:" + booleans + ")$", "i" ),
+		// For use in libraries implementing .is()
+		// We use this for POS matching in `select`
+		"needsContext": new RegExp( "^" + whitespace + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" +
+			whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i" )
+	},
+
+	rinputs = /^(?:input|select|textarea|button)$/i,
+	rheader = /^h\d$/i,
+
+	rnative = /^[^{]+\{\s*\[native \w/,
+
+	// Easily-parseable/retrievable ID or TAG or CLASS selectors
+	rquickExpr = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
+
+	rsibling = /[+~]/,
+
+	// CSS escapes
+	// http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
+	runescape = new RegExp( "\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig" ),
+	funescape = function( _, escaped, escapedWhitespace ) {
+		var high = "0x" + escaped - 0x10000;
+		// NaN means non-codepoint
+		// Support: Firefox<24
+		// Workaround erroneous numeric interpretation of +"0x"
+		return high !== high || escapedWhitespace ?
+			escaped :
+			high < 0 ?
+				// BMP codepoint
+				String.fromCharCode( high + 0x10000 ) :
+				// Supplemental Plane codepoint (surrogate pair)
+				String.fromCharCode( high >> 10 | 0xD800, high & 0x3FF | 0xDC00 );
+	},
+
+	// CSS string/identifier serialization
+	// https://drafts.csswg.org/cssom/#common-serializing-idioms
+	rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
+	fcssescape = function( ch, asCodePoint ) {
+		if ( asCodePoint ) {
+
+			// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
+			if ( ch === "\0" ) {
+				return "\uFFFD";
+			}
+
+			// Control characters and (dependent upon position) numbers get escaped as code points
+			return ch.slice( 0, -1 ) + "\\" + ch.charCodeAt( ch.length - 1 ).toString( 16 ) + " ";
+		}
+
+		// Other potentially-special ASCII characters get backslash-escaped
+		return "\\" + ch;
+	},
+
+	// Used for iframes
+	// See setDocument()
+	// Removing the function wrapper causes a "Permission Denied"
+	// error in IE
+	unloadHandler = function() {
+		setDocument();
+	},
+
+	disabledAncestor = addCombinator(
+		function( elem ) {
+			return elem.disabled === true && ("form" in elem || "label" in elem);
+		},
+		{ dir: "parentNode", next: "legend" }
+	);
+
+// Optimize for push.apply( _, NodeList )
+try {
+	push.apply(
+		(arr = slice.call( preferredDoc.childNodes )),
+		preferredDoc.childNodes
+	);
+	// Support: Android<4.0
+	// Detect silently failing push.apply
+	arr[ preferredDoc.childNodes.length ].nodeType;
+} catch ( e ) {
+	push = { apply: arr.length ?
+
+		// Leverage slice if possible
+		function( target, els ) {
+			push_native.apply( target, slice.call(els) );
+		} :
+
+		// Support: IE<9
+		// Otherwise append directly
+		function( target, els ) {
+			var j = target.length,
+				i = 0;
+			// Can't trust NodeList.length
+			while ( (target[j++] = els[i++]) ) {}
+			target.length = j - 1;
+		}
+	};
+}
+
+function Sizzle( selector, context, results, seed ) {
+	var m, i, elem, nid, match, groups, newSelector,
+		newContext = context && context.ownerDocument,
+
+		// nodeType defaults to 9, since context defaults to document
+		nodeType = context ? context.nodeType : 9;
+
+	results = results || [];
+
+	// Return early from calls with invalid selector or context
+	if ( typeof selector !== "string" || !selector ||
+		nodeType !== 1 && nodeType !== 9 && nodeType !== 11 ) {
+
+		return results;
+	}
+
+	// Try to shortcut find operations (as opposed to filters) in HTML documents
+	if ( !seed ) {
+
+		if ( ( context ? context.ownerDocument || context : preferredDoc ) !== document ) {
+			setDocument( context );
+		}
+		context = context || document;
+
+		if ( documentIsHTML ) {
+
+			// If the selector is sufficiently simple, try using a "get*By*" DOM method
+			// (excepting DocumentFragment context, where the methods don't exist)
+			if ( nodeType !== 11 && (match = rquickExpr.exec( selector )) ) {
+
+				// ID selector
+				if ( (m = match[1]) ) {
+
+					// Document context
+					if ( nodeType === 9 ) {
+						if ( (elem = context.getElementById( m )) ) {
+
+							// Support: IE, Opera, Webkit
+							// TODO: identify versions
+							// getElementById can match elements by name instead of ID
+							if ( elem.id === m ) {
+								results.push( elem );
+								return results;
+							}
+						} else {
+							return results;
+						}
+
+					// Element context
+					} else {
+
+						// Support: IE, Opera, Webkit
+						// TODO: identify versions
+						// getElementById can match elements by name instead of ID
+						if ( newContext && (elem = newContext.getElementById( m )) &&
+							contains( context, elem ) &&
+							elem.id === m ) {
+
+							results.push( elem );
+							return results;
+						}
+					}
+
+				// Type selector
+				} else if ( match[2] ) {
+					push.apply( results, context.getElementsByTagName( selector ) );
+					return results;
+
+				// Class selector
+				} else if ( (m = match[3]) && support.getElementsByClassName &&
+					context.getElementsByClassName ) {
+
+					push.apply( results, context.getElementsByClassName( m ) );
+					return results;
+				}
+			}
+
+			// Take advantage of querySelectorAll
+			if ( support.qsa &&
+				!compilerCache[ selector + " " ] &&
+				(!rbuggyQSA || !rbuggyQSA.test( selector )) ) {
+
+				if ( nodeType !== 1 ) {
+					newContext = context;
+					newSelector = selector;
+
+				// qSA looks outside Element context, which is not what we want
+				// Thanks to Andrew Dupont for this workaround technique
+				// Support: IE <=8
+				// Exclude object elements
+				} else if ( context.nodeName.toLowerCase() !== "object" ) {
+
+					// Capture the context ID, setting it first if necessary
+					if ( (nid = context.getAttribute( "id" )) ) {
+						nid = nid.replace( rcssescape, fcssescape );
+					} else {
+						context.setAttribute( "id", (nid = expando) );
+					}
+
+					// Prefix every selector in the list
+					groups = tokenize( selector );
+					i = groups.length;
+					while ( i-- ) {
+						groups[i] = "#" + nid + " " + toSelector( groups[i] );
+					}
+					newSelector = groups.join( "," );
+
+					// Expand context for sibling selectors
+					newContext = rsibling.test( selector ) && testContext( context.parentNode ) ||
+						context;
+				}
+
+				if ( newSelector ) {
+					try {
+						push.apply( results,
+							newContext.querySelectorAll( newSelector )
+						);
+						return results;
+					} catch ( qsaError ) {
+					} finally {
+						if ( nid === expando ) {
+							context.removeAttribute( "id" );
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// All others
+	return select( selector.replace( rtrim, "$1" ), context, results, seed );
+}
+
+/**
+ * Create key-value caches of limited size
+ * @returns {function(string, object)} Returns the Object data after storing it on itself with
+ *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+ *	deleting the oldest entry
+ */
+function createCache() {
+	var keys = [];
+
+	function cache( key, value ) {
+		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
+		if ( keys.push( key + " " ) > Expr.cacheLength ) {
+			// Only keep the most recent entries
+			delete cache[ keys.shift() ];
+		}
+		return (cache[ key + " " ] = value);
+	}
+	return cache;
+}
+
+/**
+ * Mark a function for special use by Sizzle
+ * @param {Function} fn The function to mark
+ */
+function markFunction( fn ) {
+	fn[ expando ] = true;
+	return fn;
+}
+
+/**
+ * Support testing using an element
+ * @param {Function} fn Passed the created element and returns a boolean result
+ */
+function assert( fn ) {
+	var el = document.createElement("fieldset");
+
+	try {
+		return !!fn( el );
+	} catch (e) {
+		return false;
+	} finally {
+		// Remove from its parent by default
+		if ( el.parentNode ) {
+			el.parentNode.removeChild( el );
+		}
+		// release memory in IE
+		el = null;
+	}
+}
+
+/**
+ * Adds the same handler for all of the specified attrs
+ * @param {String} attrs Pipe-separated list of attributes
+ * @param {Function} handler The method that will be applied
+ */
+function addHandle( attrs, handler ) {
+	var arr = attrs.split("|"),
+		i = arr.length;
+
+	while ( i-- ) {
+		Expr.attrHandle[ arr[i] ] = handler;
+	}
+}
+
+/**
+ * Checks document order of two siblings
+ * @param {Element} a
+ * @param {Element} b
+ * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
+ */
+function siblingCheck( a, b ) {
+	var cur = b && a,
+		diff = cur && a.nodeType === 1 && b.nodeType === 1 &&
+			a.sourceIndex - b.sourceIndex;
+
+	// Use IE sourceIndex if available on both nodes
+	if ( diff ) {
+		return diff;
+	}
+
+	// Check if b follows a
+	if ( cur ) {
+		while ( (cur = cur.nextSibling) ) {
+			if ( cur === b ) {
+				return -1;
+			}
+		}
+	}
+
+	return a ? 1 : -1;
+}
+
+/**
+ * Returns a function to use in pseudos for input types
+ * @param {String} type
+ */
+function createInputPseudo( type ) {
+	return function( elem ) {
+		var name = elem.nodeName.toLowerCase();
+		return name === "input" && elem.type === type;
+	};
+}
+
+/**
+ * Returns a function to use in pseudos for buttons
+ * @param {String} type
+ */
+function createButtonPseudo( type ) {
+	return function( elem ) {
+		var name = elem.nodeName.toLowerCase();
+		return (name === "input" || name === "button") && elem.type === type;
+	};
+}
+
+/**
+ * Returns a function to use in pseudos for :enabled/:disabled
+ * @param {Boolean} disabled true for :disabled; false for :enabled
+ */
+function createDisabledPseudo( disabled ) {
+
+	// Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
+	return function( elem ) {
+
+		// Only certain elements can match :enabled or :disabled
+		// https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
+		// https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
+		if ( "form" in elem ) {
+
+			// Check for inherited disabledness on relevant non-disabled elements:
+			// * listed form-associated elements in a disabled fieldset
+			//   https://html.spec.whatwg.org/multipage/forms.html#category-listed
+			//   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
+			// * option elements in a disabled optgroup
+			//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
+			// All such elements have a "form" property.
+			if ( elem.parentNode && elem.disabled === false ) {
+
+				// Option elements defer to a parent optgroup if present
+				if ( "label" in elem ) {
+					if ( "label" in elem.parentNode ) {
+						return elem.parentNode.disabled === disabled;
+					} else {
+						return elem.disabled === disabled;
+					}
+				}
+
+				// Support: IE 6 - 11
+				// Use the isDisabled shortcut property to check for disabled fieldset ancestors
+				return elem.isDisabled === disabled ||
+
+					// Where there is no isDisabled, check manually
+					/* jshint -W018 */
+					elem.isDisabled !== !disabled &&
+						disabledAncestor( elem ) === disabled;
+			}
+
+			return elem.disabled === disabled;
+
+		// Try to winnow out elements that can't be disabled before trusting the disabled property.
+		// Some victims get caught in our net (label, legend, menu, track), but it shouldn't
+		// even exist on them, let alone have a boolean value.
+		} else if ( "label" in elem ) {
+			return elem.disabled === disabled;
+		}
+
+		// Remaining elements are neither :enabled nor :disabled
+		return false;
+	};
+}
+
+/**
+ * Returns a function to use in pseudos for positionals
+ * @param {Function} fn
+ */
+function createPositionalPseudo( fn ) {
+	return markFunction(function( argument ) {
+		argument = +argument;
+		return markFunction(function( seed, matches ) {
+			var j,
+				matchIndexes = fn( [], seed.length, argument ),
+				i = matchIndexes.length;
+
+			// Match elements found at the specified indexes
+			while ( i-- ) {
+				if ( seed[ (j = matchIndexes[i]) ] ) {
+					seed[j] = !(matches[j] = seed[j]);
+				}
+			}
+		});
+	});
+}
+
+/**
+ * Checks a node for validity as a Sizzle context
+ * @param {Element|Object=} context
+ * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
+ */
+function testContext( context ) {
+	return context && typeof context.getElementsByTagName !== "undefined" && context;
+}
+
+// Expose support vars for convenience
+support = Sizzle.support = {};
+
+/**
+ * Detects XML nodes
+ * @param {Element|Object} elem An element or a document
+ * @returns {Boolean} True iff elem is a non-HTML XML node
+ */
+isXML = Sizzle.isXML = function( elem ) {
+	// documentElement is verified for cases where it doesn't yet exist
+	// (such as loading iframes in IE - #4833)
+	var documentElement = elem && (elem.ownerDocument || elem).documentElement;
+	return documentElement ? documentElement.nodeName !== "HTML" : false;
+};
+
+/**
+ * Sets document-related variables once based on the current document
+ * @param {Element|Object} [doc] An element or document object to use to set the document
+ * @returns {Object} Returns the current document
+ */
+setDocument = Sizzle.setDocument = function( node ) {
+	var hasCompare, subWindow,
+		doc = node ? node.ownerDocument || node : preferredDoc;
+
+	// Return early if doc is invalid or already selected
+	if ( doc === document || doc.nodeType !== 9 || !doc.documentElement ) {
+		return document;
+	}
+
+	// Update global variables
+	document = doc;
+	docElem = document.documentElement;
+	documentIsHTML = !isXML( document );
+
+	// Support: IE 9-11, Edge
+	// Accessing iframe documents after unload throws "permission denied" errors (jQuery #13936)
+	if ( preferredDoc !== document &&
+		(subWindow = document.defaultView) && subWindow.top !== subWindow ) {
+
+		// Support: IE 11, Edge
+		if ( subWindow.addEventListener ) {
+			subWindow.addEventListener( "unload", unloadHandler, false );
+
+		// Support: IE 9 - 10 only
+		} else if ( subWindow.attachEvent ) {
+			subWindow.attachEvent( "onunload", unloadHandler );
+		}
+	}
+
+	/* Attributes
+	---------------------------------------------------------------------- */
+
+	// Support: IE<8
+	// Verify that getAttribute really returns attributes and not properties
+	// (excepting IE8 booleans)
+	support.attributes = assert(function( el ) {
+		el.className = "i";
+		return !el.getAttribute("className");
+	});
+
+	/* getElement(s)By*
+	---------------------------------------------------------------------- */
+
+	// Check if getElementsByTagName("*") returns only elements
+	support.getElementsByTagName = assert(function( el ) {
+		el.appendChild( document.createComment("") );
+		return !el.getElementsByTagName("*").length;
+	});
+
+	// Support: IE<9
+	support.getElementsByClassName = rnative.test( document.getElementsByClassName );
+
+	// Support: IE<10
+	// Check if getElementById returns elements by name
+	// The broken getElementById methods don't pick up programmatically-set names,
+	// so use a roundabout getElementsByName test
+	support.getById = assert(function( el ) {
+		docElem.appendChild( el ).id = expando;
+		return !document.getElementsByName || !document.getElementsByName( expando ).length;
+	});
+
+	// ID filter and find
+	if ( support.getById ) {
+		Expr.filter["ID"] = function( id ) {
+			var attrId = id.replace( runescape, funescape );
+			return function( elem ) {
+				return elem.getAttribute("id") === attrId;
+			};
+		};
+		Expr.find["ID"] = function( id, context ) {
+			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
+				var elem = context.getElementById( id );
+				return elem ? [ elem ] : [];
+			}
+		};
+	} else {
+		Expr.filter["ID"] =  function( id ) {
+			var attrId = id.replace( runescape, funescape );
+			return function( elem ) {
+				var node = typeof elem.getAttributeNode !== "undefined" &&
+					elem.getAttributeNode("id");
+				return node && node.value === attrId;
+			};
+		};
+
+		// Support: IE 6 - 7 only
+		// getElementById is not reliable as a find shortcut
+		Expr.find["ID"] = function( id, context ) {
+			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
+				var node, i, elems,
+					elem = context.getElementById( id );
+
+				if ( elem ) {
+
+					// Verify the id attribute
+					node = elem.getAttributeNode("id");
+					if ( node && node.value === id ) {
+						return [ elem ];
+					}
+
+					// Fall back on getElementsByName
+					elems = context.getElementsByName( id );
+					i = 0;
+					while ( (elem = elems[i++]) ) {
+						node = elem.getAttributeNode("id");
+						if ( node && node.value === id ) {
+							return [ elem ];
+						}
+					}
+				}
+
+				return [];
+			}
+		};
+	}
+
+	// Tag
+	Expr.find["TAG"] = support.getElementsByTagName ?
+		function( tag, context ) {
+			if ( typeof context.getElementsByTagName !== "undefined" ) {
+				return context.getElementsByTagName( tag );
+
+			// DocumentFragment nodes don't have gEBTN
+			} else if ( support.qsa ) {
+				return context.querySelectorAll( tag );
+			}
+		} :
+
+		function( tag, context ) {
+			var elem,
+				tmp = [],
+				i = 0,
+				// By happy coincidence, a (broken) gEBTN appears on DocumentFragment nodes too
+				results = context.getElementsByTagName( tag );
+
+			// Filter out possible comments
+			if ( tag === "*" ) {
+				while ( (elem = results[i++]) ) {
+					if ( elem.nodeType === 1 ) {
+						tmp.push( elem );
+					}
+				}
+
+				return tmp;
+			}
+			return results;
+		};
+
+	// Class
+	Expr.find["CLASS"] = support.getElementsByClassName && function( className, context ) {
+		if ( typeof context.getElementsByClassName !== "undefined" && documentIsHTML ) {
+			return context.getElementsByClassName( className );
+		}
+	};
+
+	/* QSA/matchesSelector
+	---------------------------------------------------------------------- */
+
+	// QSA and matchesSelector support
+
+	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
+	rbuggyMatches = [];
+
+	// qSa(:focus) reports false when true (Chrome 21)
+	// We allow this because of a bug in IE8/9 that throws an error
+	// whenever `document.activeElement` is accessed on an iframe
+	// So, we allow :focus to pass through QSA all the time to avoid the IE error
+	// See https://bugs.jquery.com/ticket/13378
+	rbuggyQSA = [];
+
+	if ( (support.qsa = rnative.test( document.querySelectorAll )) ) {
+		// Build QSA regex
+		// Regex strategy adopted from Diego Perini
+		assert(function( el ) {
+			// Select is set to empty string on purpose
+			// This is to test IE's treatment of not explicitly
+			// setting a boolean content attribute,
+			// since its presence should be enough
+			// https://bugs.jquery.com/ticket/12359
+			docElem.appendChild( el ).innerHTML = "<a id='" + expando + "'></a>" +
+				"<select id='" + expando + "-\r\\' msallowcapture=''>" +
+				"<option selected=''></option></select>";
+
+			// Support: IE8, Opera 11-12.16
+			// Nothing should be selected when empty strings follow ^= or $= or *=
+			// The test attribute must be unknown in Opera but "safe" for WinRT
+			// https://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
+			if ( el.querySelectorAll("[msallowcapture^='']").length ) {
+				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
+			}
+
+			// Support: IE8
+			// Boolean attributes and "value" are not treated correctly
+			if ( !el.querySelectorAll("[selected]").length ) {
+				rbuggyQSA.push( "\\[" + whitespace + "*(?:value|" + booleans + ")" );
+			}
+
+			// Support: Chrome<29, Android<4.4, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.8+
+			if ( !el.querySelectorAll( "[id~=" + expando + "-]" ).length ) {
+				rbuggyQSA.push("~=");
+			}
+
+			// Webkit/Opera - :checked should return selected option elements
+			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
+			// IE8 throws error here and will not see later tests
+			if ( !el.querySelectorAll(":checked").length ) {
+				rbuggyQSA.push(":checked");
+			}
+
+			// Support: Safari 8+, iOS 8+
+			// https://bugs.webkit.org/show_bug.cgi?id=136851
+			// In-page `selector#id sibling-combinator selector` fails
+			if ( !el.querySelectorAll( "a#" + expando + "+*" ).length ) {
+				rbuggyQSA.push(".#.+[+~]");
+			}
+		});
+
+		assert(function( el ) {
+			el.innerHTML = "<a href='' disabled='disabled'></a>" +
+				"<select disabled='disabled'><option/></select>";
+
+			// Support: Windows 8 Native Apps
+			// The type and name attributes are restricted during .innerHTML assignment
+			var input = document.createElement("input");
+			input.setAttribute( "type", "hidden" );
+			el.appendChild( input ).setAttribute( "name", "D" );
+
+			// Support: IE8
+			// Enforce case-sensitivity of name attribute
+			if ( el.querySelectorAll("[name=d]").length ) {
+				rbuggyQSA.push( "name" + whitespace + "*[*^$|!~]?=" );
+			}
+
+			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
+			// IE8 throws error here and will not see later tests
+			if ( el.querySelectorAll(":enabled").length !== 2 ) {
+				rbuggyQSA.push( ":enabled", ":disabled" );
+			}
+
+			// Support: IE9-11+
+			// IE's :disabled selector does not pick up the children of disabled fieldsets
+			docElem.appendChild( el ).disabled = true;
+			if ( el.querySelectorAll(":disabled").length !== 2 ) {
+				rbuggyQSA.push( ":enabled", ":disabled" );
+			}
+
+			// Opera 10-11 does not throw on post-comma invalid pseudos
+			el.querySelectorAll("*,:x");
+			rbuggyQSA.push(",.*:");
+		});
+	}
+
+	if ( (support.matchesSelector = rnative.test( (matches = docElem.matches ||
+		docElem.webkitMatchesSelector ||
+		docElem.mozMatchesSelector ||
+		docElem.oMatchesSelector ||
+		docElem.msMatchesSelector) )) ) {
+
+		assert(function( el ) {
+			// Check to see if it's possible to do matchesSelector
+			// on a disconnected node (IE 9)
+			support.disconnectedMatch = matches.call( el, "*" );
+
+			// This should fail with an exception
+			// Gecko does not error, returns false instead
+			matches.call( el, "[s!='']:x" );
+			rbuggyMatches.push( "!=", pseudos );
+		});
+	}
+
+	rbuggyQSA = rbuggyQSA.length && new RegExp( rbuggyQSA.join("|") );
+	rbuggyMatches = rbuggyMatches.length && new RegExp( rbuggyMatches.join("|") );
+
+	/* Contains
+	---------------------------------------------------------------------- */
+	hasCompare = rnative.test( docElem.compareDocumentPosition );
+
+	// Element contains another
+	// Purposefully self-exclusive
+	// As in, an element does not contain itself
+	contains = hasCompare || rnative.test( docElem.contains ) ?
+		function( a, b ) {
+			var adown = a.nodeType === 9 ? a.documentElement : a,
+				bup = b && b.parentNode;
+			return a === bup || !!( bup && bup.nodeType === 1 && (
+				adown.contains ?
+					adown.contains( bup ) :
+					a.compareDocumentPosition && a.compareDocumentPosition( bup ) & 16
+			));
+		} :
+		function( a, b ) {
+			if ( b ) {
+				while ( (b = b.parentNode) ) {
+					if ( b === a ) {
+						return true;
+					}
+				}
+			}
+			return false;
+		};
+
+	/* Sorting
+	---------------------------------------------------------------------- */
+
+	// Document order sorting
+	sortOrder = hasCompare ?
+	function( a, b ) {
+
+		// Flag for duplicate removal
+		if ( a === b ) {
+			hasDuplicate = true;
+			return 0;
+		}
+
+		// Sort on method existence if only one input has compareDocumentPosition
+		var compare = !a.compareDocumentPosition - !b.compareDocumentPosition;
+		if ( compare ) {
+			return compare;
+		}
+
+		// Calculate position if both inputs belong to the same document
+		compare = ( a.ownerDocument || a ) === ( b.ownerDocument || b ) ?
+			a.compareDocumentPosition( b ) :
+
+			// Otherwise we know they are disconnected
+			1;
+
+		// Disconnected nodes
+		if ( compare & 1 ||
+			(!support.sortDetached && b.compareDocumentPosition( a ) === compare) ) {
+
+			// Choose the first element that is related to our preferred document
+			if ( a === document || a.ownerDocument === preferredDoc && contains(preferredDoc, a) ) {
+				return -1;
+			}
+			if ( b === document || b.ownerDocument === preferredDoc && contains(preferredDoc, b) ) {
+				return 1;
+			}
+
+			// Maintain original order
+			return sortInput ?
+				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
+				0;
+		}
+
+		return compare & 4 ? -1 : 1;
+	} :
+	function( a, b ) {
+		// Exit early if the nodes are identical
+		if ( a === b ) {
+			hasDuplicate = true;
+			return 0;
+		}
+
+		var cur,
+			i = 0,
+			aup = a.parentNode,
+			bup = b.parentNode,
+			ap = [ a ],
+			bp = [ b ];
+
+		// Parentless nodes are either documents or disconnected
+		if ( !aup || !bup ) {
+			return a === document ? -1 :
+				b === document ? 1 :
+				aup ? -1 :
+				bup ? 1 :
+				sortInput ?
+				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
+				0;
+
+		// If the nodes are siblings, we can do a quick check
+		} else if ( aup === bup ) {
+			return siblingCheck( a, b );
+		}
+
+		// Otherwise we need full lists of their ancestors for comparison
+		cur = a;
+		while ( (cur = cur.parentNode) ) {
+			ap.unshift( cur );
+		}
+		cur = b;
+		while ( (cur = cur.parentNode) ) {
+			bp.unshift( cur );
+		}
+
+		// Walk down the tree looking for a discrepancy
+		while ( ap[i] === bp[i] ) {
+			i++;
+		}
+
+		return i ?
+			// Do a sibling check if the nodes have a common ancestor
+			siblingCheck( ap[i], bp[i] ) :
+
+			// Otherwise nodes in our document sort first
+			ap[i] === preferredDoc ? -1 :
+			bp[i] === preferredDoc ? 1 :
+			0;
+	};
+
+	return document;
+};
+
+Sizzle.matches = function( expr, elements ) {
+	return Sizzle( expr, null, null, elements );
+};
+
+Sizzle.matchesSelector = function( elem, expr ) {
+	// Set document vars if needed
+	if ( ( elem.ownerDocument || elem ) !== document ) {
+		setDocument( elem );
+	}
+
+	// Make sure that attribute selectors are quoted
+	expr = expr.replace( rattributeQuotes, "='$1']" );
+
+	if ( support.matchesSelector && documentIsHTML &&
+		!compilerCache[ expr + " " ] &&
+		( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
+		( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
+
+		try {
+			var ret = matches.call( elem, expr );
+
+			// IE 9's matchesSelector returns false on disconnected nodes
+			if ( ret || support.disconnectedMatch ||
+					// As well, disconnected nodes are said to be in a document
+					// fragment in IE 9
+					elem.document && elem.document.nodeType !== 11 ) {
+				return ret;
+			}
+		} catch (e) {}
+	}
+
+	return Sizzle( expr, document, null, [ elem ] ).length > 0;
+};
+
+Sizzle.contains = function( context, elem ) {
+	// Set document vars if needed
+	if ( ( context.ownerDocument || context ) !== document ) {
+		setDocument( context );
+	}
+	return contains( context, elem );
+};
+
+Sizzle.attr = function( elem, name ) {
+	// Set document vars if needed
+	if ( ( elem.ownerDocument || elem ) !== document ) {
+		setDocument( elem );
+	}
+
+	var fn = Expr.attrHandle[ name.toLowerCase() ],
+		// Don't get fooled by Object.prototype properties (jQuery #13807)
+		val = fn && hasOwn.call( Expr.attrHandle, name.toLowerCase() ) ?
+			fn( elem, name, !documentIsHTML ) :
+			undefined;
+
+	return val !== undefined ?
+		val :
+		support.attributes || !documentIsHTML ?
+			elem.getAttribute( name ) :
+			(val = elem.getAttributeNode(name)) && val.specified ?
+				val.value :
+				null;
+};
+
+Sizzle.escape = function( sel ) {
+	return (sel + "").replace( rcssescape, fcssescape );
+};
+
+Sizzle.error = function( msg ) {
+	throw new Error( "Syntax error, unrecognized expression: " + msg );
+};
+
+/**
+ * Document sorting and removing duplicates
+ * @param {ArrayLike} results
+ */
+Sizzle.uniqueSort = function( results ) {
+	var elem,
+		duplicates = [],
+		j = 0,
+		i = 0;
+
+	// Unless we *know* we can detect duplicates, assume their presence
+	hasDuplicate = !support.detectDuplicates;
+	sortInput = !support.sortStable && results.slice( 0 );
+	results.sort( sortOrder );
+
+	if ( hasDuplicate ) {
+		while ( (elem = results[i++]) ) {
+			if ( elem === results[ i ] ) {
+				j = duplicates.push( i );
+			}
+		}
+		while ( j-- ) {
+			results.splice( duplicates[ j ], 1 );
+		}
+	}
+
+	// Clear input after sorting to release objects
+	// See https://github.com/jquery/sizzle/pull/225
+	sortInput = null;
+
+	return results;
+};
+
+/**
+ * Utility function for retrieving the text value of an array of DOM nodes
+ * @param {Array|Element} elem
+ */
+getText = Sizzle.getText = function( elem ) {
+	var node,
+		ret = "",
+		i = 0,
+		nodeType = elem.nodeType;
+
+	if ( !nodeType ) {
+		// If no nodeType, this is expected to be an array
+		while ( (node = elem[i++]) ) {
+			// Do not traverse comment nodes
+			ret += getText( node );
+		}
+	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+		// Use textContent for elements
+		// innerText usage removed for consistency of new lines (jQuery #11153)
+		if ( typeof elem.textContent === "string" ) {
+			return elem.textContent;
+		} else {
+			// Traverse its children
+			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
+				ret += getText( elem );
+			}
+		}
+	} else if ( nodeType === 3 || nodeType === 4 ) {
+		return elem.nodeValue;
+	}
+	// Do not include comment or processing instruction nodes
+
+	return ret;
+};
+
+Expr = Sizzle.selectors = {
+
+	// Can be adjusted by the user
+	cacheLength: 50,
+
+	createPseudo: markFunction,
+
+	match: matchExpr,
+
+	attrHandle: {},
+
+	find: {},
+
+	relative: {
+		">": { dir: "parentNode", first: true },
+		" ": { dir: "parentNode" },
+		"+": { dir: "previousSibling", first: true },
+		"~": { dir: "previousSibling" }
+	},
+
+	preFilter: {
+		"ATTR": function( match ) {
+			match[1] = match[1].replace( runescape, funescape );
+
+			// Move the given value to match[3] whether quoted or unquoted
+			match[3] = ( match[3] || match[4] || match[5] || "" ).replace( runescape, funescape );
+
+			if ( match[2] === "~=" ) {
+				match[3] = " " + match[3] + " ";
+			}
+
+			return match.slice( 0, 4 );
+		},
+
+		"CHILD": function( match ) {
+			/* matches from matchExpr["CHILD"]
+				1 type (only|nth|...)
+				2 what (child|of-type)
+				3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
+				4 xn-component of xn+y argument ([+-]?\d*n|)
+				5 sign of xn-component
+				6 x of xn-component
+				7 sign of y-component
+				8 y of y-component
+			*/
+			match[1] = match[1].toLowerCase();
+
+			if ( match[1].slice( 0, 3 ) === "nth" ) {
+				// nth-* requires argument
+				if ( !match[3] ) {
+					Sizzle.error( match[0] );
+				}
+
+				// numeric x and y parameters for Expr.filter.CHILD
+				// remember that false/true cast respectively to 0/1
+				match[4] = +( match[4] ? match[5] + (match[6] || 1) : 2 * ( match[3] === "even" || match[3] === "odd" ) );
+				match[5] = +( ( match[7] + match[8] ) || match[3] === "odd" );
+
+			// other types prohibit arguments
+			} else if ( match[3] ) {
+				Sizzle.error( match[0] );
+			}
+
+			return match;
+		},
+
+		"PSEUDO": function( match ) {
+			var excess,
+				unquoted = !match[6] && match[2];
+
+			if ( matchExpr["CHILD"].test( match[0] ) ) {
+				return null;
+			}
+
+			// Accept quoted arguments as-is
+			if ( match[3] ) {
+				match[2] = match[4] || match[5] || "";
+
+			// Strip excess characters from unquoted arguments
+			} else if ( unquoted && rpseudo.test( unquoted ) &&
+				// Get excess from tokenize (recursively)
+				(excess = tokenize( unquoted, true )) &&
+				// advance to the next closing parenthesis
+				(excess = unquoted.indexOf( ")", unquoted.length - excess ) - unquoted.length) ) {
+
+				// excess is a negative index
+				match[0] = match[0].slice( 0, excess );
+				match[2] = unquoted.slice( 0, excess );
+			}
+
+			// Return only captures needed by the pseudo filter method (type and argument)
+			return match.slice( 0, 3 );
+		}
+	},
+
+	filter: {
+
+		"TAG": function( nodeNameSelector ) {
+			var nodeName = nodeNameSelector.replace( runescape, funescape ).toLowerCase();
+			return nodeNameSelector === "*" ?
+				function() { return true; } :
+				function( elem ) {
+					return elem.nodeName && elem.nodeName.toLowerCase() === nodeName;
+				};
+		},
+
+		"CLASS": function( className ) {
+			var pattern = classCache[ className + " " ];
+
+			return pattern ||
+				(pattern = new RegExp( "(^|" + whitespace + ")" + className + "(" + whitespace + "|$)" )) &&
+				classCache( className, function( elem ) {
+					return pattern.test( typeof elem.className === "string" && elem.className || typeof elem.getAttribute !== "undefined" && elem.getAttribute("class") || "" );
+				});
+		},
+
+		"ATTR": function( name, operator, check ) {
+			return function( elem ) {
+				var result = Sizzle.attr( elem, name );
+
+				if ( result == null ) {
+					return operator === "!=";
+				}
+				if ( !operator ) {
+					return true;
+				}
+
+				result += "";
+
+				return operator === "=" ? result === check :
+					operator === "!=" ? result !== check :
+					operator === "^=" ? check && result.indexOf( check ) === 0 :
+					operator === "*=" ? check && result.indexOf( check ) > -1 :
+					operator === "$=" ? check && result.slice( -check.length ) === check :
+					operator === "~=" ? ( " " + result.replace( rwhitespace, " " ) + " " ).indexOf( check ) > -1 :
+					operator === "|=" ? result === check || result.slice( 0, check.length + 1 ) === check + "-" :
+					false;
+			};
+		},
+
+		"CHILD": function( type, what, argument, first, last ) {
+			var simple = type.slice( 0, 3 ) !== "nth",
+				forward = type.slice( -4 ) !== "last",
+				ofType = what === "of-type";
+
+			return first === 1 && last === 0 ?
+
+				// Shortcut for :nth-*(n)
+				function( elem ) {
+					return !!elem.parentNode;
+				} :
+
+				function( elem, context, xml ) {
+					var cache, uniqueCache, outerCache, node, nodeIndex, start,
+						dir = simple !== forward ? "nextSibling" : "previousSibling",
+						parent = elem.parentNode,
+						name = ofType && elem.nodeName.toLowerCase(),
+						useCache = !xml && !ofType,
+						diff = false;
+
+					if ( parent ) {
+
+						// :(first|last|only)-(child|of-type)
+						if ( simple ) {
+							while ( dir ) {
+								node = elem;
+								while ( (node = node[ dir ]) ) {
+									if ( ofType ?
+										node.nodeName.toLowerCase() === name :
+										node.nodeType === 1 ) {
+
+										return false;
+									}
+								}
+								// Reverse direction for :only-* (if we haven't yet done so)
+								start = dir = type === "only" && !start && "nextSibling";
+							}
+							return true;
+						}
+
+						start = [ forward ? parent.firstChild : parent.lastChild ];
+
+						// non-xml :nth-child(...) stores cache data on `parent`
+						if ( forward && useCache ) {
+
+							// Seek `elem` from a previously-cached index
+
+							// ...in a gzip-friendly way
+							node = parent;
+							outerCache = node[ expando ] || (node[ expando ] = {});
+
+							// Support: IE <9 only
+							// Defend against cloned attroperties (jQuery gh-1709)
+							uniqueCache = outerCache[ node.uniqueID ] ||
+								(outerCache[ node.uniqueID ] = {});
+
+							cache = uniqueCache[ type ] || [];
+							nodeIndex = cache[ 0 ] === dirruns && cache[ 1 ];
+							diff = nodeIndex && cache[ 2 ];
+							node = nodeIndex && parent.childNodes[ nodeIndex ];
+
+							while ( (node = ++nodeIndex && node && node[ dir ] ||
+
+								// Fallback to seeking `elem` from the start
+								(diff = nodeIndex = 0) || start.pop()) ) {
+
+								// When found, cache indexes on `parent` and break
+								if ( node.nodeType === 1 && ++diff && node === elem ) {
+									uniqueCache[ type ] = [ dirruns, nodeIndex, diff ];
+									break;
+								}
+							}
+
+						} else {
+							// Use previously-cached element index if available
+							if ( useCache ) {
+								// ...in a gzip-friendly way
+								node = elem;
+								outerCache = node[ expando ] || (node[ expando ] = {});
+
+								// Support: IE <9 only
+								// Defend against cloned attroperties (jQuery gh-1709)
+								uniqueCache = outerCache[ node.uniqueID ] ||
+									(outerCache[ node.uniqueID ] = {});
+
+								cache = uniqueCache[ type ] || [];
+								nodeIndex = cache[ 0 ] === dirruns && cache[ 1 ];
+								diff = nodeIndex;
+							}
+
+							// xml :nth-child(...)
+							// or :nth-last-child(...) or :nth(-last)?-of-type(...)
+							if ( diff === false ) {
+								// Use the same loop as above to seek `elem` from the start
+								while ( (node = ++nodeIndex && node && node[ dir ] ||
+									(diff = nodeIndex = 0) || start.pop()) ) {
+
+									if ( ( ofType ?
+										node.nodeName.toLowerCase() === name :
+										node.nodeType === 1 ) &&
+										++diff ) {
+
+										// Cache the index of each encountered element
+										if ( useCache ) {
+											outerCache = node[ expando ] || (node[ expando ] = {});
+
+											// Support: IE <9 only
+											// Defend against cloned attroperties (jQuery gh-1709)
+											uniqueCache = outerCache[ node.uniqueID ] ||
+												(outerCache[ node.uniqueID ] = {});
+
+											uniqueCache[ type ] = [ dirruns, diff ];
+										}
+
+										if ( node === elem ) {
+											break;
+										}
+									}
+								}
+							}
+						}
+
+						// Incorporate the offset, then check against cycle size
+						diff -= last;
+						return diff === first || ( diff % first === 0 && diff / first >= 0 );
+					}
+				};
+		},
+
+		"PSEUDO": function( pseudo, argument ) {
+			// pseudo-class names are case-insensitive
+			// http://www.w3.org/TR/selectors/#pseudo-classes
+			// Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
+			// Remember that setFilters inherits from pseudos
+			var args,
+				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
+					Sizzle.error( "unsupported pseudo: " + pseudo );
+
+			// The user may use createPseudo to indicate that
+			// arguments are needed to create the filter function
+			// just as Sizzle does
+			if ( fn[ expando ] ) {
+				return fn( argument );
+			}
+
+			// But maintain support for old signatures
+			if ( fn.length > 1 ) {
+				args = [ pseudo, pseudo, "", argument ];
+				return Expr.setFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
+					markFunction(function( seed, matches ) {
+						var idx,
+							matched = fn( seed, argument ),
+							i = matched.length;
+						while ( i-- ) {
+							idx = indexOf( seed, matched[i] );
+							seed[ idx ] = !( matches[ idx ] = matched[i] );
+						}
+					}) :
+					function( elem ) {
+						return fn( elem, 0, args );
+					};
+			}
+
+			return fn;
+		}
+	},
+
+	pseudos: {
+		// Potentially complex pseudos
+		"not": markFunction(function( selector ) {
+			// Trim the selector passed to compile
+			// to avoid treating leading and trailing
+			// spaces as combinators
+			var input = [],
+				results = [],
+				matcher = compile( selector.replace( rtrim, "$1" ) );
+
+			return matcher[ expando ] ?
+				markFunction(function( seed, matches, context, xml ) {
+					var elem,
+						unmatched = matcher( seed, null, xml, [] ),
+						i = seed.length;
+
+					// Match elements unmatched by `matcher`
+					while ( i-- ) {
+						if ( (elem = unmatched[i]) ) {
+							seed[i] = !(matches[i] = elem);
+						}
+					}
+				}) :
+				function( elem, context, xml ) {
+					input[0] = elem;
+					matcher( input, null, xml, results );
+					// Don't keep the element (issue #299)
+					input[0] = null;
+					return !results.pop();
+				};
+		}),
+
+		"has": markFunction(function( selector ) {
+			return function( elem ) {
+				return Sizzle( selector, elem ).length > 0;
+			};
+		}),
+
+		"contains": markFunction(function( text ) {
+			text = text.replace( runescape, funescape );
+			return function( elem ) {
+				return ( elem.textContent || elem.innerText || getText( elem ) ).indexOf( text ) > -1;
+			};
+		}),
+
+		// "Whether an element is represented by a :lang() selector
+		// is based solely on the element's language value
+		// being equal to the identifier C,
+		// or beginning with the identifier C immediately followed by "-".
+		// The matching of C against the element's language value is performed case-insensitively.
+		// The identifier C does not have to be a valid language name."
+		// http://www.w3.org/TR/selectors/#lang-pseudo
+		"lang": markFunction( function( lang ) {
+			// lang value must be a valid identifier
+			if ( !ridentifier.test(lang || "") ) {
+				Sizzle.error( "unsupported lang: " + lang );
+			}
+			lang = lang.replace( runescape, funescape ).toLowerCase();
+			return function( elem ) {
+				var elemLang;
+				do {
+					if ( (elemLang = documentIsHTML ?
+						elem.lang :
+						elem.getAttribute("xml:lang") || elem.getAttribute("lang")) ) {
+
+						elemLang = elemLang.toLowerCase();
+						return elemLang === lang || elemLang.indexOf( lang + "-" ) === 0;
+					}
+				} while ( (elem = elem.parentNode) && elem.nodeType === 1 );
+				return false;
+			};
+		}),
+
+		// Miscellaneous
+		"target": function( elem ) {
+			var hash = window.location && window.location.hash;
+			return hash && hash.slice( 1 ) === elem.id;
+		},
+
+		"root": function( elem ) {
+			return elem === docElem;
+		},
+
+		"focus": function( elem ) {
+			return elem === document.activeElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
+		},
+
+		// Boolean properties
+		"enabled": createDisabledPseudo( false ),
+		"disabled": createDisabledPseudo( true ),
+
+		"checked": function( elem ) {
+			// In CSS3, :checked should return both checked and selected elements
+			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
+			var nodeName = elem.nodeName.toLowerCase();
+			return (nodeName === "input" && !!elem.checked) || (nodeName === "option" && !!elem.selected);
+		},
+
+		"selected": function( elem ) {
+			// Accessing this property makes selected-by-default
+			// options in Safari work properly
+			if ( elem.parentNode ) {
+				elem.parentNode.selectedIndex;
+			}
+
+			return elem.selected === true;
+		},
+
+		// Contents
+		"empty": function( elem ) {
+			// http://www.w3.org/TR/selectors/#empty-pseudo
+			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
+			//   but not by others (comment: 8; processing instruction: 7; etc.)
+			// nodeType < 6 works because attributes (2) do not appear as children
+			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
+				if ( elem.nodeType < 6 ) {
+					return false;
+				}
+			}
+			return true;
+		},
+
+		"parent": function( elem ) {
+			return !Expr.pseudos["empty"]( elem );
+		},
+
+		// Element/input types
+		"header": function( elem ) {
+			return rheader.test( elem.nodeName );
+		},
+
+		"input": function( elem ) {
+			return rinputs.test( elem.nodeName );
+		},
+
+		"button": function( elem ) {
+			var name = elem.nodeName.toLowerCase();
+			return name === "input" && elem.type === "button" || name === "button";
+		},
+
+		"text": function( elem ) {
+			var attr;
+			return elem.nodeName.toLowerCase() === "input" &&
+				elem.type === "text" &&
+
+				// Support: IE<8
+				// New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
+				( (attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text" );
+		},
+
+		// Position-in-collection
+		"first": createPositionalPseudo(function() {
+			return [ 0 ];
+		}),
+
+		"last": createPositionalPseudo(function( matchIndexes, length ) {
+			return [ length - 1 ];
+		}),
+
+		"eq": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			return [ argument < 0 ? argument + length : argument ];
+		}),
+
+		"even": createPositionalPseudo(function( matchIndexes, length ) {
+			var i = 0;
+			for ( ; i < length; i += 2 ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+
+		"odd": createPositionalPseudo(function( matchIndexes, length ) {
+			var i = 1;
+			for ( ; i < length; i += 2 ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+
+		"lt": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			var i = argument < 0 ? argument + length : argument;
+			for ( ; --i >= 0; ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		}),
+
+		"gt": createPositionalPseudo(function( matchIndexes, length, argument ) {
+			var i = argument < 0 ? argument + length : argument;
+			for ( ; ++i < length; ) {
+				matchIndexes.push( i );
+			}
+			return matchIndexes;
+		})
+	}
+};
+
+Expr.pseudos["nth"] = Expr.pseudos["eq"];
+
+// Add button/input type pseudos
+for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
+	Expr.pseudos[ i ] = createInputPseudo( i );
+}
+for ( i in { submit: true, reset: true } ) {
+	Expr.pseudos[ i ] = createButtonPseudo( i );
+}
+
+// Easy API for creating new setFilters
+function setFilters() {}
+setFilters.prototype = Expr.filters = Expr.pseudos;
+Expr.setFilters = new setFilters();
+
+tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
+	var matched, match, tokens, type,
+		soFar, groups, preFilters,
+		cached = tokenCache[ selector + " " ];
+
+	if ( cached ) {
+		return parseOnly ? 0 : cached.slice( 0 );
+	}
+
+	soFar = selector;
+	groups = [];
+	preFilters = Expr.preFilter;
+
+	while ( soFar ) {
+
+		// Comma and first run
+		if ( !matched || (match = rcomma.exec( soFar )) ) {
+			if ( match ) {
+				// Don't consume trailing commas as valid
+				soFar = soFar.slice( match[0].length ) || soFar;
+			}
+			groups.push( (tokens = []) );
+		}
+
+		matched = false;
+
+		// Combinators
+		if ( (match = rcombinators.exec( soFar )) ) {
+			matched = match.shift();
+			tokens.push({
+				value: matched,
+				// Cast descendant combinators to space
+				type: match[0].replace( rtrim, " " )
+			});
+			soFar = soFar.slice( matched.length );
+		}
+
+		// Filters
+		for ( type in Expr.filter ) {
+			if ( (match = matchExpr[ type ].exec( soFar )) && (!preFilters[ type ] ||
+				(match = preFilters[ type ]( match ))) ) {
+				matched = match.shift();
+				tokens.push({
+					value: matched,
+					type: type,
+					matches: match
+				});
+				soFar = soFar.slice( matched.length );
+			}
+		}
+
+		if ( !matched ) {
+			break;
+		}
+	}
+
+	// Return the length of the invalid excess
+	// if we're just parsing
+	// Otherwise, throw an error or return tokens
+	return parseOnly ?
+		soFar.length :
+		soFar ?
+			Sizzle.error( selector ) :
+			// Cache the tokens
+			tokenCache( selector, groups ).slice( 0 );
+};
+
+function toSelector( tokens ) {
+	var i = 0,
+		len = tokens.length,
+		selector = "";
+	for ( ; i < len; i++ ) {
+		selector += tokens[i].value;
+	}
+	return selector;
+}
+
+function addCombinator( matcher, combinator, base ) {
+	var dir = combinator.dir,
+		skip = combinator.next,
+		key = skip || dir,
+		checkNonElements = base && key === "parentNode",
+		doneName = done++;
+
+	return combinator.first ?
+		// Check against closest ancestor/preceding element
+		function( elem, context, xml ) {
+			while ( (elem = elem[ dir ]) ) {
+				if ( elem.nodeType === 1 || checkNonElements ) {
+					return matcher( elem, context, xml );
+				}
+			}
+			return false;
+		} :
+
+		// Check against all ancestor/preceding elements
+		function( elem, context, xml ) {
+			var oldCache, uniqueCache, outerCache,
+				newCache = [ dirruns, doneName ];
+
+			// We can't set arbitrary data on XML nodes, so they don't benefit from combinator caching
+			if ( xml ) {
+				while ( (elem = elem[ dir ]) ) {
+					if ( elem.nodeType === 1 || checkNonElements ) {
+						if ( matcher( elem, context, xml ) ) {
+							return true;
+						}
+					}
+				}
+			} else {
+				while ( (elem = elem[ dir ]) ) {
+					if ( elem.nodeType === 1 || checkNonElements ) {
+						outerCache = elem[ expando ] || (elem[ expando ] = {});
+
+						// Support: IE <9 only
+						// Defend against cloned attroperties (jQuery gh-1709)
+						uniqueCache = outerCache[ elem.uniqueID ] || (outerCache[ elem.uniqueID ] = {});
+
+						if ( skip && skip === elem.nodeName.toLowerCase() ) {
+							elem = elem[ dir ] || elem;
+						} else if ( (oldCache = uniqueCache[ key ]) &&
+							oldCache[ 0 ] === dirruns && oldCache[ 1 ] === doneName ) {
+
+							// Assign to newCache so results back-propagate to previous elements
+							return (newCache[ 2 ] = oldCache[ 2 ]);
+						} else {
+							// Reuse newcache so results back-propagate to previous elements
+							uniqueCache[ key ] = newCache;
+
+							// A match means we're done; a fail means we have to keep checking
+							if ( (newCache[ 2 ] = matcher( elem, context, xml )) ) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+			return false;
+		};
+}
+
+function elementMatcher( matchers ) {
+	return matchers.length > 1 ?
+		function( elem, context, xml ) {
+			var i = matchers.length;
+			while ( i-- ) {
+				if ( !matchers[i]( elem, context, xml ) ) {
+					return false;
+				}
+			}
+			return true;
+		} :
+		matchers[0];
+}
+
+function multipleContexts( selector, contexts, results ) {
+	var i = 0,
+		len = contexts.length;
+	for ( ; i < len; i++ ) {
+		Sizzle( selector, contexts[i], results );
+	}
+	return results;
+}
+
+function condense( unmatched, map, filter, context, xml ) {
+	var elem,
+		newUnmatched = [],
+		i = 0,
+		len = unmatched.length,
+		mapped = map != null;
+
+	for ( ; i < len; i++ ) {
+		if ( (elem = unmatched[i]) ) {
+			if ( !filter || filter( elem, context, xml ) ) {
+				newUnmatched.push( elem );
+				if ( mapped ) {
+					map.push( i );
+				}
+			}
+		}
+	}
+
+	return newUnmatched;
+}
+
+function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postSelector ) {
+	if ( postFilter && !postFilter[ expando ] ) {
+		postFilter = setMatcher( postFilter );
+	}
+	if ( postFinder && !postFinder[ expando ] ) {
+		postFinder = setMatcher( postFinder, postSelector );
+	}
+	return markFunction(function( seed, results, context, xml ) {
+		var temp, i, elem,
+			preMap = [],
+			postMap = [],
+			preexisting = results.length,
+
+			// Get initial elements from seed or context
+			elems = seed || multipleContexts( selector || "*", context.nodeType ? [ context ] : context, [] ),
+
+			// Prefilter to get matcher input, preserving a map for seed-results synchronization
+			matcherIn = preFilter && ( seed || !selector ) ?
+				condense( elems, preMap, preFilter, context, xml ) :
+				elems,
+
+			matcherOut = matcher ?
+				// If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
+				postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
+
+					// ...intermediate processing is necessary
+					[] :
+
+					// ...otherwise use results directly
+					results :
+				matcherIn;
+
+		// Find primary matches
+		if ( matcher ) {
+			matcher( matcherIn, matcherOut, context, xml );
+		}
+
+		// Apply postFilter
+		if ( postFilter ) {
+			temp = condense( matcherOut, postMap );
+			postFilter( temp, [], context, xml );
+
+			// Un-match failing elements by moving them back to matcherIn
+			i = temp.length;
+			while ( i-- ) {
+				if ( (elem = temp[i]) ) {
+					matcherOut[ postMap[i] ] = !(matcherIn[ postMap[i] ] = elem);
+				}
+			}
+		}
+
+		if ( seed ) {
+			if ( postFinder || preFilter ) {
+				if ( postFinder ) {
+					// Get the final matcherOut by condensing this intermediate into postFinder contexts
+					temp = [];
+					i = matcherOut.length;
+					while ( i-- ) {
+						if ( (elem = matcherOut[i]) ) {
+							// Restore matcherIn since elem is not yet a final match
+							temp.push( (matcherIn[i] = elem) );
+						}
+					}
+					postFinder( null, (matcherOut = []), temp, xml );
+				}
+
+				// Move matched elements from seed to results to keep them synchronized
+				i = matcherOut.length;
+				while ( i-- ) {
+					if ( (elem = matcherOut[i]) &&
+						(temp = postFinder ? indexOf( seed, elem ) : preMap[i]) > -1 ) {
+
+						seed[temp] = !(results[temp] = elem);
+					}
+				}
+			}
+
+		// Add elements to results, through postFinder if defined
+		} else {
+			matcherOut = condense(
+				matcherOut === results ?
+					matcherOut.splice( preexisting, matcherOut.length ) :
+					matcherOut
+			);
+			if ( postFinder ) {
+				postFinder( null, results, matcherOut, xml );
+			} else {
+				push.apply( results, matcherOut );
+			}
+		}
+	});
+}
+
+function matcherFromTokens( tokens ) {
+	var checkContext, matcher, j,
+		len = tokens.length,
+		leadingRelative = Expr.relative[ tokens[0].type ],
+		implicitRelative = leadingRelative || Expr.relative[" "],
+		i = leadingRelative ? 1 : 0,
+
+		// The foundational matcher ensures that elements are reachable from top-level context(s)
+		matchContext = addCombinator( function( elem ) {
+			return elem === checkContext;
+		}, implicitRelative, true ),
+		matchAnyContext = addCombinator( function( elem ) {
+			return indexOf( checkContext, elem ) > -1;
+		}, implicitRelative, true ),
+		matchers = [ function( elem, context, xml ) {
+			var ret = ( !leadingRelative && ( xml || context !== outermostContext ) ) || (
+				(checkContext = context).nodeType ?
+					matchContext( elem, context, xml ) :
+					matchAnyContext( elem, context, xml ) );
+			// Avoid hanging onto element (issue #299)
+			checkContext = null;
+			return ret;
+		} ];
+
+	for ( ; i < len; i++ ) {
+		if ( (matcher = Expr.relative[ tokens[i].type ]) ) {
+			matchers = [ addCombinator(elementMatcher( matchers ), matcher) ];
+		} else {
+			matcher = Expr.filter[ tokens[i].type ].apply( null, tokens[i].matches );
+
+			// Return special upon seeing a positional matcher
+			if ( matcher[ expando ] ) {
+				// Find the next relative operator (if any) for proper handling
+				j = ++i;
+				for ( ; j < len; j++ ) {
+					if ( Expr.relative[ tokens[j].type ] ) {
+						break;
+					}
+				}
+				return setMatcher(
+					i > 1 && elementMatcher( matchers ),
+					i > 1 && toSelector(
+						// If the preceding token was a descendant combinator, insert an implicit any-element `*`
+						tokens.slice( 0, i - 1 ).concat({ value: tokens[ i - 2 ].type === " " ? "*" : "" })
+					).replace( rtrim, "$1" ),
+					matcher,
+					i < j && matcherFromTokens( tokens.slice( i, j ) ),
+					j < len && matcherFromTokens( (tokens = tokens.slice( j )) ),
+					j < len && toSelector( tokens )
+				);
+			}
+			matchers.push( matcher );
+		}
+	}
+
+	return elementMatcher( matchers );
+}
+
+function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
+	var bySet = setMatchers.length > 0,
+		byElement = elementMatchers.length > 0,
+		superMatcher = function( seed, context, xml, results, outermost ) {
+			var elem, j, matcher,
+				matchedCount = 0,
+				i = "0",
+				unmatched = seed && [],
+				setMatched = [],
+				contextBackup = outermostContext,
+				// We must always have either seed elements or outermost context
+				elems = seed || byElement && Expr.find["TAG"]( "*", outermost ),
+				// Use integer dirruns iff this is the outermost matcher
+				dirrunsUnique = (dirruns += contextBackup == null ? 1 : Math.random() || 0.1),
+				len = elems.length;
+
+			if ( outermost ) {
+				outermostContext = context === document || context || outermost;
+			}
+
+			// Add elements passing elementMatchers directly to results
+			// Support: IE<9, Safari
+			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
+			for ( ; i !== len && (elem = elems[i]) != null; i++ ) {
+				if ( byElement && elem ) {
+					j = 0;
+					if ( !context && elem.ownerDocument !== document ) {
+						setDocument( elem );
+						xml = !documentIsHTML;
+					}
+					while ( (matcher = elementMatchers[j++]) ) {
+						if ( matcher( elem, context || document, xml) ) {
+							results.push( elem );
+							break;
+						}
+					}
+					if ( outermost ) {
+						dirruns = dirrunsUnique;
+					}
+				}
+
+				// Track unmatched elements for set filters
+				if ( bySet ) {
+					// They will have gone through all possible matchers
+					if ( (elem = !matcher && elem) ) {
+						matchedCount--;
+					}
+
+					// Lengthen the array for every element, matched or not
+					if ( seed ) {
+						unmatched.push( elem );
+					}
+				}
+			}
+
+			// `i` is now the count of elements visited above, and adding it to `matchedCount`
+			// makes the latter nonnegative.
+			matchedCount += i;
+
+			// Apply set filters to unmatched elements
+			// NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
+			// equals `i`), unless we didn't visit _any_ elements in the above loop because we have
+			// no element matchers and no seed.
+			// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
+			// case, which will result in a "00" `matchedCount` that differs from `i` but is also
+			// numerically zero.
+			if ( bySet && i !== matchedCount ) {
+				j = 0;
+				while ( (matcher = setMatchers[j++]) ) {
+					matcher( unmatched, setMatched, context, xml );
+				}
+
+				if ( seed ) {
+					// Reintegrate element matches to eliminate the need for sorting
+					if ( matchedCount > 0 ) {
+						while ( i-- ) {
+							if ( !(unmatched[i] || setMatched[i]) ) {
+								setMatched[i] = pop.call( results );
+							}
+						}
+					}
+
+					// Discard index placeholder values to get only actual matches
+					setMatched = condense( setMatched );
+				}
+
+				// Add matches to results
+				push.apply( results, setMatched );
+
+				// Seedless set matches succeeding multiple successful matchers stipulate sorting
+				if ( outermost && !seed && setMatched.length > 0 &&
+					( matchedCount + setMatchers.length ) > 1 ) {
+
+					Sizzle.uniqueSort( results );
+				}
+			}
+
+			// Override manipulation of globals by nested matchers
+			if ( outermost ) {
+				dirruns = dirrunsUnique;
+				outermostContext = contextBackup;
+			}
+
+			return unmatched;
+		};
+
+	return bySet ?
+		markFunction( superMatcher ) :
+		superMatcher;
+}
+
+compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
+	var i,
+		setMatchers = [],
+		elementMatchers = [],
+		cached = compilerCache[ selector + " " ];
+
+	if ( !cached ) {
+		// Generate a function of recursive functions that can be used to check each element
+		if ( !match ) {
+			match = tokenize( selector );
+		}
+		i = match.length;
+		while ( i-- ) {
+			cached = matcherFromTokens( match[i] );
+			if ( cached[ expando ] ) {
+				setMatchers.push( cached );
+			} else {
+				elementMatchers.push( cached );
+			}
+		}
+
+		// Cache the compiled function
+		cached = compilerCache( selector, matcherFromGroupMatchers( elementMatchers, setMatchers ) );
+
+		// Save selector and tokenization
+		cached.selector = selector;
+	}
+	return cached;
+};
+
+/**
+ * A low-level selection function that works with Sizzle's compiled
+ *  selector functions
+ * @param {String|Function} selector A selector or a pre-compiled
+ *  selector function built with Sizzle.compile
+ * @param {Element} context
+ * @param {Array} [results]
+ * @param {Array} [seed] A set of elements to match against
+ */
+select = Sizzle.select = function( selector, context, results, seed ) {
+	var i, tokens, token, type, find,
+		compiled = typeof selector === "function" && selector,
+		match = !seed && tokenize( (selector = compiled.selector || selector) );
+
+	results = results || [];
+
+	// Try to minimize operations if there is only one selector in the list and no seed
+	// (the latter of which guarantees us context)
+	if ( match.length === 1 ) {
+
+		// Reduce context if the leading compound selector is an ID
+		tokens = match[0] = match[0].slice( 0 );
+		if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
+				context.nodeType === 9 && documentIsHTML && Expr.relative[ tokens[1].type ] ) {
+
+			context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
+			if ( !context ) {
+				return results;
+
+			// Precompiled matchers will still verify ancestry, so step up a level
+			} else if ( compiled ) {
+				context = context.parentNode;
+			}
+
+			selector = selector.slice( tokens.shift().value.length );
+		}
+
+		// Fetch a seed set for right-to-left matching
+		i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
+		while ( i-- ) {
+			token = tokens[i];
+
+			// Abort if we hit a combinator
+			if ( Expr.relative[ (type = token.type) ] ) {
+				break;
+			}
+			if ( (find = Expr.find[ type ]) ) {
+				// Search, expanding context for leading sibling combinators
+				if ( (seed = find(
+					token.matches[0].replace( runescape, funescape ),
+					rsibling.test( tokens[0].type ) && testContext( context.parentNode ) || context
+				)) ) {
+
+					// If seed is empty or no tokens remain, we can return early
+					tokens.splice( i, 1 );
+					selector = seed.length && toSelector( tokens );
+					if ( !selector ) {
+						push.apply( results, seed );
+						return results;
+					}
+
+					break;
+				}
+			}
+		}
+	}
+
+	// Compile and execute a filtering function if one is not provided
+	// Provide `match` to avoid retokenization if we modified the selector above
+	( compiled || compile( selector, match ) )(
+		seed,
+		context,
+		!documentIsHTML,
+		results,
+		!context || rsibling.test( selector ) && testContext( context.parentNode ) || context
+	);
+	return results;
+};
+
+// One-time assignments
+
+// Sort stability
+support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
+
+// Support: Chrome 14-35+
+// Always assume duplicates if they aren't passed to the comparison function
+support.detectDuplicates = !!hasDuplicate;
+
+// Initialize against the default document
+setDocument();
+
+// Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
+// Detached nodes confoundingly follow *each other*
+support.sortDetached = assert(function( el ) {
+	// Should return 1, but returns 4 (following)
+	return el.compareDocumentPosition( document.createElement("fieldset") ) & 1;
+});
+
+// Support: IE<8
+// Prevent attribute/property "interpolation"
+// https://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
+if ( !assert(function( el ) {
+	el.innerHTML = "<a href='#'></a>";
+	return el.firstChild.getAttribute("href") === "#" ;
+}) ) {
+	addHandle( "type|href|height|width", function( elem, name, isXML ) {
+		if ( !isXML ) {
+			return elem.getAttribute( name, name.toLowerCase() === "type" ? 1 : 2 );
+		}
+	});
+}
+
+// Support: IE<9
+// Use defaultValue in place of getAttribute("value")
+if ( !support.attributes || !assert(function( el ) {
+	el.innerHTML = "<input/>";
+	el.firstChild.setAttribute( "value", "" );
+	return el.firstChild.getAttribute( "value" ) === "";
+}) ) {
+	addHandle( "value", function( elem, name, isXML ) {
+		if ( !isXML && elem.nodeName.toLowerCase() === "input" ) {
+			return elem.defaultValue;
+		}
+	});
+}
+
+// Support: IE<9
+// Use getAttributeNode to fetch booleans when getAttribute lies
+if ( !assert(function( el ) {
+	return el.getAttribute("disabled") == null;
+}) ) {
+	addHandle( booleans, function( elem, name, isXML ) {
+		var val;
+		if ( !isXML ) {
+			return elem[ name ] === true ? name.toLowerCase() :
+					(val = elem.getAttributeNode( name )) && val.specified ?
+					val.value :
+				null;
+		}
+	});
+}
+
+return Sizzle;
+
+})( window );
+
+
+
+jQuery.find = Sizzle;
+jQuery.expr = Sizzle.selectors;
+
+// Deprecated
+jQuery.expr[ ":" ] = jQuery.expr.pseudos;
+jQuery.uniqueSort = jQuery.unique = Sizzle.uniqueSort;
+jQuery.text = Sizzle.getText;
+jQuery.isXMLDoc = Sizzle.isXML;
+jQuery.contains = Sizzle.contains;
+jQuery.escapeSelector = Sizzle.escape;
+
+
+
+
+var dir = function( elem, dir, until ) {
+	var matched = [],
+		truncate = until !== undefined;
+
+	while ( ( elem = elem[ dir ] ) && elem.nodeType !== 9 ) {
+		if ( elem.nodeType === 1 ) {
+			if ( truncate && jQuery( elem ).is( until ) ) {
+				break;
+			}
+			matched.push( elem );
+		}
+	}
+	return matched;
+};
+
+
+var siblings = function( n, elem ) {
+	var matched = [];
+
+	for ( ; n; n = n.nextSibling ) {
+		if ( n.nodeType === 1 && n !== elem ) {
+			matched.push( n );
+		}
+	}
+
+	return matched;
+};
+
+
+var rneedsContext = jQuery.expr.match.needsContext;
+
+
+
+function nodeName( elem, name ) {
+
+  return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+
+};
+var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
+
+
+
+// Implement the identical functionality for filter and not
+function winnow( elements, qualifier, not ) {
+	if ( isFunction( qualifier ) ) {
+		return jQuery.grep( elements, function( elem, i ) {
+			return !!qualifier.call( elem, i, elem ) !== not;
+		} );
+	}
+
+	// Single element
+	if ( qualifier.nodeType ) {
+		return jQuery.grep( elements, function( elem ) {
+			return ( elem === qualifier ) !== not;
+		} );
+	}
+
+	// Arraylike of elements (jQuery, arguments, Array)
+	if ( typeof qualifier !== "string" ) {
+		return jQuery.grep( elements, function( elem ) {
+			return ( indexOf.call( qualifier, elem ) > -1 ) !== not;
+		} );
+	}
+
+	// Filtered directly for both simple and complex selectors
+	return jQuery.filter( qualifier, elements, not );
+}
+
+jQuery.filter = function( expr, elems, not ) {
+	var elem = elems[ 0 ];
+
+	if ( not ) {
+		expr = ":not(" + expr + ")";
+	}
+
+	if ( elems.length === 1 && elem.nodeType === 1 ) {
+		return jQuery.find.matchesSelector( elem, expr ) ? [ elem ] : [];
+	}
+
+	return jQuery.find.matches( expr, jQuery.grep( elems, function( elem ) {
+		return elem.nodeType === 1;
+	} ) );
+};
+
+jQuery.fn.extend( {
+	find: function( selector ) {
+		var i, ret,
+			len = this.length,
+			self = this;
+
+		if ( typeof selector !== "string" ) {
+			return this.pushStack( jQuery( selector ).filter( function() {
+				for ( i = 0; i < len; i++ ) {
+					if ( jQuery.contains( self[ i ], this ) ) {
+						return true;
+					}
+				}
+			} ) );
+		}
+
+		ret = this.pushStack( [] );
+
+		for ( i = 0; i < len; i++ ) {
+			jQuery.find( selector, self[ i ], ret );
+		}
+
+		return len > 1 ? jQuery.uniqueSort( ret ) : ret;
+	},
+	filter: function( selector ) {
+		return this.pushStack( winnow( this, selector || [], false ) );
+	},
+	not: function( selector ) {
+		return this.pushStack( winnow( this, selector || [], true ) );
+	},
+	is: function( selector ) {
+		return !!winnow(
+			this,
+
+			// If this is a positional/relative selector, check membership in the returned set
+			// so $("p:first").is("p:last") won't return true for a doc with two "p".
+			typeof selector === "string" && rneedsContext.test( selector ) ?
+				jQuery( selector ) :
+				selector || [],
+			false
+		).length;
+	}
+} );
+
+
+// Initialize a jQuery object
+
+
+// A central reference to the root jQuery(document)
+var rootjQuery,
+
+	// A simple way to check for HTML strings
+	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
+	// Strict HTML recognition (#11290: must start with <)
+	// Shortcut simple #id case for speed
+	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
+
+	init = jQuery.fn.init = function( selector, context, root ) {
+		var match, elem;
+
+		// HANDLE: $(""), $(null), $(undefined), $(false)
+		if ( !selector ) {
+			return this;
+		}
+
+		// Method init() accepts an alternate rootjQuery
+		// so migrate can support jQuery.sub (gh-2101)
+		root = root || rootjQuery;
+
+		// Handle HTML strings
+		if ( typeof selector === "string" ) {
+			if ( selector[ 0 ] === "<" &&
+				selector[ selector.length - 1 ] === ">" &&
+				selector.length >= 3 ) {
+
+				// Assume that strings that start and end with <> are HTML and skip the regex check
+				match = [ null, selector, null ];
+
+			} else {
+				match = rquickExpr.exec( selector );
+			}
+
+			// Match html or make sure no context is specified for #id
+			if ( match && ( match[ 1 ] || !context ) ) {
+
+				// HANDLE: $(html) -> $(array)
+				if ( match[ 1 ] ) {
+					context = context instanceof jQuery ? context[ 0 ] : context;
+
+					// Option to run scripts is true for back-compat
+					// Intentionally let the error be thrown if parseHTML is not present
+					jQuery.merge( this, jQuery.parseHTML(
+						match[ 1 ],
+						context && context.nodeType ? context.ownerDocument || context : document,
+						true
+					) );
+
+					// HANDLE: $(html, props)
+					if ( rsingleTag.test( match[ 1 ] ) && jQuery.isPlainObject( context ) ) {
+						for ( match in context ) {
+
+							// Properties of context are called as methods if possible
+							if ( isFunction( this[ match ] ) ) {
+								this[ match ]( context[ match ] );
+
+							// ...and otherwise set as attributes
+							} else {
+								this.attr( match, context[ match ] );
+							}
+						}
+					}
+
+					return this;
+
+				// HANDLE: $(#id)
+				} else {
+					elem = document.getElementById( match[ 2 ] );
+
+					if ( elem ) {
+
+						// Inject the element directly into the jQuery object
+						this[ 0 ] = elem;
+						this.length = 1;
+					}
+					return this;
+				}
+
+			// HANDLE: $(expr, $(...))
+			} else if ( !context || context.jquery ) {
+				return ( context || root ).find( selector );
+
+			// HANDLE: $(expr, context)
+			// (which is just equivalent to: $(context).find(expr)
+			} else {
+				return this.constructor( context ).find( selector );
+			}
+
+		// HANDLE: $(DOMElement)
+		} else if ( selector.nodeType ) {
+			this[ 0 ] = selector;
+			this.length = 1;
+			return this;
+
+		// HANDLE: $(function)
+		// Shortcut for document ready
+		} else if ( isFunction( selector ) ) {
+			return root.ready !== undefined ?
+				root.ready( selector ) :
+
+				// Execute immediately if ready is not present
+				selector( jQuery );
+		}
+
+		return jQuery.makeArray( selector, this );
+	};
+
+// Give the init function the jQuery prototype for later instantiation
+init.prototype = jQuery.fn;
+
+// Initialize central reference
+rootjQuery = jQuery( document );
+
+
+var rparentsprev = /^(?:parents|prev(?:Until|All))/,
+
+	// Methods guaranteed to produce a unique set when starting from a unique set
+	guaranteedUnique = {
+		children: true,
+		contents: true,
+		next: true,
+		prev: true
+	};
+
+jQuery.fn.extend( {
+	has: function( target ) {
+		var targets = jQuery( target, this ),
+			l = targets.length;
+
+		return this.filter( function() {
+			var i = 0;
+			for ( ; i < l; i++ ) {
+				if ( jQuery.contains( this, targets[ i ] ) ) {
+					return true;
+				}
+			}
+		} );
+	},
+
+	closest: function( selectors, context ) {
+		var cur,
+			i = 0,
+			l = this.length,
+			matched = [],
+			targets = typeof selectors !== "string" && jQuery( selectors );
+
+		// Positional selectors never match, since there's no _selection_ context
+		if ( !rneedsContext.test( selectors ) ) {
+			for ( ; i < l; i++ ) {
+				for ( cur = this[ i ]; cur && cur !== context; cur = cur.parentNode ) {
+
+					// Always skip document fragments
+					if ( cur.nodeType < 11 && ( targets ?
+						targets.index( cur ) > -1 :
+
+						// Don't pass non-elements to Sizzle
+						cur.nodeType === 1 &&
+							jQuery.find.matchesSelector( cur, selectors ) ) ) {
+
+						matched.push( cur );
+						break;
+					}
+				}
+			}
+		}
+
+		return this.pushStack( matched.length > 1 ? jQuery.uniqueSort( matched ) : matched );
+	},
+
+	// Determine the position of an element within the set
+	index: function( elem ) {
+
+		// No argument, return index in parent
+		if ( !elem ) {
+			return ( this[ 0 ] && this[ 0 ].parentNode ) ? this.first().prevAll().length : -1;
+		}
+
+		// Index in selector
+		if ( typeof elem === "string" ) {
+			return indexOf.call( jQuery( elem ), this[ 0 ] );
+		}
+
+		// Locate the position of the desired element
+		return indexOf.call( this,
+
+			// If it receives a jQuery object, the first element is used
+			elem.jquery ? elem[ 0 ] : elem
+		);
+	},
+
+	add: function( selector, context ) {
+		return this.pushStack(
+			jQuery.uniqueSort(
+				jQuery.merge( this.get(), jQuery( selector, context ) )
+			)
+		);
+	},
+
+	addBack: function( selector ) {
+		return this.add( selector == null ?
+			this.prevObject : this.prevObject.filter( selector )
+		);
+	}
+} );
+
+function sibling( cur, dir ) {
+	while ( ( cur = cur[ dir ] ) && cur.nodeType !== 1 ) {}
+	return cur;
+}
+
+jQuery.each( {
+	parent: function( elem ) {
+		var parent = elem.parentNode;
+		return parent && parent.nodeType !== 11 ? parent : null;
+	},
+	parents: function( elem ) {
+		return dir( elem, "parentNode" );
+	},
+	parentsUntil: function( elem, i, until ) {
+		return dir( elem, "parentNode", until );
+	},
+	next: function( elem ) {
+		return sibling( elem, "nextSibling" );
+	},
+	prev: function( elem ) {
+		return sibling( elem, "previousSibling" );
+	},
+	nextAll: function( elem ) {
+		return dir( elem, "nextSibling" );
+	},
+	prevAll: function( elem ) {
+		return dir( elem, "previousSibling" );
+	},
+	nextUntil: function( elem, i, until ) {
+		return dir( elem, "nextSibling", until );
+	},
+	prevUntil: function( elem, i, until ) {
+		return dir( elem, "previousSibling", until );
+	},
+	siblings: function( elem ) {
+		return siblings( ( elem.parentNode || {} ).firstChild, elem );
+	},
+	children: function( elem ) {
+		return siblings( elem.firstChild );
+	},
+	contents: function( elem ) {
+        if ( nodeName( elem, "iframe" ) ) {
+            return elem.contentDocument;
+        }
+
+        // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
+        // Treat the template element as a regular one in browsers that
+        // don't support it.
+        if ( nodeName( elem, "template" ) ) {
+            elem = elem.content || elem;
+        }
+
+        return jQuery.merge( [], elem.childNodes );
+	}
+}, function( name, fn ) {
+	jQuery.fn[ name ] = function( until, selector ) {
+		var matched = jQuery.map( this, fn, until );
+
+		if ( name.slice( -5 ) !== "Until" ) {
+			selector = until;
+		}
+
+		if ( selector && typeof selector === "string" ) {
+			matched = jQuery.filter( selector, matched );
+		}
+
+		if ( this.length > 1 ) {
+
+			// Remove duplicates
+			if ( !guaranteedUnique[ name ] ) {
+				jQuery.uniqueSort( matched );
+			}
+
+			// Reverse order for parents* and prev-derivatives
+			if ( rparentsprev.test( name ) ) {
+				matched.reverse();
+			}
+		}
+
+		return this.pushStack( matched );
+	};
+} );
+var rnothtmlwhite = ( /[^\x20\t\r\n\f]+/g );
+
+
+
+// Convert String-formatted options into Object-formatted ones
+function createOptions( options ) {
+	var object = {};
+	jQuery.each( options.match( rnothtmlwhite ) || [], function( _, flag ) {
+		object[ flag ] = true;
+	} );
+	return object;
+}
+
+/*
+ * Create a callback list using the following parameters:
+ *
+ *	options: an optional list of space-separated options that will change how
+ *			the callback list behaves or a more traditional option object
+ *
+ * By default a callback list will act like an event callback list and can be
+ * "fired" multiple times.
+ *
+ * Possible options:
+ *
+ *	once:			will ensure the callback list can only be fired once (like a Deferred)
+ *
+ *	memory:			will keep track of previous values and will call any callback added
+ *					after the list has been fired right away with the latest "memorized"
+ *					values (like a Deferred)
+ *
+ *	unique:			will ensure a callback can only be added once (no duplicate in the list)
+ *
+ *	stopOnFalse:	interrupt callings when a callback returns false
+ *
+ */
+jQuery.Callbacks = function( options ) {
+
+	// Convert options from String-formatted to Object-formatted if needed
+	// (we check in cache first)
+	options = typeof options === "string" ?
+		createOptions( options ) :
+		jQuery.extend( {}, options );
+
+	var // Flag to know if list is currently firing
+		firing,
+
+		// Last fire value for non-forgettable lists
+		memory,
+
+		// Flag to know if list was already fired
+		fired,
+
+		// Flag to prevent firing
+		locked,
+
+		// Actual callback list
+		list = [],
+
+		// Queue of execution data for repeatable lists
+		queue = [],
+
+		// Index of currently firing callback (modified by add/remove as needed)
+		firingIndex = -1,
+
+		// Fire callbacks
+		fire = function() {
+
+			// Enforce single-firing
+			locked = locked || options.once;
+
+			// Execute callbacks for all pending executions,
+			// respecting firingIndex overrides and runtime changes
+			fired = firing = true;
+			for ( ; queue.length; firingIndex = -1 ) {
+				memory = queue.shift();
+				while ( ++firingIndex < list.length ) {
+
+					// Run callback and check for early termination
+					if ( list[ firingIndex ].apply( memory[ 0 ], memory[ 1 ] ) === false &&
+						options.stopOnFalse ) {
+
+						// Jump to end and forget the data so .add doesn't re-fire
+						firingIndex = list.length;
+						memory = false;
+					}
+				}
+			}
+
+			// Forget the data if we're done with it
+			if ( !options.memory ) {
+				memory = false;
+			}
+
+			firing = false;
+
+			// Clean up if we're done firing for good
+			if ( locked ) {
+
+				// Keep an empty list if we have data for future add calls
+				if ( memory ) {
+					list = [];
+
+				// Otherwise, this object is spent
+				} else {
+					list = "";
+				}
+			}
+		},
+
+		// Actual Callbacks object
+		self = {
+
+			// Add a callback or a collection of callbacks to the list
+			add: function() {
+				if ( list ) {
+
+					// If we have memory from a past run, we should fire after adding
+					if ( memory && !firing ) {
+						firingIndex = list.length - 1;
+						queue.push( memory );
+					}
+
+					( function add( args ) {
+						jQuery.each( args, function( _, arg ) {
+							if ( isFunction( arg ) ) {
+								if ( !options.unique || !self.has( arg ) ) {
+									list.push( arg );
+								}
+							} else if ( arg && arg.length && toType( arg ) !== "string" ) {
+
+								// Inspect recursively
+								add( arg );
+							}
+						} );
+					} )( arguments );
+
+					if ( memory && !firing ) {
+						fire();
+					}
+				}
+				return this;
+			},
+
+			// Remove a callback from the list
+			remove: function() {
+				jQuery.each( arguments, function( _, arg ) {
+					var index;
+					while ( ( index = jQuery.inArray( arg, list, index ) ) > -1 ) {
+						list.splice( index, 1 );
+
+						// Handle firing indexes
+						if ( index <= firingIndex ) {
+							firingIndex--;
+						}
+					}
+				} );
+				return this;
+			},
+
+			// Check if a given callback is in the list.
+			// If no argument is given, return whether or not list has callbacks attached.
+			has: function( fn ) {
+				return fn ?
+					jQuery.inArray( fn, list ) > -1 :
+					list.length > 0;
+			},
+
+			// Remove all callbacks from the list
+			empty: function() {
+				if ( list ) {
+					list = [];
+				}
+				return this;
+			},
+
+			// Disable .fire and .add
+			// Abort any current/pending executions
+			// Clear all callbacks and values
+			disable: function() {
+				locked = queue = [];
+				list = memory = "";
+				return this;
+			},
+			disabled: function() {
+				return !list;
+			},
+
+			// Disable .fire
+			// Also disable .add unless we have memory (since it would have no effect)
+			// Abort any pending executions
+			lock: function() {
+				locked = queue = [];
+				if ( !memory && !firing ) {
+					list = memory = "";
+				}
+				return this;
+			},
+			locked: function() {
+				return !!locked;
+			},
+
+			// Call all callbacks with the given context and arguments
+			fireWith: function( context, args ) {
+				if ( !locked ) {
+					args = args || [];
+					args = [ context, args.slice ? args.slice() : args ];
+					queue.push( args );
+					if ( !firing ) {
+						fire();
+					}
+				}
+				return this;
+			},
+
+			// Call all the callbacks with the given arguments
+			fire: function() {
+				self.fireWith( this, arguments );
+				return this;
+			},
+
+			// To know if the callbacks have already been called at least once
+			fired: function() {
+				return !!fired;
+			}
+		};
+
+	return self;
+};
+
+
+function Identity( v ) {
+	return v;
+}
+function Thrower( ex ) {
+	throw ex;
+}
+
+function adoptValue( value, resolve, reject, noValue ) {
+	var method;
+
+	try {
+
+		// Check for promise aspect first to privilege synchronous behavior
+		if ( value && isFunction( ( method = value.promise ) ) ) {
+			method.call( value ).done( resolve ).fail( reject );
+
+		// Other thenables
+		} else if ( value && isFunction( ( method = value.then ) ) ) {
+			method.call( value, resolve, reject );
+
+		// Other non-thenables
+		} else {
+
+			// Control `resolve` arguments by letting Array#slice cast boolean `noValue` to integer:
+			// * false: [ value ].slice( 0 ) => resolve( value )
+			// * true: [ value ].slice( 1 ) => resolve()
+			resolve.apply( undefined, [ value ].slice( noValue ) );
+		}
+
+	// For Promises/A+, convert exceptions into rejections
+	// Since jQuery.when doesn't unwrap thenables, we can skip the extra checks appearing in
+	// Deferred#then to conditionally suppress rejection.
+	} catch ( value ) {
+
+		// Support: Android 4.0 only
+		// Strict mode functions invoked without .call/.apply get global-object context
+		reject.apply( undefined, [ value ] );
+	}
+}
+
+jQuery.extend( {
+
+	Deferred: function( func ) {
+		var tuples = [
+
+				// action, add listener, callbacks,
+				// ... .then handlers, argument index, [final state]
+				[ "notify", "progress", jQuery.Callbacks( "memory" ),
+					jQuery.Callbacks( "memory" ), 2 ],
+				[ "resolve", "done", jQuery.Callbacks( "once memory" ),
+					jQuery.Callbacks( "once memory" ), 0, "resolved" ],
+				[ "reject", "fail", jQuery.Callbacks( "once memory" ),
+					jQuery.Callbacks( "once memory" ), 1, "rejected" ]
+			],
+			state = "pending",
+			promise = {
+				state: function() {
+					return state;
+				},
+				always: function() {
+					deferred.done( arguments ).fail( arguments );
+					return this;
+				},
+				"catch": function( fn ) {
+					return promise.then( null, fn );
+				},
+
+				// Keep pipe for back-compat
+				pipe: function( /* fnDone, fnFail, fnProgress */ ) {
+					var fns = arguments;
+
+					return jQuery.Deferred( function( newDefer ) {
+						jQuery.each( tuples, function( i, tuple ) {
+
+							// Map tuples (progress, done, fail) to arguments (done, fail, progress)
+							var fn = isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
+
+							// deferred.progress(function() { bind to newDefer or newDefer.notify })
+							// deferred.done(function() { bind to newDefer or newDefer.resolve })
+							// deferred.fail(function() { bind to newDefer or newDefer.reject })
+							deferred[ tuple[ 1 ] ]( function() {
+								var returned = fn && fn.apply( this, arguments );
+								if ( returned && isFunction( returned.promise ) ) {
+									returned.promise()
+										.progress( newDefer.notify )
+										.done( newDefer.resolve )
+										.fail( newDefer.reject );
+								} else {
+									newDefer[ tuple[ 0 ] + "With" ](
+										this,
+										fn ? [ returned ] : arguments
+									);
+								}
+							} );
+						} );
+						fns = null;
+					} ).promise();
+				},
+				then: function( onFulfilled, onRejected, onProgress ) {
+					var maxDepth = 0;
+					function resolve( depth, deferred, handler, special ) {
+						return function() {
+							var that = this,
+								args = arguments,
+								mightThrow = function() {
+									var returned, then;
+
+									// Support: Promises/A+ section 2.3.3.3.3
+									// https://promisesaplus.com/#point-59
+									// Ignore double-resolution attempts
+									if ( depth < maxDepth ) {
+										return;
+									}
+
+									returned = handler.apply( that, args );
+
+									// Support: Promises/A+ section 2.3.1
+									// https://promisesaplus.com/#point-48
+									if ( returned === deferred.promise() ) {
+										throw new TypeError( "Thenable self-resolution" );
+									}
+
+									// Support: Promises/A+ sections 2.3.3.1, 3.5
+									// https://promisesaplus.com/#point-54
+									// https://promisesaplus.com/#point-75
+									// Retrieve `then` only once
+									then = returned &&
+
+										// Support: Promises/A+ section 2.3.4
+										// https://promisesaplus.com/#point-64
+										// Only check objects and functions for thenability
+										( typeof returned === "object" ||
+											typeof returned === "function" ) &&
+										returned.then;
+
+									// Handle a returned thenable
+									if ( isFunction( then ) ) {
+
+										// Special processors (notify) just wait for resolution
+										if ( special ) {
+											then.call(
+												returned,
+												resolve( maxDepth, deferred, Identity, special ),
+												resolve( maxDepth, deferred, Thrower, special )
+											);
+
+										// Normal processors (resolve) also hook into progress
+										} else {
+
+											// ...and disregard older resolution values
+											maxDepth++;
+
+											then.call(
+												returned,
+												resolve( maxDepth, deferred, Identity, special ),
+												resolve( maxDepth, deferred, Thrower, special ),
+												resolve( maxDepth, deferred, Identity,
+													deferred.notifyWith )
+											);
+										}
+
+									// Handle all other returned values
+									} else {
+
+										// Only substitute handlers pass on context
+										// and multiple values (non-spec behavior)
+										if ( handler !== Identity ) {
+											that = undefined;
+											args = [ returned ];
+										}
+
+										// Process the value(s)
+										// Default process is resolve
+										( special || deferred.resolveWith )( that, args );
+									}
+								},
+
+								// Only normal processors (resolve) catch and reject exceptions
+								process = special ?
+									mightThrow :
+									function() {
+										try {
+											mightThrow();
+										} catch ( e ) {
+
+											if ( jQuery.Deferred.exceptionHook ) {
+												jQuery.Deferred.exceptionHook( e,
+													process.stackTrace );
+											}
+
+											// Support: Promises/A+ section 2.3.3.3.4.1
+											// https://promisesaplus.com/#point-61
+											// Ignore post-resolution exceptions
+											if ( depth + 1 >= maxDepth ) {
+
+												// Only substitute handlers pass on context
+												// and multiple values (non-spec behavior)
+												if ( handler !== Thrower ) {
+													that = undefined;
+													args = [ e ];
+												}
+
+												deferred.rejectWith( that, args );
+											}
+										}
+									};
+
+							// Support: Promises/A+ section 2.3.3.3.1
+							// https://promisesaplus.com/#point-57
+							// Re-resolve promises immediately to dodge false rejection from
+							// subsequent errors
+							if ( depth ) {
+								process();
+							} else {
+
+								// Call an optional hook to record the stack, in case of exception
+								// since it's otherwise lost when execution goes async
+								if ( jQuery.Deferred.getStackHook ) {
+									process.stackTrace = jQuery.Deferred.getStackHook();
+								}
+								window.setTimeout( process );
+							}
+						};
+					}
+
+					return jQuery.Deferred( function( newDefer ) {
+
+						// progress_handlers.add( ... )
+						tuples[ 0 ][ 3 ].add(
+							resolve(
+								0,
+								newDefer,
+								isFunction( onProgress ) ?
+									onProgress :
+									Identity,
+								newDefer.notifyWith
+							)
+						);
+
+						// fulfilled_handlers.add( ... )
+						tuples[ 1 ][ 3 ].add(
+							resolve(
+								0,
+								newDefer,
+								isFunction( onFulfilled ) ?
+									onFulfilled :
+									Identity
+							)
+						);
+
+						// rejected_handlers.add( ... )
+						tuples[ 2 ][ 3 ].add(
+							resolve(
+								0,
+								newDefer,
+								isFunction( onRejected ) ?
+									onRejected :
+									Thrower
+							)
+						);
+					} ).promise();
+				},
+
+				// Get a promise for this deferred
+				// If obj is provided, the promise aspect is added to the object
+				promise: function( obj ) {
+					return obj != null ? jQuery.extend( obj, promise ) : promise;
+				}
+			},
+			deferred = {};
+
+		// Add list-specific methods
+		jQuery.each( tuples, function( i, tuple ) {
+			var list = tuple[ 2 ],
+				stateString = tuple[ 5 ];
+
+			// promise.progress = list.add
+			// promise.done = list.add
+			// promise.fail = list.add
+			promise[ tuple[ 1 ] ] = list.add;
+
+			// Handle state
+			if ( stateString ) {
+				list.add(
+					function() {
+
+						// state = "resolved" (i.e., fulfilled)
+						// state = "rejected"
+						state = stateString;
+					},
+
+					// rejected_callbacks.disable
+					// fulfilled_callbacks.disable
+					tuples[ 3 - i ][ 2 ].disable,
+
+					// rejected_handlers.disable
+					// fulfilled_handlers.disable
+					tuples[ 3 - i ][ 3 ].disable,
+
+					// progress_callbacks.lock
+					tuples[ 0 ][ 2 ].lock,
+
+					// progress_handlers.lock
+					tuples[ 0 ][ 3 ].lock
+				);
+			}
+
+			// progress_handlers.fire
+			// fulfilled_handlers.fire
+			// rejected_handlers.fire
+			list.add( tuple[ 3 ].fire );
+
+			// deferred.notify = function() { deferred.notifyWith(...) }
+			// deferred.resolve = function() { deferred.resolveWith(...) }
+			// deferred.reject = function() { deferred.rejectWith(...) }
+			deferred[ tuple[ 0 ] ] = function() {
+				deferred[ tuple[ 0 ] + "With" ]( this === deferred ? undefined : this, arguments );
+				return this;
+			};
+
+			// deferred.notifyWith = list.fireWith
+			// deferred.resolveWith = list.fireWith
+			// deferred.rejectWith = list.fireWith
+			deferred[ tuple[ 0 ] + "With" ] = list.fireWith;
+		} );
+
+		// Make the deferred a promise
+		promise.promise( deferred );
+
+		// Call given func if any
+		if ( func ) {
+			func.call( deferred, deferred );
+		}
+
+		// All done!
+		return deferred;
+	},
+
+	// Deferred helper
+	when: function( singleValue ) {
+		var
+
+			// count of uncompleted subordinates
+			remaining = arguments.length,
+
+			// count of unprocessed arguments
+			i = remaining,
+
+			// subordinate fulfillment data
+			resolveContexts = Array( i ),
+			resolveValues = slice.call( arguments ),
+
+			// the master Deferred
+			master = jQuery.Deferred(),
+
+			// subordinate callback factory
+			updateFunc = function( i ) {
+				return function( value ) {
+					resolveContexts[ i ] = this;
+					resolveValues[ i ] = arguments.length > 1 ? slice.call( arguments ) : value;
+					if ( !( --remaining ) ) {
+						master.resolveWith( resolveContexts, resolveValues );
+					}
+				};
+			};
+
+		// Single- and empty arguments are adopted like Promise.resolve
+		if ( remaining <= 1 ) {
+			adoptValue( singleValue, master.done( updateFunc( i ) ).resolve, master.reject,
+				!remaining );
+
+			// Use .then() to unwrap secondary thenables (cf. gh-3000)
+			if ( master.state() === "pending" ||
+				isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
+
+				return master.then();
+			}
+		}
+
+		// Multiple arguments are aggregated like Promise.all array elements
+		while ( i-- ) {
+			adoptValue( resolveValues[ i ], updateFunc( i ), master.reject );
+		}
+
+		return master.promise();
+	}
+} );
+
+
+// These usually indicate a programmer mistake during development,
+// warn about them ASAP rather than swallowing them by default.
+var rerrorNames = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
+
+jQuery.Deferred.exceptionHook = function( error, stack ) {
+
+	// Support: IE 8 - 9 only
+	// Console exists when dev tools are open, which can happen at any time
+	if ( window.console && window.console.warn && error && rerrorNames.test( error.name ) ) {
+		window.console.warn( "jQuery.Deferred exception: " + error.message, error.stack, stack );
+	}
+};
+
+
+
+
+jQuery.readyException = function( error ) {
+	window.setTimeout( function() {
+		throw error;
+	} );
+};
+
+
+
+
+// The deferred used on DOM ready
+var readyList = jQuery.Deferred();
+
+jQuery.fn.ready = function( fn ) {
+
+	readyList
+		.then( fn )
+
+		// Wrap jQuery.readyException in a function so that the lookup
+		// happens at the time of error handling instead of callback
+		// registration.
+		.catch( function( error ) {
+			jQuery.readyException( error );
+		} );
+
+	return this;
+};
+
+jQuery.extend( {
+
+	// Is the DOM ready to be used? Set to true once it occurs.
+	isReady: false,
+
+	// A counter to track how many items to wait for before
+	// the ready event fires. See #6781
+	readyWait: 1,
+
+	// Handle when the DOM is ready
+	ready: function( wait ) {
+
+		// Abort if there are pending holds or we're already ready
+		if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
+			return;
+		}
+
+		// Remember that the DOM is ready
+		jQuery.isReady = true;
+
+		// If a normal DOM Ready event fired, decrement, and wait if need be
+		if ( wait !== true && --jQuery.readyWait > 0 ) {
+			return;
+		}
+
+		// If there are functions bound, to execute
+		readyList.resolveWith( document, [ jQuery ] );
+	}
+} );
+
+jQuery.ready.then = readyList.then;
+
+// The ready event handler and self cleanup method
+function completed() {
+	document.removeEventListener( "DOMContentLoaded", completed );
+	window.removeEventListener( "load", completed );
+	jQuery.ready();
+}
+
+// Catch cases where $(document).ready() is called
+// after the browser event has already occurred.
+// Support: IE <=9 - 10 only
+// Older IE sometimes signals "interactive" too soon
+if ( document.readyState === "complete" ||
+	( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
+
+	// Handle it asynchronously to allow scripts the opportunity to delay ready
+	window.setTimeout( jQuery.ready );
+
+} else {
+
+	// Use the handy event callback
+	document.addEventListener( "DOMContentLoaded", completed );
+
+	// A fallback to window.onload, that will always work
+	window.addEventListener( "load", completed );
+}
+
+
+
+
+// Multifunctional method to get and set values of a collection
+// The value/s can optionally be executed if it's a function
+var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
+	var i = 0,
+		len = elems.length,
+		bulk = key == null;
+
+	// Sets many values
+	if ( toType( key ) === "object" ) {
+		chainable = true;
+		for ( i in key ) {
+			access( elems, fn, i, key[ i ], true, emptyGet, raw );
+		}
+
+	// Sets one value
+	} else if ( value !== undefined ) {
+		chainable = true;
+
+		if ( !isFunction( value ) ) {
+			raw = true;
+		}
+
+		if ( bulk ) {
+
+			// Bulk operations run against the entire set
+			if ( raw ) {
+				fn.call( elems, value );
+				fn = null;
+
+			// ...except when executing function values
+			} else {
+				bulk = fn;
+				fn = function( elem, key, value ) {
+					return bulk.call( jQuery( elem ), value );
+				};
+			}
+		}
+
+		if ( fn ) {
+			for ( ; i < len; i++ ) {
+				fn(
+					elems[ i ], key, raw ?
+					value :
+					value.call( elems[ i ], i, fn( elems[ i ], key ) )
+				);
+			}
+		}
+	}
+
+	if ( chainable ) {
+		return elems;
+	}
+
+	// Gets
+	if ( bulk ) {
+		return fn.call( elems );
+	}
+
+	return len ? fn( elems[ 0 ], key ) : emptyGet;
+};
+
+
+// Matches dashed string for camelizing
+var rmsPrefix = /^-ms-/,
+	rdashAlpha = /-([a-z])/g;
+
+// Used by camelCase as callback to replace()
+function fcamelCase( all, letter ) {
+	return letter.toUpperCase();
+}
+
+// Convert dashed to camelCase; used by the css and data modules
+// Support: IE <=9 - 11, Edge 12 - 15
+// Microsoft forgot to hump their vendor prefix (#9572)
+function camelCase( string ) {
+	return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
+}
+var acceptData = function( owner ) {
+
+	// Accepts only:
+	//  - Node
+	//    - Node.ELEMENT_NODE
+	//    - Node.DOCUMENT_NODE
+	//  - Object
+	//    - Any
+	return owner.nodeType === 1 || owner.nodeType === 9 || !( +owner.nodeType );
+};
+
+
+
+
+function Data() {
+	this.expando = jQuery.expando + Data.uid++;
+}
+
+Data.uid = 1;
+
+Data.prototype = {
+
+	cache: function( owner ) {
+
+		// Check if the owner object already has a cache
+		var value = owner[ this.expando ];
+
+		// If not, create one
+		if ( !value ) {
+			value = {};
+
+			// We can accept data for non-element nodes in modern browsers,
+			// but we should not, see #8335.
+			// Always return an empty object.
+			if ( acceptData( owner ) ) {
+
+				// If it is a node unlikely to be stringify-ed or looped over
+				// use plain assignment
+				if ( owner.nodeType ) {
+					owner[ this.expando ] = value;
+
+				// Otherwise secure it in a non-enumerable property
+				// configurable must be true to allow the property to be
+				// deleted when data is removed
+				} else {
+					Object.defineProperty( owner, this.expando, {
+						value: value,
+						configurable: true
+					} );
+				}
+			}
+		}
+
+		return value;
+	},
+	set: function( owner, data, value ) {
+		var prop,
+			cache = this.cache( owner );
+
+		// Handle: [ owner, key, value ] args
+		// Always use camelCase key (gh-2257)
+		if ( typeof data === "string" ) {
+			cache[ camelCase( data ) ] = value;
+
+		// Handle: [ owner, { properties } ] args
+		} else {
+
+			// Copy the properties one-by-one to the cache object
+			for ( prop in data ) {
+				cache[ camelCase( prop ) ] = data[ prop ];
+			}
+		}
+		return cache;
+	},
+	get: function( owner, key ) {
+		return key === undefined ?
+			this.cache( owner ) :
+
+			// Always use camelCase key (gh-2257)
+			owner[ this.expando ] && owner[ this.expando ][ camelCase( key ) ];
+	},
+	access: function( owner, key, value ) {
+
+		// In cases where either:
+		//
+		//   1. No key was specified
+		//   2. A string key was specified, but no value provided
+		//
+		// Take the "read" path and allow the get method to determine
+		// which value to return, respectively either:
+		//
+		//   1. The entire cache object
+		//   2. The data stored at the key
+		//
+		if ( key === undefined ||
+				( ( key && typeof key === "string" ) && value === undefined ) ) {
+
+			return this.get( owner, key );
+		}
+
+		// When the key is not a string, or both a key and value
+		// are specified, set or extend (existing objects) with either:
+		//
+		//   1. An object of properties
+		//   2. A key and value
+		//
+		this.set( owner, key, value );
+
+		// Since the "set" path can have two possible entry points
+		// return the expected data based on which path was taken[*]
+		return value !== undefined ? value : key;
+	},
+	remove: function( owner, key ) {
+		var i,
+			cache = owner[ this.expando ];
+
+		if ( cache === undefined ) {
+			return;
+		}
+
+		if ( key !== undefined ) {
+
+			// Support array or space separated string of keys
+			if ( Array.isArray( key ) ) {
+
+				// If key is an array of keys...
+				// We always set camelCase keys, so remove that.
+				key = key.map( camelCase );
+			} else {
+				key = camelCase( key );
+
+				// If a key with the spaces exists, use it.
+				// Otherwise, create an array by matching non-whitespace
+				key = key in cache ?
+					[ key ] :
+					( key.match( rnothtmlwhite ) || [] );
+			}
+
+			i = key.length;
+
+			while ( i-- ) {
+				delete cache[ key[ i ] ];
+			}
+		}
+
+		// Remove the expando if there's no more data
+		if ( key === undefined || jQuery.isEmptyObject( cache ) ) {
+
+			// Support: Chrome <=35 - 45
+			// Webkit & Blink performance suffers when deleting properties
+			// from DOM nodes, so set to undefined instead
+			// https://bugs.chromium.org/p/chromium/issues/detail?id=378607 (bug restricted)
+			if ( owner.nodeType ) {
+				owner[ this.expando ] = undefined;
+			} else {
+				delete owner[ this.expando ];
+			}
+		}
+	},
+	hasData: function( owner ) {
+		var cache = owner[ this.expando ];
+		return cache !== undefined && !jQuery.isEmptyObject( cache );
+	}
+};
+var dataPriv = new Data();
+
+var dataUser = new Data();
+
+
+
+//	Implementation Summary
+//
+//	1. Enforce API surface and semantic compatibility with 1.9.x branch
+//	2. Improve the module's maintainability by reducing the storage
+//		paths to a single mechanism.
+//	3. Use the same single mechanism to support "private" and "user" data.
+//	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
+//	5. Avoid exposing implementation details on user objects (eg. expando properties)
+//	6. Provide a clear path for implementation upgrade to WeakMap in 2014
+
+var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
+	rmultiDash = /[A-Z]/g;
+
+function getData( data ) {
+	if ( data === "true" ) {
+		return true;
+	}
+
+	if ( data === "false" ) {
+		return false;
+	}
+
+	if ( data === "null" ) {
+		return null;
+	}
+
+	// Only convert to a number if it doesn't change the string
+	if ( data === +data + "" ) {
+		return +data;
+	}
+
+	if ( rbrace.test( data ) ) {
+		return JSON.parse( data );
+	}
+
+	return data;
+}
+
+function dataAttr( elem, key, data ) {
+	var name;
+
+	// If nothing was found internally, try to fetch any
+	// data from the HTML5 data-* attribute
+	if ( data === undefined && elem.nodeType === 1 ) {
+		name = "data-" + key.replace( rmultiDash, "-$&" ).toLowerCase();
+		data = elem.getAttribute( name );
+
+		if ( typeof data === "string" ) {
+			try {
+				data = getData( data );
+			} catch ( e ) {}
+
+			// Make sure we set the data so it isn't changed later
+			dataUser.set( elem, key, data );
+		} else {
+			data = undefined;
+		}
+	}
+	return data;
+}
+
+jQuery.extend( {
+	hasData: function( elem ) {
+		return dataUser.hasData( elem ) || dataPriv.hasData( elem );
+	},
+
+	data: function( elem, name, data ) {
+		return dataUser.access( elem, name, data );
+	},
+
+	removeData: function( elem, name ) {
+		dataUser.remove( elem, name );
+	},
+
+	// TODO: Now that all calls to _data and _removeData have been replaced
+	// with direct calls to dataPriv methods, these can be deprecated.
+	_data: function( elem, name, data ) {
+		return dataPriv.access( elem, name, data );
+	},
+
+	_removeData: function( elem, name ) {
+		dataPriv.remove( elem, name );
+	}
+} );
+
+jQuery.fn.extend( {
+	data: function( key, value ) {
+		var i, name, data,
+			elem = this[ 0 ],
+			attrs = elem && elem.attributes;
+
+		// Gets all values
+		if ( key === undefined ) {
+			if ( this.length ) {
+				data = dataUser.get( elem );
+
+				if ( elem.nodeType === 1 && !dataPriv.get( elem, "hasDataAttrs" ) ) {
+					i = attrs.length;
+					while ( i-- ) {
+
+						// Support: IE 11 only
+						// The attrs elements can be null (#14894)
+						if ( attrs[ i ] ) {
+							name = attrs[ i ].name;
+							if ( name.indexOf( "data-" ) === 0 ) {
+								name = camelCase( name.slice( 5 ) );
+								dataAttr( elem, name, data[ name ] );
+							}
+						}
+					}
+					dataPriv.set( elem, "hasDataAttrs", true );
+				}
+			}
+
+			return data;
+		}
+
+		// Sets multiple values
+		if ( typeof key === "object" ) {
+			return this.each( function() {
+				dataUser.set( this, key );
+			} );
+		}
+
+		return access( this, function( value ) {
+			var data;
+
+			// The calling jQuery object (element matches) is not empty
+			// (and therefore has an element appears at this[ 0 ]) and the
+			// `value` parameter was not undefined. An empty jQuery object
+			// will result in `undefined` for elem = this[ 0 ] which will
+			// throw an exception if an attempt to read a data cache is made.
+			if ( elem && value === undefined ) {
+
+				// Attempt to get data from the cache
+				// The key will always be camelCased in Data
+				data = dataUser.get( elem, key );
+				if ( data !== undefined ) {
+					return data;
+				}
+
+				// Attempt to "discover" the data in
+				// HTML5 custom data-* attrs
+				data = dataAttr( elem, key );
+				if ( data !== undefined ) {
+					return data;
+				}
+
+				// We tried really hard, but the data doesn't exist.
+				return;
+			}
+
+			// Set the data...
+			this.each( function() {
+
+				// We always store the camelCased key
+				dataUser.set( this, key, value );
+			} );
+		}, null, value, arguments.length > 1, null, true );
+	},
+
+	removeData: function( key ) {
+		return this.each( function() {
+			dataUser.remove( this, key );
+		} );
+	}
+} );
+
+
+jQuery.extend( {
+	queue: function( elem, type, data ) {
+		var queue;
+
+		if ( elem ) {
+			type = ( type || "fx" ) + "queue";
+			queue = dataPriv.get( elem, type );
+
+			// Speed up dequeue by getting out quickly if this is just a lookup
+			if ( data ) {
+				if ( !queue || Array.isArray( data ) ) {
+					queue = dataPriv.access( elem, type, jQuery.makeArray( data ) );
+				} else {
+					queue.push( data );
+				}
+			}
+			return queue || [];
+		}
+	},
+
+	dequeue: function( elem, type ) {
+		type = type || "fx";
+
+		var queue = jQuery.queue( elem, type ),
+			startLength = queue.length,
+			fn = queue.shift(),
+			hooks = jQuery._queueHooks( elem, type ),
+			next = function() {
+				jQuery.dequeue( elem, type );
+			};
+
+		// If the fx queue is dequeued, always remove the progress sentinel
+		if ( fn === "inprogress" ) {
+			fn = queue.shift();
+			startLength--;
+		}
+
+		if ( fn ) {
+
+			// Add a progress sentinel to prevent the fx queue from being
+			// automatically dequeued
+			if ( type === "fx" ) {
+				queue.unshift( "inprogress" );
+			}
+
+			// Clear up the last queue stop function
+			delete hooks.stop;
+			fn.call( elem, next, hooks );
+		}
+
+		if ( !startLength && hooks ) {
+			hooks.empty.fire();
+		}
+	},
+
+	// Not public - generate a queueHooks object, or return the current one
+	_queueHooks: function( elem, type ) {
+		var key = type + "queueHooks";
+		return dataPriv.get( elem, key ) || dataPriv.access( elem, key, {
+			empty: jQuery.Callbacks( "once memory" ).add( function() {
+				dataPriv.remove( elem, [ type + "queue", key ] );
+			} )
+		} );
+	}
+} );
+
+jQuery.fn.extend( {
+	queue: function( type, data ) {
+		var setter = 2;
+
+		if ( typeof type !== "string" ) {
+			data = type;
+			type = "fx";
+			setter--;
+		}
+
+		if ( arguments.length < setter ) {
+			return jQuery.queue( this[ 0 ], type );
+		}
+
+		return data === undefined ?
+			this :
+			this.each( function() {
+				var queue = jQuery.queue( this, type, data );
+
+				// Ensure a hooks for this queue
+				jQuery._queueHooks( this, type );
+
+				if ( type === "fx" && queue[ 0 ] !== "inprogress" ) {
+					jQuery.dequeue( this, type );
+				}
+			} );
+	},
+	dequeue: function( type ) {
+		return this.each( function() {
+			jQuery.dequeue( this, type );
+		} );
+	},
+	clearQueue: function( type ) {
+		return this.queue( type || "fx", [] );
+	},
+
+	// Get a promise resolved when queues of a certain type
+	// are emptied (fx is the type by default)
+	promise: function( type, obj ) {
+		var tmp,
+			count = 1,
+			defer = jQuery.Deferred(),
+			elements = this,
+			i = this.length,
+			resolve = function() {
+				if ( !( --count ) ) {
+					defer.resolveWith( elements, [ elements ] );
+				}
+			};
+
+		if ( typeof type !== "string" ) {
+			obj = type;
+			type = undefined;
+		}
+		type = type || "fx";
+
+		while ( i-- ) {
+			tmp = dataPriv.get( elements[ i ], type + "queueHooks" );
+			if ( tmp && tmp.empty ) {
+				count++;
+				tmp.empty.add( resolve );
+			}
+		}
+		resolve();
+		return defer.promise( obj );
+	}
+} );
+var pnum = ( /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/ ).source;
+
+var rcssNum = new RegExp( "^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i" );
+
+
+var cssExpand = [ "Top", "Right", "Bottom", "Left" ];
+
+var isHiddenWithinTree = function( elem, el ) {
+
+		// isHiddenWithinTree might be called from jQuery#filter function;
+		// in that case, element will be second argument
+		elem = el || elem;
+
+		// Inline style trumps all
+		return elem.style.display === "none" ||
+			elem.style.display === "" &&
+
+			// Otherwise, check computed style
+			// Support: Firefox <=43 - 45
+			// Disconnected elements can have computed display: none, so first confirm that elem is
+			// in the document.
+			jQuery.contains( elem.ownerDocument, elem ) &&
+
+			jQuery.css( elem, "display" ) === "none";
+	};
+
+var swap = function( elem, options, callback, args ) {
+	var ret, name,
+		old = {};
+
+	// Remember the old values, and insert the new ones
+	for ( name in options ) {
+		old[ name ] = elem.style[ name ];
+		elem.style[ name ] = options[ name ];
+	}
+
+	ret = callback.apply( elem, args || [] );
+
+	// Revert the old values
+	for ( name in options ) {
+		elem.style[ name ] = old[ name ];
+	}
+
+	return ret;
+};
+
+
+
+
+function adjustCSS( elem, prop, valueParts, tween ) {
+	var adjusted, scale,
+		maxIterations = 20,
+		currentValue = tween ?
+			function() {
+				return tween.cur();
+			} :
+			function() {
+				return jQuery.css( elem, prop, "" );
+			},
+		initial = currentValue(),
+		unit = valueParts && valueParts[ 3 ] || ( jQuery.cssNumber[ prop ] ? "" : "px" ),
+
+		// Starting value computation is required for potential unit mismatches
+		initialInUnit = ( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
+			rcssNum.exec( jQuery.css( elem, prop ) );
+
+	if ( initialInUnit && initialInUnit[ 3 ] !== unit ) {
+
+		// Support: Firefox <=54
+		// Halve the iteration target value to prevent interference from CSS upper bounds (gh-2144)
+		initial = initial / 2;
+
+		// Trust units reported by jQuery.css
+		unit = unit || initialInUnit[ 3 ];
+
+		// Iteratively approximate from a nonzero starting point
+		initialInUnit = +initial || 1;
+
+		while ( maxIterations-- ) {
+
+			// Evaluate and update our best guess (doubling guesses that zero out).
+			// Finish if the scale equals or crosses 1 (making the old*new product non-positive).
+			jQuery.style( elem, prop, initialInUnit + unit );
+			if ( ( 1 - scale ) * ( 1 - ( scale = currentValue() / initial || 0.5 ) ) <= 0 ) {
+				maxIterations = 0;
+			}
+			initialInUnit = initialInUnit / scale;
+
+		}
+
+		initialInUnit = initialInUnit * 2;
+		jQuery.style( elem, prop, initialInUnit + unit );
+
+		// Make sure we update the tween properties later on
+		valueParts = valueParts || [];
+	}
+
+	if ( valueParts ) {
+		initialInUnit = +initialInUnit || +initial || 0;
+
+		// Apply relative offset (+=/-=) if specified
+		adjusted = valueParts[ 1 ] ?
+			initialInUnit + ( valueParts[ 1 ] + 1 ) * valueParts[ 2 ] :
+			+valueParts[ 2 ];
+		if ( tween ) {
+			tween.unit = unit;
+			tween.start = initialInUnit;
+			tween.end = adjusted;
+		}
+	}
+	return adjusted;
+}
+
+
+var defaultDisplayMap = {};
+
+function getDefaultDisplay( elem ) {
+	var temp,
+		doc = elem.ownerDocument,
+		nodeName = elem.nodeName,
+		display = defaultDisplayMap[ nodeName ];
+
+	if ( display ) {
+		return display;
+	}
+
+	temp = doc.body.appendChild( doc.createElement( nodeName ) );
+	display = jQuery.css( temp, "display" );
+
+	temp.parentNode.removeChild( temp );
+
+	if ( display === "none" ) {
+		display = "block";
+	}
+	defaultDisplayMap[ nodeName ] = display;
+
+	return display;
+}
+
+function showHide( elements, show ) {
+	var display, elem,
+		values = [],
+		index = 0,
+		length = elements.length;
+
+	// Determine new display value for elements that need to change
+	for ( ; index < length; index++ ) {
+		elem = elements[ index ];
+		if ( !elem.style ) {
+			continue;
+		}
+
+		display = elem.style.display;
+		if ( show ) {
+
+			// Since we force visibility upon cascade-hidden elements, an immediate (and slow)
+			// check is required in this first loop unless we have a nonempty display value (either
+			// inline or about-to-be-restored)
+			if ( display === "none" ) {
+				values[ index ] = dataPriv.get( elem, "display" ) || null;
+				if ( !values[ index ] ) {
+					elem.style.display = "";
+				}
+			}
+			if ( elem.style.display === "" && isHiddenWithinTree( elem ) ) {
+				values[ index ] = getDefaultDisplay( elem );
+			}
+		} else {
+			if ( display !== "none" ) {
+				values[ index ] = "none";
+
+				// Remember what we're overwriting
+				dataPriv.set( elem, "display", display );
+			}
+		}
+	}
+
+	// Set the display of the elements in a second loop to avoid constant reflow
+	for ( index = 0; index < length; index++ ) {
+		if ( values[ index ] != null ) {
+			elements[ index ].style.display = values[ index ];
+		}
+	}
+
+	return elements;
+}
+
+jQuery.fn.extend( {
+	show: function() {
+		return showHide( this, true );
+	},
+	hide: function() {
+		return showHide( this );
+	},
+	toggle: function( state ) {
+		if ( typeof state === "boolean" ) {
+			return state ? this.show() : this.hide();
+		}
+
+		return this.each( function() {
+			if ( isHiddenWithinTree( this ) ) {
+				jQuery( this ).show();
+			} else {
+				jQuery( this ).hide();
+			}
+		} );
+	}
+} );
+var rcheckableType = ( /^(?:checkbox|radio)$/i );
+
+var rtagName = ( /<([a-z][^\/\0>\x20\t\r\n\f]+)/i );
+
+var rscriptType = ( /^$|^module$|\/(?:java|ecma)script/i );
+
+
+
+// We have to close these tags to support XHTML (#13200)
+var wrapMap = {
+
+	// Support: IE <=9 only
+	option: [ 1, "<select multiple='multiple'>", "</select>" ],
+
+	// XHTML parsers do not magically insert elements in the
+	// same way that tag soup parsers do. So we cannot shorten
+	// this by omitting <tbody> or other required elements.
+	thead: [ 1, "<table>", "</table>" ],
+	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
+	tr: [ 2, "<table><tbody>", "</tbody></table>" ],
+	td: [ 3, "<table><tbody><tr>", "</tr></tbody></table>" ],
+
+	_default: [ 0, "", "" ]
+};
+
+// Support: IE <=9 only
+wrapMap.optgroup = wrapMap.option;
+
+wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
+wrapMap.th = wrapMap.td;
+
+
+function getAll( context, tag ) {
+
+	// Support: IE <=9 - 11 only
+	// Use typeof to avoid zero-argument method invocation on host objects (#15151)
+	var ret;
+
+	if ( typeof context.getElementsByTagName !== "undefined" ) {
+		ret = context.getElementsByTagName( tag || "*" );
+
+	} else if ( typeof context.querySelectorAll !== "undefined" ) {
+		ret = context.querySelectorAll( tag || "*" );
+
+	} else {
+		ret = [];
+	}
+
+	if ( tag === undefined || tag && nodeName( context, tag ) ) {
+		return jQuery.merge( [ context ], ret );
+	}
+
+	return ret;
+}
+
+
+// Mark scripts as having already been evaluated
+function setGlobalEval( elems, refElements ) {
+	var i = 0,
+		l = elems.length;
+
+	for ( ; i < l; i++ ) {
+		dataPriv.set(
+			elems[ i ],
+			"globalEval",
+			!refElements || dataPriv.get( refElements[ i ], "globalEval" )
+		);
+	}
+}
+
+
+var rhtml = /<|&#?\w+;/;
+
+function buildFragment( elems, context, scripts, selection, ignored ) {
+	var elem, tmp, tag, wrap, contains, j,
+		fragment = context.createDocumentFragment(),
+		nodes = [],
+		i = 0,
+		l = elems.length;
+
+	for ( ; i < l; i++ ) {
+		elem = elems[ i ];
+
+		if ( elem || elem === 0 ) {
+
+			// Add nodes directly
+			if ( toType( elem ) === "object" ) {
+
+				// Support: Android <=4.0 only, PhantomJS 1 only
+				// push.apply(_, arraylike) throws on ancient WebKit
+				jQuery.merge( nodes, elem.nodeType ? [ elem ] : elem );
+
+			// Convert non-html into a text node
+			} else if ( !rhtml.test( elem ) ) {
+				nodes.push( context.createTextNode( elem ) );
+
+			// Convert html into DOM nodes
+			} else {
+				tmp = tmp || fragment.appendChild( context.createElement( "div" ) );
+
+				// Deserialize a standard representation
+				tag = ( rtagName.exec( elem ) || [ "", "" ] )[ 1 ].toLowerCase();
+				wrap = wrapMap[ tag ] || wrapMap._default;
+				tmp.innerHTML = wrap[ 1 ] + jQuery.htmlPrefilter( elem ) + wrap[ 2 ];
+
+				// Descend through wrappers to the right content
+				j = wrap[ 0 ];
+				while ( j-- ) {
+					tmp = tmp.lastChild;
+				}
+
+				// Support: Android <=4.0 only, PhantomJS 1 only
+				// push.apply(_, arraylike) throws on ancient WebKit
+				jQuery.merge( nodes, tmp.childNodes );
+
+				// Remember the top-level container
+				tmp = fragment.firstChild;
+
+				// Ensure the created nodes are orphaned (#12392)
+				tmp.textContent = "";
+			}
+		}
+	}
+
+	// Remove wrapper from fragment
+	fragment.textContent = "";
+
+	i = 0;
+	while ( ( elem = nodes[ i++ ] ) ) {
+
+		// Skip elements already in the context collection (trac-4087)
+		if ( selection && jQuery.inArray( elem, selection ) > -1 ) {
+			if ( ignored ) {
+				ignored.push( elem );
+			}
+			continue;
+		}
+
+		contains = jQuery.contains( elem.ownerDocument, elem );
+
+		// Append to fragment
+		tmp = getAll( fragment.appendChild( elem ), "script" );
+
+		// Preserve script evaluation history
+		if ( contains ) {
+			setGlobalEval( tmp );
+		}
+
+		// Capture executables
+		if ( scripts ) {
+			j = 0;
+			while ( ( elem = tmp[ j++ ] ) ) {
+				if ( rscriptType.test( elem.type || "" ) ) {
+					scripts.push( elem );
+				}
+			}
+		}
+	}
+
+	return fragment;
+}
+
+
+( function() {
+	var fragment = document.createDocumentFragment(),
+		div = fragment.appendChild( document.createElement( "div" ) ),
+		input = document.createElement( "input" );
+
+	// Support: Android 4.0 - 4.3 only
+	// Check state lost if the name is set (#11217)
+	// Support: Windows Web Apps (WWA)
+	// `name` and `type` must use .setAttribute for WWA (#14901)
+	input.setAttribute( "type", "radio" );
+	input.setAttribute( "checked", "checked" );
+	input.setAttribute( "name", "t" );
+
+	div.appendChild( input );
+
+	// Support: Android <=4.1 only
+	// Older WebKit doesn't clone checked state correctly in fragments
+	support.checkClone = div.cloneNode( true ).cloneNode( true ).lastChild.checked;
+
+	// Support: IE <=11 only
+	// Make sure textarea (and checkbox) defaultValue is properly cloned
+	div.innerHTML = "<textarea>x</textarea>";
+	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
+} )();
+var documentElement = document.documentElement;
+
+
+
+var
+	rkeyEvent = /^key/,
+	rmouseEvent = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
+	rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
+
+function returnTrue() {
+	return true;
+}
+
+function returnFalse() {
+	return false;
+}
+
+// Support: IE <=9 only
+// See #13393 for more info
+function safeActiveElement() {
+	try {
+		return document.activeElement;
+	} catch ( err ) { }
+}
+
+function on( elem, types, selector, data, fn, one ) {
+	var origFn, type;
+
+	// Types can be a map of types/handlers
+	if ( typeof types === "object" ) {
+
+		// ( types-Object, selector, data )
+		if ( typeof selector !== "string" ) {
+
+			// ( types-Object, data )
+			data = data || selector;
+			selector = undefined;
+		}
+		for ( type in types ) {
+			on( elem, type, selector, data, types[ type ], one );
+		}
+		return elem;
+	}
+
+	if ( data == null && fn == null ) {
+
+		// ( types, fn )
+		fn = selector;
+		data = selector = undefined;
+	} else if ( fn == null ) {
+		if ( typeof selector === "string" ) {
+
+			// ( types, selector, fn )
+			fn = data;
+			data = undefined;
+		} else {
+
+			// ( types, data, fn )
+			fn = data;
+			data = selector;
+			selector = undefined;
+		}
+	}
+	if ( fn === false ) {
+		fn = returnFalse;
+	} else if ( !fn ) {
+		return elem;
+	}
+
+	if ( one === 1 ) {
+		origFn = fn;
+		fn = function( event ) {
+
+			// Can use an empty set, since event contains the info
+			jQuery().off( event );
+			return origFn.apply( this, arguments );
+		};
+
+		// Use same guid so caller can remove using origFn
+		fn.guid = origFn.guid || ( origFn.guid = jQuery.guid++ );
+	}
+	return elem.each( function() {
+		jQuery.event.add( this, types, fn, data, selector );
+	} );
+}
+
+/*
+ * Helper functions for managing events -- not part of the public interface.
+ * Props to Dean Edwards' addEvent library for many of the ideas.
+ */
+jQuery.event = {
+
+	global: {},
+
+	add: function( elem, types, handler, data, selector ) {
+
+		var handleObjIn, eventHandle, tmp,
+			events, t, handleObj,
+			special, handlers, type, namespaces, origType,
+			elemData = dataPriv.get( elem );
+
+		// Don't attach events to noData or text/comment nodes (but allow plain objects)
+		if ( !elemData ) {
+			return;
+		}
+
+		// Caller can pass in an object of custom data in lieu of the handler
+		if ( handler.handler ) {
+			handleObjIn = handler;
+			handler = handleObjIn.handler;
+			selector = handleObjIn.selector;
+		}
+
+		// Ensure that invalid selectors throw exceptions at attach time
+		// Evaluate against documentElement in case elem is a non-element node (e.g., document)
+		if ( selector ) {
+			jQuery.find.matchesSelector( documentElement, selector );
+		}
+
+		// Make sure that the handler has a unique ID, used to find/remove it later
+		if ( !handler.guid ) {
+			handler.guid = jQuery.guid++;
+		}
+
+		// Init the element's event structure and main handler, if this is the first
+		if ( !( events = elemData.events ) ) {
+			events = elemData.events = {};
+		}
+		if ( !( eventHandle = elemData.handle ) ) {
+			eventHandle = elemData.handle = function( e ) {
+
+				// Discard the second event of a jQuery.event.trigger() and
+				// when an event is called after a page has unloaded
+				return typeof jQuery !== "undefined" && jQuery.event.triggered !== e.type ?
+					jQuery.event.dispatch.apply( elem, arguments ) : undefined;
+			};
+		}
+
+		// Handle multiple events separated by a space
+		types = ( types || "" ).match( rnothtmlwhite ) || [ "" ];
+		t = types.length;
+		while ( t-- ) {
+			tmp = rtypenamespace.exec( types[ t ] ) || [];
+			type = origType = tmp[ 1 ];
+			namespaces = ( tmp[ 2 ] || "" ).split( "." ).sort();
+
+			// There *must* be a type, no attaching namespace-only handlers
+			if ( !type ) {
+				continue;
+			}
+
+			// If event changes its type, use the special event handlers for the changed type
+			special = jQuery.event.special[ type ] || {};
+
+			// If selector defined, determine special event api type, otherwise given type
+			type = ( selector ? special.delegateType : special.bindType ) || type;
+
+			// Update special based on newly reset type
+			special = jQuery.event.special[ type ] || {};
+
+			// handleObj is passed to all event handlers
+			handleObj = jQuery.extend( {
+				type: type,
+				origType: origType,
+				data: data,
+				handler: handler,
+				guid: handler.guid,
+				selector: selector,
+				needsContext: selector && jQuery.expr.match.needsContext.test( selector ),
+				namespace: namespaces.join( "." )
+			}, handleObjIn );
+
+			// Init the event handler queue if we're the first
+			if ( !( handlers = events[ type ] ) ) {
+				handlers = events[ type ] = [];
+				handlers.delegateCount = 0;
+
+				// Only use addEventListener if the special events handler returns false
+				if ( !special.setup ||
+					special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
+
+					if ( elem.addEventListener ) {
+						elem.addEventListener( type, eventHandle );
+					}
+				}
+			}
+
+			if ( special.add ) {
+				special.add.call( elem, handleObj );
+
+				if ( !handleObj.handler.guid ) {
+					handleObj.handler.guid = handler.guid;
+				}
+			}
+
+			// Add to the element's handler list, delegates in front
+			if ( selector ) {
+				handlers.splice( handlers.delegateCount++, 0, handleObj );
+			} else {
+				handlers.push( handleObj );
+			}
+
+			// Keep track of which events have ever been used, for event optimization
+			jQuery.event.global[ type ] = true;
+		}
+
+	},
+
+	// Detach an event or set of events from an element
+	remove: function( elem, types, handler, selector, mappedTypes ) {
+
+		var j, origCount, tmp,
+			events, t, handleObj,
+			special, handlers, type, namespaces, origType,
+			elemData = dataPriv.hasData( elem ) && dataPriv.get( elem );
+
+		if ( !elemData || !( events = elemData.events ) ) {
+			return;
+		}
+
+		// Once for each type.namespace in types; type may be omitted
+		types = ( types || "" ).match( rnothtmlwhite ) || [ "" ];
+		t = types.length;
+		while ( t-- ) {
+			tmp = rtypenamespace.exec( types[ t ] ) || [];
+			type = origType = tmp[ 1 ];
+			namespaces = ( tmp[ 2 ] || "" ).split( "." ).sort();
+
+			// Unbind all events (on this namespace, if provided) for the element
+			if ( !type ) {
+				for ( type in events ) {
+					jQuery.event.remove( elem, type + types[ t ], handler, selector, true );
+				}
+				continue;
+			}
+
+			special = jQuery.event.special[ type ] || {};
+			type = ( selector ? special.delegateType : special.bindType ) || type;
+			handlers = events[ type ] || [];
+			tmp = tmp[ 2 ] &&
+				new RegExp( "(^|\\.)" + namespaces.join( "\\.(?:.*\\.|)" ) + "(\\.|$)" );
+
+			// Remove matching events
+			origCount = j = handlers.length;
+			while ( j-- ) {
+				handleObj = handlers[ j ];
+
+				if ( ( mappedTypes || origType === handleObj.origType ) &&
+					( !handler || handler.guid === handleObj.guid ) &&
+					( !tmp || tmp.test( handleObj.namespace ) ) &&
+					( !selector || selector === handleObj.selector ||
+						selector === "**" && handleObj.selector ) ) {
+					handlers.splice( j, 1 );
+
+					if ( handleObj.selector ) {
+						handlers.delegateCount--;
+					}
+					if ( special.remove ) {
+						special.remove.call( elem, handleObj );
+					}
+				}
+			}
+
+			// Remove generic event handler if we removed something and no more handlers exist
+			// (avoids potential for endless recursion during removal of special event handlers)
+			if ( origCount && !handlers.length ) {
+				if ( !special.teardown ||
+					special.teardown.call( elem, namespaces, elemData.handle ) === false ) {
+
+					jQuery.removeEvent( elem, type, elemData.handle );
+				}
+
+				delete events[ type ];
+			}
+		}
+
+		// Remove data and the expando if it's no longer used
+		if ( jQuery.isEmptyObject( events ) ) {
+			dataPriv.remove( elem, "handle events" );
+		}
+	},
+
+	dispatch: function( nativeEvent ) {
+
+		// Make a writable jQuery.Event from the native event object
+		var event = jQuery.event.fix( nativeEvent );
+
+		var i, j, ret, matched, handleObj, handlerQueue,
+			args = new Array( arguments.length ),
+			handlers = ( dataPriv.get( this, "events" ) || {} )[ event.type ] || [],
+			special = jQuery.event.special[ event.type ] || {};
+
+		// Use the fix-ed jQuery.Event rather than the (read-only) native event
+		args[ 0 ] = event;
+
+		for ( i = 1; i < arguments.length; i++ ) {
+			args[ i ] = arguments[ i ];
+		}
+
+		event.delegateTarget = this;
+
+		// Call the preDispatch hook for the mapped type, and let it bail if desired
+		if ( special.preDispatch && special.preDispatch.call( this, event ) === false ) {
+			return;
+		}
+
+		// Determine handlers
+		handlerQueue = jQuery.event.handlers.call( this, event, handlers );
+
+		// Run delegates first; they may want to stop propagation beneath us
+		i = 0;
+		while ( ( matched = handlerQueue[ i++ ] ) && !event.isPropagationStopped() ) {
+			event.currentTarget = matched.elem;
+
+			j = 0;
+			while ( ( handleObj = matched.handlers[ j++ ] ) &&
+				!event.isImmediatePropagationStopped() ) {
+
+				// Triggered event must either 1) have no namespace, or 2) have namespace(s)
+				// a subset or equal to those in the bound event (both can have no namespace).
+				if ( !event.rnamespace || event.rnamespace.test( handleObj.namespace ) ) {
+
+					event.handleObj = handleObj;
+					event.data = handleObj.data;
+
+					ret = ( ( jQuery.event.special[ handleObj.origType ] || {} ).handle ||
+						handleObj.handler ).apply( matched.elem, args );
+
+					if ( ret !== undefined ) {
+						if ( ( event.result = ret ) === false ) {
+							event.preventDefault();
+							event.stopPropagation();
+						}
+					}
+				}
+			}
+		}
+
+		// Call the postDispatch hook for the mapped type
+		if ( special.postDispatch ) {
+			special.postDispatch.call( this, event );
+		}
+
+		return event.result;
+	},
+
+	handlers: function( event, handlers ) {
+		var i, handleObj, sel, matchedHandlers, matchedSelectors,
+			handlerQueue = [],
+			delegateCount = handlers.delegateCount,
+			cur = event.target;
+
+		// Find delegate handlers
+		if ( delegateCount &&
+
+			// Support: IE <=9
+			// Black-hole SVG <use> instance trees (trac-13180)
+			cur.nodeType &&
+
+			// Support: Firefox <=42
+			// Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
+			// https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
+			// Support: IE 11 only
+			// ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
+			!( event.type === "click" && event.button >= 1 ) ) {
+
+			for ( ; cur !== this; cur = cur.parentNode || this ) {
+
+				// Don't check non-elements (#13208)
+				// Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
+				if ( cur.nodeType === 1 && !( event.type === "click" && cur.disabled === true ) ) {
+					matchedHandlers = [];
+					matchedSelectors = {};
+					for ( i = 0; i < delegateCount; i++ ) {
+						handleObj = handlers[ i ];
+
+						// Don't conflict with Object.prototype properties (#13203)
+						sel = handleObj.selector + " ";
+
+						if ( matchedSelectors[ sel ] === undefined ) {
+							matchedSelectors[ sel ] = handleObj.needsContext ?
+								jQuery( sel, this ).index( cur ) > -1 :
+								jQuery.find( sel, this, null, [ cur ] ).length;
+						}
+						if ( matchedSelectors[ sel ] ) {
+							matchedHandlers.push( handleObj );
+						}
+					}
+					if ( matchedHandlers.length ) {
+						handlerQueue.push( { elem: cur, handlers: matchedHandlers } );
+					}
+				}
+			}
+		}
+
+		// Add the remaining (directly-bound) handlers
+		cur = this;
+		if ( delegateCount < handlers.length ) {
+			handlerQueue.push( { elem: cur, handlers: handlers.slice( delegateCount ) } );
+		}
+
+		return handlerQueue;
+	},
+
+	addProp: function( name, hook ) {
+		Object.defineProperty( jQuery.Event.prototype, name, {
+			enumerable: true,
+			configurable: true,
+
+			get: isFunction( hook ) ?
+				function() {
+					if ( this.originalEvent ) {
+							return hook( this.originalEvent );
+					}
+				} :
+				function() {
+					if ( this.originalEvent ) {
+							return this.originalEvent[ name ];
+					}
+				},
+
+			set: function( value ) {
+				Object.defineProperty( this, name, {
+					enumerable: true,
+					configurable: true,
+					writable: true,
+					value: value
+				} );
+			}
+		} );
+	},
+
+	fix: function( originalEvent ) {
+		return originalEvent[ jQuery.expando ] ?
+			originalEvent :
+			new jQuery.Event( originalEvent );
+	},
+
+	special: {
+		load: {
+
+			// Prevent triggered image.load events from bubbling to window.load
+			noBubble: true
+		},
+		focus: {
+
+			// Fire native event if possible so blur/focus sequence is correct
+			trigger: function() {
+				if ( this !== safeActiveElement() && this.focus ) {
+					this.focus();
+					return false;
+				}
+			},
+			delegateType: "focusin"
+		},
+		blur: {
+			trigger: function() {
+				if ( this === safeActiveElement() && this.blur ) {
+					this.blur();
+					return false;
+				}
+			},
+			delegateType: "focusout"
+		},
+		click: {
+
+			// For checkbox, fire native event so checked state will be right
+			trigger: function() {
+				if ( this.type === "checkbox" && this.click && nodeName( this, "input" ) ) {
+					this.click();
+					return false;
+				}
+			},
+
+			// For cross-browser consistency, don't fire native .click() on links
+			_default: function( event ) {
+				return nodeName( event.target, "a" );
+			}
+		},
+
+		beforeunload: {
+			postDispatch: function( event ) {
+
+				// Support: Firefox 20+
+				// Firefox doesn't alert if the returnValue field is not set.
+				if ( event.result !== undefined && event.originalEvent ) {
+					event.originalEvent.returnValue = event.result;
+				}
+			}
+		}
+	}
+};
+
+jQuery.removeEvent = function( elem, type, handle ) {
+
+	// This "if" is needed for plain objects
+	if ( elem.removeEventListener ) {
+		elem.removeEventListener( type, handle );
+	}
+};
+
+jQuery.Event = function( src, props ) {
+
+	// Allow instantiation without the 'new' keyword
+	if ( !( this instanceof jQuery.Event ) ) {
+		return new jQuery.Event( src, props );
+	}
+
+	// Event object
+	if ( src && src.type ) {
+		this.originalEvent = src;
+		this.type = src.type;
+
+		// Events bubbling up the document may have been marked as prevented
+		// by a handler lower down the tree; reflect the correct value.
+		this.isDefaultPrevented = src.defaultPrevented ||
+				src.defaultPrevented === undefined &&
+
+				// Support: Android <=2.3 only
+				src.returnValue === false ?
+			returnTrue :
+			returnFalse;
+
+		// Create target properties
+		// Support: Safari <=6 - 7 only
+		// Target should not be a text node (#504, #13143)
+		this.target = ( src.target && src.target.nodeType === 3 ) ?
+			src.target.parentNode :
+			src.target;
+
+		this.currentTarget = src.currentTarget;
+		this.relatedTarget = src.relatedTarget;
+
+	// Event type
+	} else {
+		this.type = src;
+	}
+
+	// Put explicitly provided properties onto the event object
+	if ( props ) {
+		jQuery.extend( this, props );
+	}
+
+	// Create a timestamp if incoming event doesn't have one
+	this.timeStamp = src && src.timeStamp || Date.now();
+
+	// Mark it as fixed
+	this[ jQuery.expando ] = true;
+};
+
+// jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
+// https://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
+jQuery.Event.prototype = {
+	constructor: jQuery.Event,
+	isDefaultPrevented: returnFalse,
+	isPropagationStopped: returnFalse,
+	isImmediatePropagationStopped: returnFalse,
+	isSimulated: false,
+
+	preventDefault: function() {
+		var e = this.originalEvent;
+
+		this.isDefaultPrevented = returnTrue;
+
+		if ( e && !this.isSimulated ) {
+			e.preventDefault();
+		}
+	},
+	stopPropagation: function() {
+		var e = this.originalEvent;
+
+		this.isPropagationStopped = returnTrue;
+
+		if ( e && !this.isSimulated ) {
+			e.stopPropagation();
+		}
+	},
+	stopImmediatePropagation: function() {
+		var e = this.originalEvent;
+
+		this.isImmediatePropagationStopped = returnTrue;
+
+		if ( e && !this.isSimulated ) {
+			e.stopImmediatePropagation();
+		}
+
+		this.stopPropagation();
+	}
+};
+
+// Includes all common event props including KeyEvent and MouseEvent specific props
+jQuery.each( {
+	altKey: true,
+	bubbles: true,
+	cancelable: true,
+	changedTouches: true,
+	ctrlKey: true,
+	detail: true,
+	eventPhase: true,
+	metaKey: true,
+	pageX: true,
+	pageY: true,
+	shiftKey: true,
+	view: true,
+	"char": true,
+	charCode: true,
+	key: true,
+	keyCode: true,
+	button: true,
+	buttons: true,
+	clientX: true,
+	clientY: true,
+	offsetX: true,
+	offsetY: true,
+	pointerId: true,
+	pointerType: true,
+	screenX: true,
+	screenY: true,
+	targetTouches: true,
+	toElement: true,
+	touches: true,
+
+	which: function( event ) {
+		var button = event.button;
+
+		// Add which for key events
+		if ( event.which == null && rkeyEvent.test( event.type ) ) {
+			return event.charCode != null ? event.charCode : event.keyCode;
+		}
+
+		// Add which for click: 1 === left; 2 === middle; 3 === right
+		if ( !event.which && button !== undefined && rmouseEvent.test( event.type ) ) {
+			if ( button & 1 ) {
+				return 1;
+			}
+
+			if ( button & 2 ) {
+				return 3;
+			}
+
+			if ( button & 4 ) {
+				return 2;
+			}
+
+			return 0;
+		}
+
+		return event.which;
+	}
+}, jQuery.event.addProp );
+
+// Create mouseenter/leave events using mouseover/out and event-time checks
+// so that event delegation works in jQuery.
+// Do the same for pointerenter/pointerleave and pointerover/pointerout
+//
+// Support: Safari 7 only
+// Safari sends mouseenter too often; see:
+// https://bugs.chromium.org/p/chromium/issues/detail?id=470258
+// for the description of the bug (it existed in older Chrome versions as well).
+jQuery.each( {
+	mouseenter: "mouseover",
+	mouseleave: "mouseout",
+	pointerenter: "pointerover",
+	pointerleave: "pointerout"
+}, function( orig, fix ) {
+	jQuery.event.special[ orig ] = {
+		delegateType: fix,
+		bindType: fix,
+
+		handle: function( event ) {
+			var ret,
+				target = this,
+				related = event.relatedTarget,
+				handleObj = event.handleObj;
+
+			// For mouseenter/leave call the handler if related is outside the target.
+			// NB: No relatedTarget if the mouse left/entered the browser window
+			if ( !related || ( related !== target && !jQuery.contains( target, related ) ) ) {
+				event.type = handleObj.origType;
+				ret = handleObj.handler.apply( this, arguments );
+				event.type = fix;
+			}
+			return ret;
+		}
+	};
+} );
+
+jQuery.fn.extend( {
+
+	on: function( types, selector, data, fn ) {
+		return on( this, types, selector, data, fn );
+	},
+	one: function( types, selector, data, fn ) {
+		return on( this, types, selector, data, fn, 1 );
+	},
+	off: function( types, selector, fn ) {
+		var handleObj, type;
+		if ( types && types.preventDefault && types.handleObj ) {
+
+			// ( event )  dispatched jQuery.Event
+			handleObj = types.handleObj;
+			jQuery( types.delegateTarget ).off(
+				handleObj.namespace ?
+					handleObj.origType + "." + handleObj.namespace :
+					handleObj.origType,
+				handleObj.selector,
+				handleObj.handler
+			);
+			return this;
+		}
+		if ( typeof types === "object" ) {
+
+			// ( types-object [, selector] )
+			for ( type in types ) {
+				this.off( type, selector, types[ type ] );
+			}
+			return this;
+		}
+		if ( selector === false || typeof selector === "function" ) {
+
+			// ( types [, fn] )
+			fn = selector;
+			selector = undefined;
+		}
+		if ( fn === false ) {
+			fn = returnFalse;
+		}
+		return this.each( function() {
+			jQuery.event.remove( this, types, fn, selector );
+		} );
+	}
+} );
+
+
+var
+
+	/* eslint-disable max-len */
+
+	// See https://github.com/eslint/eslint/issues/3229
+	rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([a-z][^\/\0>\x20\t\r\n\f]*)[^>]*)\/>/gi,
+
+	/* eslint-enable */
+
+	// Support: IE <=10 - 11, Edge 12 - 13 only
+	// In IE/Edge using regex groups here causes severe slowdowns.
+	// See https://connect.microsoft.com/IE/feedback/details/1736512/
+	rnoInnerhtml = /<script|<style|<link/i,
+
+	// checked="checked" or checked
+	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
+	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
+
+// Prefer a tbody over its parent table for containing new rows
+function manipulationTarget( elem, content ) {
+	if ( nodeName( elem, "table" ) &&
+		nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
+
+		return jQuery( elem ).children( "tbody" )[ 0 ] || elem;
+	}
+
+	return elem;
+}
+
+// Replace/restore the type attribute of script elements for safe DOM manipulation
+function disableScript( elem ) {
+	elem.type = ( elem.getAttribute( "type" ) !== null ) + "/" + elem.type;
+	return elem;
+}
+function restoreScript( elem ) {
+	if ( ( elem.type || "" ).slice( 0, 5 ) === "true/" ) {
+		elem.type = elem.type.slice( 5 );
+	} else {
+		elem.removeAttribute( "type" );
+	}
+
+	return elem;
+}
+
+function cloneCopyEvent( src, dest ) {
+	var i, l, type, pdataOld, pdataCur, udataOld, udataCur, events;
+
+	if ( dest.nodeType !== 1 ) {
+		return;
+	}
+
+	// 1. Copy private data: events, handlers, etc.
+	if ( dataPriv.hasData( src ) ) {
+		pdataOld = dataPriv.access( src );
+		pdataCur = dataPriv.set( dest, pdataOld );
+		events = pdataOld.events;
+
+		if ( events ) {
+			delete pdataCur.handle;
+			pdataCur.events = {};
+
+			for ( type in events ) {
+				for ( i = 0, l = events[ type ].length; i < l; i++ ) {
+					jQuery.event.add( dest, type, events[ type ][ i ] );
+				}
+			}
+		}
+	}
+
+	// 2. Copy user data
+	if ( dataUser.hasData( src ) ) {
+		udataOld = dataUser.access( src );
+		udataCur = jQuery.extend( {}, udataOld );
+
+		dataUser.set( dest, udataCur );
+	}
+}
+
+// Fix IE bugs, see support tests
+function fixInput( src, dest ) {
+	var nodeName = dest.nodeName.toLowerCase();
+
+	// Fails to persist the checked state of a cloned checkbox or radio button.
+	if ( nodeName === "input" && rcheckableType.test( src.type ) ) {
+		dest.checked = src.checked;
+
+	// Fails to return the selected option to the default selected state when cloning options
+	} else if ( nodeName === "input" || nodeName === "textarea" ) {
+		dest.defaultValue = src.defaultValue;
+	}
+}
+
+function domManip( collection, args, callback, ignored ) {
+
+	// Flatten any nested arrays
+	args = concat.apply( [], args );
+
+	var fragment, first, scripts, hasScripts, node, doc,
+		i = 0,
+		l = collection.length,
+		iNoClone = l - 1,
+		value = args[ 0 ],
+		valueIsFunction = isFunction( value );
+
+	// We can't cloneNode fragments that contain checked, in WebKit
+	if ( valueIsFunction ||
+			( l > 1 && typeof value === "string" &&
+				!support.checkClone && rchecked.test( value ) ) ) {
+		return collection.each( function( index ) {
+			var self = collection.eq( index );
+			if ( valueIsFunction ) {
+				args[ 0 ] = value.call( this, index, self.html() );
+			}
+			domManip( self, args, callback, ignored );
+		} );
+	}
+
+	if ( l ) {
+		fragment = buildFragment( args, collection[ 0 ].ownerDocument, false, collection, ignored );
+		first = fragment.firstChild;
+
+		if ( fragment.childNodes.length === 1 ) {
+			fragment = first;
+		}
+
+		// Require either new content or an interest in ignored elements to invoke the callback
+		if ( first || ignored ) {
+			scripts = jQuery.map( getAll( fragment, "script" ), disableScript );
+			hasScripts = scripts.length;
+
+			// Use the original fragment for the last item
+			// instead of the first because it can end up
+			// being emptied incorrectly in certain situations (#8070).
+			for ( ; i < l; i++ ) {
+				node = fragment;
+
+				if ( i !== iNoClone ) {
+					node = jQuery.clone( node, true, true );
+
+					// Keep references to cloned scripts for later restoration
+					if ( hasScripts ) {
+
+						// Support: Android <=4.0 only, PhantomJS 1 only
+						// push.apply(_, arraylike) throws on ancient WebKit
+						jQuery.merge( scripts, getAll( node, "script" ) );
+					}
+				}
+
+				callback.call( collection[ i ], node, i );
+			}
+
+			if ( hasScripts ) {
+				doc = scripts[ scripts.length - 1 ].ownerDocument;
+
+				// Reenable scripts
+				jQuery.map( scripts, restoreScript );
+
+				// Evaluate executable scripts on first document insertion
+				for ( i = 0; i < hasScripts; i++ ) {
+					node = scripts[ i ];
+					if ( rscriptType.test( node.type || "" ) &&
+						!dataPriv.access( node, "globalEval" ) &&
+						jQuery.contains( doc, node ) ) {
+
+						if ( node.src && ( node.type || "" ).toLowerCase()  !== "module" ) {
+
+							// Optional AJAX dependency, but won't run scripts if not present
+							if ( jQuery._evalUrl ) {
+								jQuery._evalUrl( node.src );
+							}
+						} else {
+							DOMEval( node.textContent.replace( rcleanScript, "" ), doc, node );
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return collection;
+}
+
+function remove( elem, selector, keepData ) {
+	var node,
+		nodes = selector ? jQuery.filter( selector, elem ) : elem,
+		i = 0;
+
+	for ( ; ( node = nodes[ i ] ) != null; i++ ) {
+		if ( !keepData && node.nodeType === 1 ) {
+			jQuery.cleanData( getAll( node ) );
+		}
+
+		if ( node.parentNode ) {
+			if ( keepData && jQuery.contains( node.ownerDocument, node ) ) {
+				setGlobalEval( getAll( node, "script" ) );
+			}
+			node.parentNode.removeChild( node );
+		}
+	}
+
+	return elem;
+}
+
+jQuery.extend( {
+	htmlPrefilter: function( html ) {
+		return html.replace( rxhtmlTag, "<$1></$2>" );
+	},
+
+	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
+		var i, l, srcElements, destElements,
+			clone = elem.cloneNode( true ),
+			inPage = jQuery.contains( elem.ownerDocument, elem );
+
+		// Fix IE cloning issues
+		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
+				!jQuery.isXMLDoc( elem ) ) {
+
+			// We eschew Sizzle here for performance reasons: https://jsperf.com/getall-vs-sizzle/2
+			destElements = getAll( clone );
+			srcElements = getAll( elem );
+
+			for ( i = 0, l = srcElements.length; i < l; i++ ) {
+				fixInput( srcElements[ i ], destElements[ i ] );
+			}
+		}
+
+		// Copy the events from the original to the clone
+		if ( dataAndEvents ) {
+			if ( deepDataAndEvents ) {
+				srcElements = srcElements || getAll( elem );
+				destElements = destElements || getAll( clone );
+
+				for ( i = 0, l = srcElements.length; i < l; i++ ) {
+					cloneCopyEvent( srcElements[ i ], destElements[ i ] );
+				}
+			} else {
+				cloneCopyEvent( elem, clone );
+			}
+		}
+
+		// Preserve script evaluation history
+		destElements = getAll( clone, "script" );
+		if ( destElements.length > 0 ) {
+			setGlobalEval( destElements, !inPage && getAll( elem, "script" ) );
+		}
+
+		// Return the cloned set
+		return clone;
+	},
+
+	cleanData: function( elems ) {
+		var data, elem, type,
+			special = jQuery.event.special,
+			i = 0;
+
+		for ( ; ( elem = elems[ i ] ) !== undefined; i++ ) {
+			if ( acceptData( elem ) ) {
+				if ( ( data = elem[ dataPriv.expando ] ) ) {
+					if ( data.events ) {
+						for ( type in data.events ) {
+							if ( special[ type ] ) {
+								jQuery.event.remove( elem, type );
+
+							// This is a shortcut to avoid jQuery.event.remove's overhead
+							} else {
+								jQuery.removeEvent( elem, type, data.handle );
+							}
+						}
+					}
+
+					// Support: Chrome <=35 - 45+
+					// Assign undefined instead of using delete, see Data#remove
+					elem[ dataPriv.expando ] = undefined;
+				}
+				if ( elem[ dataUser.expando ] ) {
+
+					// Support: Chrome <=35 - 45+
+					// Assign undefined instead of using delete, see Data#remove
+					elem[ dataUser.expando ] = undefined;
+				}
+			}
+		}
+	}
+} );
+
+jQuery.fn.extend( {
+	detach: function( selector ) {
+		return remove( this, selector, true );
+	},
+
+	remove: function( selector ) {
+		return remove( this, selector );
+	},
+
+	text: function( value ) {
+		return access( this, function( value ) {
+			return value === undefined ?
+				jQuery.text( this ) :
+				this.empty().each( function() {
+					if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
+						this.textContent = value;
+					}
+				} );
+		}, null, value, arguments.length );
+	},
+
+	append: function() {
+		return domManip( this, arguments, function( elem ) {
+			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
+				var target = manipulationTarget( this, elem );
+				target.appendChild( elem );
+			}
+		} );
+	},
+
+	prepend: function() {
+		return domManip( this, arguments, function( elem ) {
+			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
+				var target = manipulationTarget( this, elem );
+				target.insertBefore( elem, target.firstChild );
+			}
+		} );
+	},
+
+	before: function() {
+		return domManip( this, arguments, function( elem ) {
+			if ( this.parentNode ) {
+				this.parentNode.insertBefore( elem, this );
+			}
+		} );
+	},
+
+	after: function() {
+		return domManip( this, arguments, function( elem ) {
+			if ( this.parentNode ) {
+				this.parentNode.insertBefore( elem, this.nextSibling );
+			}
+		} );
+	},
+
+	empty: function() {
+		var elem,
+			i = 0;
+
+		for ( ; ( elem = this[ i ] ) != null; i++ ) {
+			if ( elem.nodeType === 1 ) {
+
+				// Prevent memory leaks
+				jQuery.cleanData( getAll( elem, false ) );
+
+				// Remove any remaining nodes
+				elem.textContent = "";
+			}
+		}
+
+		return this;
+	},
+
+	clone: function( dataAndEvents, deepDataAndEvents ) {
+		dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
+		deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
+
+		return this.map( function() {
+			return jQuery.clone( this, dataAndEvents, deepDataAndEvents );
+		} );
+	},
+
+	html: function( value ) {
+		return access( this, function( value ) {
+			var elem = this[ 0 ] || {},
+				i = 0,
+				l = this.length;
+
+			if ( value === undefined && elem.nodeType === 1 ) {
+				return elem.innerHTML;
+			}
+
+			// See if we can take a shortcut and just use innerHTML
+			if ( typeof value === "string" && !rnoInnerhtml.test( value ) &&
+				!wrapMap[ ( rtagName.exec( value ) || [ "", "" ] )[ 1 ].toLowerCase() ] ) {
+
+				value = jQuery.htmlPrefilter( value );
+
+				try {
+					for ( ; i < l; i++ ) {
+						elem = this[ i ] || {};
+
+						// Remove element nodes and prevent memory leaks
+						if ( elem.nodeType === 1 ) {
+							jQuery.cleanData( getAll( elem, false ) );
+							elem.innerHTML = value;
+						}
+					}
+
+					elem = 0;
+
+				// If using innerHTML throws an exception, use the fallback method
+				} catch ( e ) {}
+			}
+
+			if ( elem ) {
+				this.empty().append( value );
+			}
+		}, null, value, arguments.length );
+	},
+
+	replaceWith: function() {
+		var ignored = [];
+
+		// Make the changes, replacing each non-ignored context element with the new content
+		return domManip( this, arguments, function( elem ) {
+			var parent = this.parentNode;
+
+			if ( jQuery.inArray( this, ignored ) < 0 ) {
+				jQuery.cleanData( getAll( this ) );
+				if ( parent ) {
+					parent.replaceChild( elem, this );
+				}
+			}
+
+		// Force callback invocation
+		}, ignored );
+	}
+} );
+
+jQuery.each( {
+	appendTo: "append",
+	prependTo: "prepend",
+	insertBefore: "before",
+	insertAfter: "after",
+	replaceAll: "replaceWith"
+}, function( name, original ) {
+	jQuery.fn[ name ] = function( selector ) {
+		var elems,
+			ret = [],
+			insert = jQuery( selector ),
+			last = insert.length - 1,
+			i = 0;
+
+		for ( ; i <= last; i++ ) {
+			elems = i === last ? this : this.clone( true );
+			jQuery( insert[ i ] )[ original ]( elems );
+
+			// Support: Android <=4.0 only, PhantomJS 1 only
+			// .get() because push.apply(_, arraylike) throws on ancient WebKit
+			push.apply( ret, elems.get() );
+		}
+
+		return this.pushStack( ret );
+	};
+} );
+var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
+
+var getStyles = function( elem ) {
+
+		// Support: IE <=11 only, Firefox <=30 (#15098, #14150)
+		// IE throws on elements created in popups
+		// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
+		var view = elem.ownerDocument.defaultView;
+
+		if ( !view || !view.opener ) {
+			view = window;
+		}
+
+		return view.getComputedStyle( elem );
+	};
+
+var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
+
+
+
+( function() {
+
+	// Executing both pixelPosition & boxSizingReliable tests require only one layout
+	// so they're executed at the same time to save the second computation.
+	function computeStyleTests() {
+
+		// This is a singleton, we need to execute it only once
+		if ( !div ) {
+			return;
+		}
+
+		container.style.cssText = "position:absolute;left:-11111px;width:60px;" +
+			"margin-top:1px;padding:0;border:0";
+		div.style.cssText =
+			"position:relative;display:block;box-sizing:border-box;overflow:scroll;" +
+			"margin:auto;border:1px;padding:1px;" +
+			"width:60%;top:1%";
+		documentElement.appendChild( container ).appendChild( div );
+
+		var divStyle = window.getComputedStyle( div );
+		pixelPositionVal = divStyle.top !== "1%";
+
+		// Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
+		reliableMarginLeftVal = roundPixelMeasures( divStyle.marginLeft ) === 12;
+
+		// Support: Android 4.0 - 4.3 only, Safari <=9.1 - 10.1, iOS <=7.0 - 9.3
+		// Some styles come back with percentage values, even though they shouldn't
+		div.style.right = "60%";
+		pixelBoxStylesVal = roundPixelMeasures( divStyle.right ) === 36;
+
+		// Support: IE 9 - 11 only
+		// Detect misreporting of content dimensions for box-sizing:border-box elements
+		boxSizingReliableVal = roundPixelMeasures( divStyle.width ) === 36;
+
+		// Support: IE 9 only
+		// Detect overflow:scroll screwiness (gh-3699)
+		div.style.position = "absolute";
+		scrollboxSizeVal = div.offsetWidth === 36 || "absolute";
+
+		documentElement.removeChild( container );
+
+		// Nullify the div so it wouldn't be stored in the memory and
+		// it will also be a sign that checks already performed
+		div = null;
+	}
+
+	function roundPixelMeasures( measure ) {
+		return Math.round( parseFloat( measure ) );
+	}
+
+	var pixelPositionVal, boxSizingReliableVal, scrollboxSizeVal, pixelBoxStylesVal,
+		reliableMarginLeftVal,
+		container = document.createElement( "div" ),
+		div = document.createElement( "div" );
+
+	// Finish early in limited (non-browser) environments
+	if ( !div.style ) {
+		return;
+	}
+
+	// Support: IE <=9 - 11 only
+	// Style of cloned element affects source element cloned (#8908)
+	div.style.backgroundClip = "content-box";
+	div.cloneNode( true ).style.backgroundClip = "";
+	support.clearCloneStyle = div.style.backgroundClip === "content-box";
+
+	jQuery.extend( support, {
+		boxSizingReliable: function() {
+			computeStyleTests();
+			return boxSizingReliableVal;
+		},
+		pixelBoxStyles: function() {
+			computeStyleTests();
+			return pixelBoxStylesVal;
+		},
+		pixelPosition: function() {
+			computeStyleTests();
+			return pixelPositionVal;
+		},
+		reliableMarginLeft: function() {
+			computeStyleTests();
+			return reliableMarginLeftVal;
+		},
+		scrollboxSize: function() {
+			computeStyleTests();
+			return scrollboxSizeVal;
+		}
+	} );
+} )();
+
+
+function curCSS( elem, name, computed ) {
+	var width, minWidth, maxWidth, ret,
+
+		// Support: Firefox 51+
+		// Retrieving style before computed somehow
+		// fixes an issue with getting wrong values
+		// on detached elements
+		style = elem.style;
+
+	computed = computed || getStyles( elem );
+
+	// getPropertyValue is needed for:
+	//   .css('filter') (IE 9 only, #12537)
+	//   .css('--customProperty) (#3144)
+	if ( computed ) {
+		ret = computed.getPropertyValue( name ) || computed[ name ];
+
+		if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
+			ret = jQuery.style( elem, name );
+		}
+
+		// A tribute to the "awesome hack by Dean Edwards"
+		// Android Browser returns percentage for some values,
+		// but width seems to be reliably pixels.
+		// This is against the CSSOM draft spec:
+		// https://drafts.csswg.org/cssom/#resolved-values
+		if ( !support.pixelBoxStyles() && rnumnonpx.test( ret ) && rboxStyle.test( name ) ) {
+
+			// Remember the original values
+			width = style.width;
+			minWidth = style.minWidth;
+			maxWidth = style.maxWidth;
+
+			// Put in the new values to get a computed value out
+			style.minWidth = style.maxWidth = style.width = ret;
+			ret = computed.width;
+
+			// Revert the changed values
+			style.width = width;
+			style.minWidth = minWidth;
+			style.maxWidth = maxWidth;
+		}
+	}
+
+	return ret !== undefined ?
+
+		// Support: IE <=9 - 11 only
+		// IE returns zIndex value as an integer.
+		ret + "" :
+		ret;
+}
+
+
+function addGetHookIf( conditionFn, hookFn ) {
+
+	// Define the hook, we'll check on the first run if it's really needed.
+	return {
+		get: function() {
+			if ( conditionFn() ) {
+
+				// Hook not needed (or it's not possible to use it due
+				// to missing dependency), remove it.
+				delete this.get;
+				return;
+			}
+
+			// Hook needed; redefine it so that the support test is not executed again.
+			return ( this.get = hookFn ).apply( this, arguments );
+		}
+	};
+}
+
+
+var
+
+	// Swappable if display is none or starts with table
+	// except "table", "table-cell", or "table-caption"
+	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
+	rcustomProp = /^--/,
+	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+	cssNormalTransform = {
+		letterSpacing: "0",
+		fontWeight: "400"
+	},
+
+	cssPrefixes = [ "Webkit", "Moz", "ms" ],
+	emptyStyle = document.createElement( "div" ).style;
+
+// Return a css property mapped to a potentially vendor prefixed property
+function vendorPropName( name ) {
+
+	// Shortcut for names that are not vendor prefixed
+	if ( name in emptyStyle ) {
+		return name;
+	}
+
+	// Check for vendor prefixed names
+	var capName = name[ 0 ].toUpperCase() + name.slice( 1 ),
+		i = cssPrefixes.length;
+
+	while ( i-- ) {
+		name = cssPrefixes[ i ] + capName;
+		if ( name in emptyStyle ) {
+			return name;
+		}
+	}
+}
+
+// Return a property mapped along what jQuery.cssProps suggests or to
+// a vendor prefixed property.
+function finalPropName( name ) {
+	var ret = jQuery.cssProps[ name ];
+	if ( !ret ) {
+		ret = jQuery.cssProps[ name ] = vendorPropName( name ) || name;
+	}
+	return ret;
+}
+
+function setPositiveNumber( elem, value, subtract ) {
+
+	// Any relative (+/-) values have already been
+	// normalized at this point
+	var matches = rcssNum.exec( value );
+	return matches ?
+
+		// Guard against undefined "subtract", e.g., when used as in cssHooks
+		Math.max( 0, matches[ 2 ] - ( subtract || 0 ) ) + ( matches[ 3 ] || "px" ) :
+		value;
+}
+
+function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computedVal ) {
+	var i = dimension === "width" ? 1 : 0,
+		extra = 0,
+		delta = 0;
+
+	// Adjustment may not be necessary
+	if ( box === ( isBorderBox ? "border" : "content" ) ) {
+		return 0;
+	}
+
+	for ( ; i < 4; i += 2 ) {
+
+		// Both box models exclude margin
+		if ( box === "margin" ) {
+			delta += jQuery.css( elem, box + cssExpand[ i ], true, styles );
+		}
+
+		// If we get here with a content-box, we're seeking "padding" or "border" or "margin"
+		if ( !isBorderBox ) {
+
+			// Add padding
+			delta += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+
+			// For "border" or "margin", add border
+			if ( box !== "padding" ) {
+				delta += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+
+			// But still keep track of it otherwise
+			} else {
+				extra += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+			}
+
+		// If we get here with a border-box (content + padding + border), we're seeking "content" or
+		// "padding" or "margin"
+		} else {
+
+			// For "content", subtract padding
+			if ( box === "content" ) {
+				delta -= jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			}
+
+			// For "content" or "padding", subtract border
+			if ( box !== "margin" ) {
+				delta -= jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+			}
+		}
+	}
+
+	// Account for positive content-box scroll gutter when requested by providing computedVal
+	if ( !isBorderBox && computedVal >= 0 ) {
+
+		// offsetWidth/offsetHeight is a rounded sum of content, padding, scroll gutter, and border
+		// Assuming integer scroll gutter, subtract the rest and round down
+		delta += Math.max( 0, Math.ceil(
+			elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+			computedVal -
+			delta -
+			extra -
+			0.5
+		) );
+	}
+
+	return delta;
+}
+
+function getWidthOrHeight( elem, dimension, extra ) {
+
+	// Start with computed style
+	var styles = getStyles( elem ),
+		val = curCSS( elem, dimension, styles ),
+		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+		valueIsBorderBox = isBorderBox;
+
+	// Support: Firefox <=54
+	// Return a confounding non-pixel value or feign ignorance, as appropriate.
+	if ( rnumnonpx.test( val ) ) {
+		if ( !extra ) {
+			return val;
+		}
+		val = "auto";
+	}
+
+	// Check for style in case a browser which returns unreliable values
+	// for getComputedStyle silently falls back to the reliable elem.style
+	valueIsBorderBox = valueIsBorderBox &&
+		( support.boxSizingReliable() || val === elem.style[ dimension ] );
+
+	// Fall back to offsetWidth/offsetHeight when value is "auto"
+	// This happens for inline elements with no explicit setting (gh-3571)
+	// Support: Android <=4.1 - 4.3 only
+	// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
+	if ( val === "auto" ||
+		!parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" ) {
+
+		val = elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ];
+
+		// offsetWidth/offsetHeight provide border-box values
+		valueIsBorderBox = true;
+	}
+
+	// Normalize "" and auto
+	val = parseFloat( val ) || 0;
+
+	// Adjust for the element's box model
+	return ( val +
+		boxModelAdjustment(
+			elem,
+			dimension,
+			extra || ( isBorderBox ? "border" : "content" ),
+			valueIsBorderBox,
+			styles,
+
+			// Provide the current computed size to request scroll gutter calculation (gh-3589)
+			val
+		)
+	) + "px";
+}
+
+jQuery.extend( {
+
+	// Add in style property hooks for overriding the default
+	// behavior of getting and setting a style property
+	cssHooks: {
+		opacity: {
+			get: function( elem, computed ) {
+				if ( computed ) {
+
+					// We should always get a number back from opacity
+					var ret = curCSS( elem, "opacity" );
+					return ret === "" ? "1" : ret;
+				}
+			}
+		}
+	},
+
+	// Don't automatically add "px" to these possibly-unitless properties
+	cssNumber: {
+		"animationIterationCount": true,
+		"columnCount": true,
+		"fillOpacity": true,
+		"flexGrow": true,
+		"flexShrink": true,
+		"fontWeight": true,
+		"lineHeight": true,
+		"opacity": true,
+		"order": true,
+		"orphans": true,
+		"widows": true,
+		"zIndex": true,
+		"zoom": true
+	},
+
+	// Add in properties whose names you wish to fix before
+	// setting or getting the value
+	cssProps: {},
+
+	// Get and set the style property on a DOM Node
+	style: function( elem, name, value, extra ) {
+
+		// Don't set styles on text and comment nodes
+		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style ) {
+			return;
+		}
+
+		// Make sure that we're working with the right name
+		var ret, type, hooks,
+			origName = camelCase( name ),
+			isCustomProp = rcustomProp.test( name ),
+			style = elem.style;
+
+		// Make sure that we're working with the right name. We don't
+		// want to query the value if it is a CSS custom property
+		// since they are user-defined.
+		if ( !isCustomProp ) {
+			name = finalPropName( origName );
+		}
+
+		// Gets hook for the prefixed version, then unprefixed version
+		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
+
+		// Check if we're setting a value
+		if ( value !== undefined ) {
+			type = typeof value;
+
+			// Convert "+=" or "-=" to relative numbers (#7345)
+			if ( type === "string" && ( ret = rcssNum.exec( value ) ) && ret[ 1 ] ) {
+				value = adjustCSS( elem, name, ret );
+
+				// Fixes bug #9237
+				type = "number";
+			}
+
+			// Make sure that null and NaN values aren't set (#7116)
+			if ( value == null || value !== value ) {
+				return;
+			}
+
+			// If a number was passed in, add the unit (except for certain CSS properties)
+			if ( type === "number" ) {
+				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
+			}
+
+			// background-* props affect original clone's values
+			if ( !support.clearCloneStyle && value === "" && name.indexOf( "background" ) === 0 ) {
+				style[ name ] = "inherit";
+			}
+
+			// If a hook was provided, use that value, otherwise just set the specified value
+			if ( !hooks || !( "set" in hooks ) ||
+				( value = hooks.set( elem, value, extra ) ) !== undefined ) {
+
+				if ( isCustomProp ) {
+					style.setProperty( name, value );
+				} else {
+					style[ name ] = value;
+				}
+			}
+
+		} else {
+
+			// If a hook was provided get the non-computed value from there
+			if ( hooks && "get" in hooks &&
+				( ret = hooks.get( elem, false, extra ) ) !== undefined ) {
+
+				return ret;
+			}
+
+			// Otherwise just get the value from the style object
+			return style[ name ];
+		}
+	},
+
+	css: function( elem, name, extra, styles ) {
+		var val, num, hooks,
+			origName = camelCase( name ),
+			isCustomProp = rcustomProp.test( name );
+
+		// Make sure that we're working with the right name. We don't
+		// want to modify the value if it is a CSS custom property
+		// since they are user-defined.
+		if ( !isCustomProp ) {
+			name = finalPropName( origName );
+		}
+
+		// Try prefixed name followed by the unprefixed name
+		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
+
+		// If a hook was provided get the computed value from there
+		if ( hooks && "get" in hooks ) {
+			val = hooks.get( elem, true, extra );
+		}
+
+		// Otherwise, if a way to get the computed value exists, use that
+		if ( val === undefined ) {
+			val = curCSS( elem, name, styles );
+		}
+
+		// Convert "normal" to computed value
+		if ( val === "normal" && name in cssNormalTransform ) {
+			val = cssNormalTransform[ name ];
+		}
+
+		// Make numeric if forced or a qualifier was provided and val looks numeric
+		if ( extra === "" || extra ) {
+			num = parseFloat( val );
+			return extra === true || isFinite( num ) ? num || 0 : val;
+		}
+
+		return val;
+	}
+} );
+
+jQuery.each( [ "height", "width" ], function( i, dimension ) {
+	jQuery.cssHooks[ dimension ] = {
+		get: function( elem, computed, extra ) {
+			if ( computed ) {
+
+				// Certain elements can have dimension info if we invisibly show them
+				// but it must have a current display style that would benefit
+				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
+
+					// Support: Safari 8+
+					// Table columns in Safari have non-zero offsetWidth & zero
+					// getBoundingClientRect().width unless display is changed.
+					// Support: IE <=11 only
+					// Running getBoundingClientRect on a disconnected node
+					// in IE throws an error.
+					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
+						swap( elem, cssShow, function() {
+							return getWidthOrHeight( elem, dimension, extra );
+						} ) :
+						getWidthOrHeight( elem, dimension, extra );
+			}
+		},
+
+		set: function( elem, value, extra ) {
+			var matches,
+				styles = getStyles( elem ),
+				isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+				subtract = extra && boxModelAdjustment(
+					elem,
+					dimension,
+					extra,
+					isBorderBox,
+					styles
+				);
+
+			// Account for unreliable border-box dimensions by comparing offset* to computed and
+			// faking a content-box to get border and padding (gh-3699)
+			if ( isBorderBox && support.scrollboxSize() === styles.position ) {
+				subtract -= Math.ceil(
+					elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+					parseFloat( styles[ dimension ] ) -
+					boxModelAdjustment( elem, dimension, "border", false, styles ) -
+					0.5
+				);
+			}
+
+			// Convert to pixels if value adjustment is needed
+			if ( subtract && ( matches = rcssNum.exec( value ) ) &&
+				( matches[ 3 ] || "px" ) !== "px" ) {
+
+				elem.style[ dimension ] = value;
+				value = jQuery.css( elem, dimension );
+			}
+
+			return setPositiveNumber( elem, value, subtract );
+		}
+	};
+} );
+
+jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
+	function( elem, computed ) {
+		if ( computed ) {
+			return ( parseFloat( curCSS( elem, "marginLeft" ) ) ||
+				elem.getBoundingClientRect().left -
+					swap( elem, { marginLeft: 0 }, function() {
+						return elem.getBoundingClientRect().left;
+					} )
+				) + "px";
+		}
+	}
+);
+
+// These hooks are used by animate to expand properties
+jQuery.each( {
+	margin: "",
+	padding: "",
+	border: "Width"
+}, function( prefix, suffix ) {
+	jQuery.cssHooks[ prefix + suffix ] = {
+		expand: function( value ) {
+			var i = 0,
+				expanded = {},
+
+				// Assumes a single number if not a string
+				parts = typeof value === "string" ? value.split( " " ) : [ value ];
+
+			for ( ; i < 4; i++ ) {
+				expanded[ prefix + cssExpand[ i ] + suffix ] =
+					parts[ i ] || parts[ i - 2 ] || parts[ 0 ];
+			}
+
+			return expanded;
+		}
+	};
+
+	if ( prefix !== "margin" ) {
+		jQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
+	}
+} );
+
+jQuery.fn.extend( {
+	css: function( name, value ) {
+		return access( this, function( elem, name, value ) {
+			var styles, len,
+				map = {},
+				i = 0;
+
+			if ( Array.isArray( name ) ) {
+				styles = getStyles( elem );
+				len = name.length;
+
+				for ( ; i < len; i++ ) {
+					map[ name[ i ] ] = jQuery.css( elem, name[ i ], false, styles );
+				}
+
+				return map;
+			}
+
+			return value !== undefined ?
+				jQuery.style( elem, name, value ) :
+				jQuery.css( elem, name );
+		}, name, value, arguments.length > 1 );
+	}
+} );
+
+
+function Tween( elem, options, prop, end, easing ) {
+	return new Tween.prototype.init( elem, options, prop, end, easing );
+}
+jQuery.Tween = Tween;
+
+Tween.prototype = {
+	constructor: Tween,
+	init: function( elem, options, prop, end, easing, unit ) {
+		this.elem = elem;
+		this.prop = prop;
+		this.easing = easing || jQuery.easing._default;
+		this.options = options;
+		this.start = this.now = this.cur();
+		this.end = end;
+		this.unit = unit || ( jQuery.cssNumber[ prop ] ? "" : "px" );
+	},
+	cur: function() {
+		var hooks = Tween.propHooks[ this.prop ];
+
+		return hooks && hooks.get ?
+			hooks.get( this ) :
+			Tween.propHooks._default.get( this );
+	},
+	run: function( percent ) {
+		var eased,
+			hooks = Tween.propHooks[ this.prop ];
+
+		if ( this.options.duration ) {
+			this.pos = eased = jQuery.easing[ this.easing ](
+				percent, this.options.duration * percent, 0, 1, this.options.duration
+			);
+		} else {
+			this.pos = eased = percent;
+		}
+		this.now = ( this.end - this.start ) * eased + this.start;
+
+		if ( this.options.step ) {
+			this.options.step.call( this.elem, this.now, this );
+		}
+
+		if ( hooks && hooks.set ) {
+			hooks.set( this );
+		} else {
+			Tween.propHooks._default.set( this );
+		}
+		return this;
+	}
+};
+
+Tween.prototype.init.prototype = Tween.prototype;
+
+Tween.propHooks = {
+	_default: {
+		get: function( tween ) {
+			var result;
+
+			// Use a property on the element directly when it is not a DOM element,
+			// or when there is no matching style property that exists.
+			if ( tween.elem.nodeType !== 1 ||
+				tween.elem[ tween.prop ] != null && tween.elem.style[ tween.prop ] == null ) {
+				return tween.elem[ tween.prop ];
+			}
+
+			// Passing an empty string as a 3rd parameter to .css will automatically
+			// attempt a parseFloat and fallback to a string if the parse fails.
+			// Simple values such as "10px" are parsed to Float;
+			// complex values such as "rotate(1rad)" are returned as-is.
+			result = jQuery.css( tween.elem, tween.prop, "" );
+
+			// Empty strings, null, undefined and "auto" are converted to 0.
+			return !result || result === "auto" ? 0 : result;
+		},
+		set: function( tween ) {
+
+			// Use step hook for back compat.
+			// Use cssHook if its there.
+			// Use .style if available and use plain properties where available.
+			if ( jQuery.fx.step[ tween.prop ] ) {
+				jQuery.fx.step[ tween.prop ]( tween );
+			} else if ( tween.elem.nodeType === 1 &&
+				( tween.elem.style[ jQuery.cssProps[ tween.prop ] ] != null ||
+					jQuery.cssHooks[ tween.prop ] ) ) {
+				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
+			} else {
+				tween.elem[ tween.prop ] = tween.now;
+			}
+		}
+	}
+};
+
+// Support: IE <=9 only
+// Panic based approach to setting things on disconnected nodes
+Tween.propHooks.scrollTop = Tween.propHooks.scrollLeft = {
+	set: function( tween ) {
+		if ( tween.elem.nodeType && tween.elem.parentNode ) {
+			tween.elem[ tween.prop ] = tween.now;
+		}
+	}
+};
+
+jQuery.easing = {
+	linear: function( p ) {
+		return p;
+	},
+	swing: function( p ) {
+		return 0.5 - Math.cos( p * Math.PI ) / 2;
+	},
+	_default: "swing"
+};
+
+jQuery.fx = Tween.prototype.init;
+
+// Back compat <1.8 extension point
+jQuery.fx.step = {};
+
+
+
+
+var
+	fxNow, inProgress,
+	rfxtypes = /^(?:toggle|show|hide)$/,
+	rrun = /queueHooks$/;
+
+function schedule() {
+	if ( inProgress ) {
+		if ( document.hidden === false && window.requestAnimationFrame ) {
+			window.requestAnimationFrame( schedule );
+		} else {
+			window.setTimeout( schedule, jQuery.fx.interval );
+		}
+
+		jQuery.fx.tick();
+	}
+}
+
+// Animations created synchronously will run synchronously
+function createFxNow() {
+	window.setTimeout( function() {
+		fxNow = undefined;
+	} );
+	return ( fxNow = Date.now() );
+}
+
+// Generate parameters to create a standard animation
+function genFx( type, includeWidth ) {
+	var which,
+		i = 0,
+		attrs = { height: type };
+
+	// If we include width, step value is 1 to do all cssExpand values,
+	// otherwise step value is 2 to skip over Left and Right
+	includeWidth = includeWidth ? 1 : 0;
+	for ( ; i < 4; i += 2 - includeWidth ) {
+		which = cssExpand[ i ];
+		attrs[ "margin" + which ] = attrs[ "padding" + which ] = type;
+	}
+
+	if ( includeWidth ) {
+		attrs.opacity = attrs.width = type;
+	}
+
+	return attrs;
+}
+
+function createTween( value, prop, animation ) {
+	var tween,
+		collection = ( Animation.tweeners[ prop ] || [] ).concat( Animation.tweeners[ "*" ] ),
+		index = 0,
+		length = collection.length;
+	for ( ; index < length; index++ ) {
+		if ( ( tween = collection[ index ].call( animation, prop, value ) ) ) {
+
+			// We're done with this property
+			return tween;
+		}
+	}
+}
+
+function defaultPrefilter( elem, props, opts ) {
+	var prop, value, toggle, hooks, oldfire, propTween, restoreDisplay, display,
+		isBox = "width" in props || "height" in props,
+		anim = this,
+		orig = {},
+		style = elem.style,
+		hidden = elem.nodeType && isHiddenWithinTree( elem ),
+		dataShow = dataPriv.get( elem, "fxshow" );
+
+	// Queue-skipping animations hijack the fx hooks
+	if ( !opts.queue ) {
+		hooks = jQuery._queueHooks( elem, "fx" );
+		if ( hooks.unqueued == null ) {
+			hooks.unqueued = 0;
+			oldfire = hooks.empty.fire;
+			hooks.empty.fire = function() {
+				if ( !hooks.unqueued ) {
+					oldfire();
+				}
+			};
+		}
+		hooks.unqueued++;
+
+		anim.always( function() {
+
+			// Ensure the complete handler is called before this completes
+			anim.always( function() {
+				hooks.unqueued--;
+				if ( !jQuery.queue( elem, "fx" ).length ) {
+					hooks.empty.fire();
+				}
+			} );
+		} );
+	}
+
+	// Detect show/hide animations
+	for ( prop in props ) {
+		value = props[ prop ];
+		if ( rfxtypes.test( value ) ) {
+			delete props[ prop ];
+			toggle = toggle || value === "toggle";
+			if ( value === ( hidden ? "hide" : "show" ) ) {
+
+				// Pretend to be hidden if this is a "show" and
+				// there is still data from a stopped show/hide
+				if ( value === "show" && dataShow && dataShow[ prop ] !== undefined ) {
+					hidden = true;
+
+				// Ignore all other no-op show/hide data
+				} else {
+					continue;
+				}
+			}
+			orig[ prop ] = dataShow && dataShow[ prop ] || jQuery.style( elem, prop );
+		}
+	}
+
+	// Bail out if this is a no-op like .hide().hide()
+	propTween = !jQuery.isEmptyObject( props );
+	if ( !propTween && jQuery.isEmptyObject( orig ) ) {
+		return;
+	}
+
+	// Restrict "overflow" and "display" styles during box animations
+	if ( isBox && elem.nodeType === 1 ) {
+
+		// Support: IE <=9 - 11, Edge 12 - 15
+		// Record all 3 overflow attributes because IE does not infer the shorthand
+		// from identically-valued overflowX and overflowY and Edge just mirrors
+		// the overflowX value there.
+		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
+
+		// Identify a display type, preferring old show/hide data over the CSS cascade
+		restoreDisplay = dataShow && dataShow.display;
+		if ( restoreDisplay == null ) {
+			restoreDisplay = dataPriv.get( elem, "display" );
+		}
+		display = jQuery.css( elem, "display" );
+		if ( display === "none" ) {
+			if ( restoreDisplay ) {
+				display = restoreDisplay;
+			} else {
+
+				// Get nonempty value(s) by temporarily forcing visibility
+				showHide( [ elem ], true );
+				restoreDisplay = elem.style.display || restoreDisplay;
+				display = jQuery.css( elem, "display" );
+				showHide( [ elem ] );
+			}
+		}
+
+		// Animate inline elements as inline-block
+		if ( display === "inline" || display === "inline-block" && restoreDisplay != null ) {
+			if ( jQuery.css( elem, "float" ) === "none" ) {
+
+				// Restore the original display value at the end of pure show/hide animations
+				if ( !propTween ) {
+					anim.done( function() {
+						style.display = restoreDisplay;
+					} );
+					if ( restoreDisplay == null ) {
+						display = style.display;
+						restoreDisplay = display === "none" ? "" : display;
+					}
+				}
+				style.display = "inline-block";
+			}
+		}
+	}
+
+	if ( opts.overflow ) {
+		style.overflow = "hidden";
+		anim.always( function() {
+			style.overflow = opts.overflow[ 0 ];
+			style.overflowX = opts.overflow[ 1 ];
+			style.overflowY = opts.overflow[ 2 ];
+		} );
+	}
+
+	// Implement show/hide animations
+	propTween = false;
+	for ( prop in orig ) {
+
+		// General show/hide setup for this element animation
+		if ( !propTween ) {
+			if ( dataShow ) {
+				if ( "hidden" in dataShow ) {
+					hidden = dataShow.hidden;
+				}
+			} else {
+				dataShow = dataPriv.access( elem, "fxshow", { display: restoreDisplay } );
+			}
+
+			// Store hidden/visible for toggle so `.stop().toggle()` "reverses"
+			if ( toggle ) {
+				dataShow.hidden = !hidden;
+			}
+
+			// Show elements before animating them
+			if ( hidden ) {
+				showHide( [ elem ], true );
+			}
+
+			/* eslint-disable no-loop-func */
+
+			anim.done( function() {
+
+			/* eslint-enable no-loop-func */
+
+				// The final step of a "hide" animation is actually hiding the element
+				if ( !hidden ) {
+					showHide( [ elem ] );
+				}
+				dataPriv.remove( elem, "fxshow" );
+				for ( prop in orig ) {
+					jQuery.style( elem, prop, orig[ prop ] );
+				}
+			} );
+		}
+
+		// Per-property setup
+		propTween = createTween( hidden ? dataShow[ prop ] : 0, prop, anim );
+		if ( !( prop in dataShow ) ) {
+			dataShow[ prop ] = propTween.start;
+			if ( hidden ) {
+				propTween.end = propTween.start;
+				propTween.start = 0;
+			}
+		}
+	}
+}
+
+function propFilter( props, specialEasing ) {
+	var index, name, easing, value, hooks;
+
+	// camelCase, specialEasing and expand cssHook pass
+	for ( index in props ) {
+		name = camelCase( index );
+		easing = specialEasing[ name ];
+		value = props[ index ];
+		if ( Array.isArray( value ) ) {
+			easing = value[ 1 ];
+			value = props[ index ] = value[ 0 ];
+		}
+
+		if ( index !== name ) {
+			props[ name ] = value;
+			delete props[ index ];
+		}
+
+		hooks = jQuery.cssHooks[ name ];
+		if ( hooks && "expand" in hooks ) {
+			value = hooks.expand( value );
+			delete props[ name ];
+
+			// Not quite $.extend, this won't overwrite existing keys.
+			// Reusing 'index' because we have the correct "name"
+			for ( index in value ) {
+				if ( !( index in props ) ) {
+					props[ index ] = value[ index ];
+					specialEasing[ index ] = easing;
+				}
+			}
+		} else {
+			specialEasing[ name ] = easing;
+		}
+	}
+}
+
+function Animation( elem, properties, options ) {
+	var result,
+		stopped,
+		index = 0,
+		length = Animation.prefilters.length,
+		deferred = jQuery.Deferred().always( function() {
+
+			// Don't match elem in the :animated selector
+			delete tick.elem;
+		} ),
+		tick = function() {
+			if ( stopped ) {
+				return false;
+			}
+			var currentTime = fxNow || createFxNow(),
+				remaining = Math.max( 0, animation.startTime + animation.duration - currentTime ),
+
+				// Support: Android 2.3 only
+				// Archaic crash bug won't allow us to use `1 - ( 0.5 || 0 )` (#12497)
+				temp = remaining / animation.duration || 0,
+				percent = 1 - temp,
+				index = 0,
+				length = animation.tweens.length;
+
+			for ( ; index < length; index++ ) {
+				animation.tweens[ index ].run( percent );
+			}
+
+			deferred.notifyWith( elem, [ animation, percent, remaining ] );
+
+			// If there's more to do, yield
+			if ( percent < 1 && length ) {
+				return remaining;
+			}
+
+			// If this was an empty animation, synthesize a final progress notification
+			if ( !length ) {
+				deferred.notifyWith( elem, [ animation, 1, 0 ] );
+			}
+
+			// Resolve the animation and report its conclusion
+			deferred.resolveWith( elem, [ animation ] );
+			return false;
+		},
+		animation = deferred.promise( {
+			elem: elem,
+			props: jQuery.extend( {}, properties ),
+			opts: jQuery.extend( true, {
+				specialEasing: {},
+				easing: jQuery.easing._default
+			}, options ),
+			originalProperties: properties,
+			originalOptions: options,
+			startTime: fxNow || createFxNow(),
+			duration: options.duration,
+			tweens: [],
+			createTween: function( prop, end ) {
+				var tween = jQuery.Tween( elem, animation.opts, prop, end,
+						animation.opts.specialEasing[ prop ] || animation.opts.easing );
+				animation.tweens.push( tween );
+				return tween;
+			},
+			stop: function( gotoEnd ) {
+				var index = 0,
+
+					// If we are going to the end, we want to run all the tweens
+					// otherwise we skip this part
+					length = gotoEnd ? animation.tweens.length : 0;
+				if ( stopped ) {
+					return this;
+				}
+				stopped = true;
+				for ( ; index < length; index++ ) {
+					animation.tweens[ index ].run( 1 );
+				}
+
+				// Resolve when we played the last frame; otherwise, reject
+				if ( gotoEnd ) {
+					deferred.notifyWith( elem, [ animation, 1, 0 ] );
+					deferred.resolveWith( elem, [ animation, gotoEnd ] );
+				} else {
+					deferred.rejectWith( elem, [ animation, gotoEnd ] );
+				}
+				return this;
+			}
+		} ),
+		props = animation.props;
+
+	propFilter( props, animation.opts.specialEasing );
+
+	for ( ; index < length; index++ ) {
+		result = Animation.prefilters[ index ].call( animation, elem, props, animation.opts );
+		if ( result ) {
+			if ( isFunction( result.stop ) ) {
+				jQuery._queueHooks( animation.elem, animation.opts.queue ).stop =
+					result.stop.bind( result );
+			}
+			return result;
+		}
+	}
+
+	jQuery.map( props, createTween, animation );
+
+	if ( isFunction( animation.opts.start ) ) {
+		animation.opts.start.call( elem, animation );
+	}
+
+	// Attach callbacks from options
+	animation
+		.progress( animation.opts.progress )
+		.done( animation.opts.done, animation.opts.complete )
+		.fail( animation.opts.fail )
+		.always( animation.opts.always );
+
+	jQuery.fx.timer(
+		jQuery.extend( tick, {
+			elem: elem,
+			anim: animation,
+			queue: animation.opts.queue
+		} )
+	);
+
+	return animation;
+}
+
+jQuery.Animation = jQuery.extend( Animation, {
+
+	tweeners: {
+		"*": [ function( prop, value ) {
+			var tween = this.createTween( prop, value );
+			adjustCSS( tween.elem, prop, rcssNum.exec( value ), tween );
+			return tween;
+		} ]
+	},
+
+	tweener: function( props, callback ) {
+		if ( isFunction( props ) ) {
+			callback = props;
+			props = [ "*" ];
+		} else {
+			props = props.match( rnothtmlwhite );
+		}
+
+		var prop,
+			index = 0,
+			length = props.length;
+
+		for ( ; index < length; index++ ) {
+			prop = props[ index ];
+			Animation.tweeners[ prop ] = Animation.tweeners[ prop ] || [];
+			Animation.tweeners[ prop ].unshift( callback );
+		}
+	},
+
+	prefilters: [ defaultPrefilter ],
+
+	prefilter: function( callback, prepend ) {
+		if ( prepend ) {
+			Animation.prefilters.unshift( callback );
+		} else {
+			Animation.prefilters.push( callback );
+		}
+	}
+} );
+
+jQuery.speed = function( speed, easing, fn ) {
+	var opt = speed && typeof speed === "object" ? jQuery.extend( {}, speed ) : {
+		complete: fn || !fn && easing ||
+			isFunction( speed ) && speed,
+		duration: speed,
+		easing: fn && easing || easing && !isFunction( easing ) && easing
+	};
+
+	// Go to the end state if fx are off
+	if ( jQuery.fx.off ) {
+		opt.duration = 0;
+
+	} else {
+		if ( typeof opt.duration !== "number" ) {
+			if ( opt.duration in jQuery.fx.speeds ) {
+				opt.duration = jQuery.fx.speeds[ opt.duration ];
+
+			} else {
+				opt.duration = jQuery.fx.speeds._default;
+			}
+		}
+	}
+
+	// Normalize opt.queue - true/undefined/null -> "fx"
+	if ( opt.queue == null || opt.queue === true ) {
+		opt.queue = "fx";
+	}
+
+	// Queueing
+	opt.old = opt.complete;
+
+	opt.complete = function() {
+		if ( isFunction( opt.old ) ) {
+			opt.old.call( this );
+		}
+
+		if ( opt.queue ) {
+			jQuery.dequeue( this, opt.queue );
+		}
+	};
+
+	return opt;
+};
+
+jQuery.fn.extend( {
+	fadeTo: function( speed, to, easing, callback ) {
+
+		// Show any hidden elements after setting opacity to 0
+		return this.filter( isHiddenWithinTree ).css( "opacity", 0 ).show()
+
+			// Animate to the value specified
+			.end().animate( { opacity: to }, speed, easing, callback );
+	},
+	animate: function( prop, speed, easing, callback ) {
+		var empty = jQuery.isEmptyObject( prop ),
+			optall = jQuery.speed( speed, easing, callback ),
+			doAnimation = function() {
+
+				// Operate on a copy of prop so per-property easing won't be lost
+				var anim = Animation( this, jQuery.extend( {}, prop ), optall );
+
+				// Empty animations, or finishing resolves immediately
+				if ( empty || dataPriv.get( this, "finish" ) ) {
+					anim.stop( true );
+				}
+			};
+			doAnimation.finish = doAnimation;
+
+		return empty || optall.queue === false ?
+			this.each( doAnimation ) :
+			this.queue( optall.queue, doAnimation );
+	},
+	stop: function( type, clearQueue, gotoEnd ) {
+		var stopQueue = function( hooks ) {
+			var stop = hooks.stop;
+			delete hooks.stop;
+			stop( gotoEnd );
+		};
+
+		if ( typeof type !== "string" ) {
+			gotoEnd = clearQueue;
+			clearQueue = type;
+			type = undefined;
+		}
+		if ( clearQueue && type !== false ) {
+			this.queue( type || "fx", [] );
+		}
+
+		return this.each( function() {
+			var dequeue = true,
+				index = type != null && type + "queueHooks",
+				timers = jQuery.timers,
+				data = dataPriv.get( this );
+
+			if ( index ) {
+				if ( data[ index ] && data[ index ].stop ) {
+					stopQueue( data[ index ] );
+				}
+			} else {
+				for ( index in data ) {
+					if ( data[ index ] && data[ index ].stop && rrun.test( index ) ) {
+						stopQueue( data[ index ] );
+					}
+				}
+			}
+
+			for ( index = timers.length; index--; ) {
+				if ( timers[ index ].elem === this &&
+					( type == null || timers[ index ].queue === type ) ) {
+
+					timers[ index ].anim.stop( gotoEnd );
+					dequeue = false;
+					timers.splice( index, 1 );
+				}
+			}
+
+			// Start the next in the queue if the last step wasn't forced.
+			// Timers currently will call their complete callbacks, which
+			// will dequeue but only if they were gotoEnd.
+			if ( dequeue || !gotoEnd ) {
+				jQuery.dequeue( this, type );
+			}
+		} );
+	},
+	finish: function( type ) {
+		if ( type !== false ) {
+			type = type || "fx";
+		}
+		return this.each( function() {
+			var index,
+				data = dataPriv.get( this ),
+				queue = data[ type + "queue" ],
+				hooks = data[ type + "queueHooks" ],
+				timers = jQuery.timers,
+				length = queue ? queue.length : 0;
+
+			// Enable finishing flag on private data
+			data.finish = true;
+
+			// Empty the queue first
+			jQuery.queue( this, type, [] );
+
+			if ( hooks && hooks.stop ) {
+				hooks.stop.call( this, true );
+			}
+
+			// Look for any active animations, and finish them
+			for ( index = timers.length; index--; ) {
+				if ( timers[ index ].elem === this && timers[ index ].queue === type ) {
+					timers[ index ].anim.stop( true );
+					timers.splice( index, 1 );
+				}
+			}
+
+			// Look for any animations in the old queue and finish them
+			for ( index = 0; index < length; index++ ) {
+				if ( queue[ index ] && queue[ index ].finish ) {
+					queue[ index ].finish.call( this );
+				}
+			}
+
+			// Turn off finishing flag
+			delete data.finish;
+		} );
+	}
+} );
+
+jQuery.each( [ "toggle", "show", "hide" ], function( i, name ) {
+	var cssFn = jQuery.fn[ name ];
+	jQuery.fn[ name ] = function( speed, easing, callback ) {
+		return speed == null || typeof speed === "boolean" ?
+			cssFn.apply( this, arguments ) :
+			this.animate( genFx( name, true ), speed, easing, callback );
+	};
+} );
+
+// Generate shortcuts for custom animations
+jQuery.each( {
+	slideDown: genFx( "show" ),
+	slideUp: genFx( "hide" ),
+	slideToggle: genFx( "toggle" ),
+	fadeIn: { opacity: "show" },
+	fadeOut: { opacity: "hide" },
+	fadeToggle: { opacity: "toggle" }
+}, function( name, props ) {
+	jQuery.fn[ name ] = function( speed, easing, callback ) {
+		return this.animate( props, speed, easing, callback );
+	};
+} );
+
+jQuery.timers = [];
+jQuery.fx.tick = function() {
+	var timer,
+		i = 0,
+		timers = jQuery.timers;
+
+	fxNow = Date.now();
+
+	for ( ; i < timers.length; i++ ) {
+		timer = timers[ i ];
+
+		// Run the timer and safely remove it when done (allowing for external removal)
+		if ( !timer() && timers[ i ] === timer ) {
+			timers.splice( i--, 1 );
+		}
+	}
+
+	if ( !timers.length ) {
+		jQuery.fx.stop();
+	}
+	fxNow = undefined;
+};
+
+jQuery.fx.timer = function( timer ) {
+	jQuery.timers.push( timer );
+	jQuery.fx.start();
+};
+
+jQuery.fx.interval = 13;
+jQuery.fx.start = function() {
+	if ( inProgress ) {
+		return;
+	}
+
+	inProgress = true;
+	schedule();
+};
+
+jQuery.fx.stop = function() {
+	inProgress = null;
+};
+
+jQuery.fx.speeds = {
+	slow: 600,
+	fast: 200,
+
+	// Default speed
+	_default: 400
+};
+
+
+// Based off of the plugin by Clint Helfers, with permission.
+// https://web.archive.org/web/20100324014747/http://blindsignals.com/index.php/2009/07/jquery-delay/
+jQuery.fn.delay = function( time, type ) {
+	time = jQuery.fx ? jQuery.fx.speeds[ time ] || time : time;
+	type = type || "fx";
+
+	return this.queue( type, function( next, hooks ) {
+		var timeout = window.setTimeout( next, time );
+		hooks.stop = function() {
+			window.clearTimeout( timeout );
+		};
+	} );
+};
+
+
+( function() {
+	var input = document.createElement( "input" ),
+		select = document.createElement( "select" ),
+		opt = select.appendChild( document.createElement( "option" ) );
+
+	input.type = "checkbox";
+
+	// Support: Android <=4.3 only
+	// Default value for a checkbox should be "on"
+	support.checkOn = input.value !== "";
+
+	// Support: IE <=11 only
+	// Must access selectedIndex to make default options select
+	support.optSelected = opt.selected;
+
+	// Support: IE <=11 only
+	// An input loses its value after becoming a radio
+	input = document.createElement( "input" );
+	input.value = "t";
+	input.type = "radio";
+	support.radioValue = input.value === "t";
+} )();
+
+
+var boolHook,
+	attrHandle = jQuery.expr.attrHandle;
+
+jQuery.fn.extend( {
+	attr: function( name, value ) {
+		return access( this, jQuery.attr, name, value, arguments.length > 1 );
+	},
+
+	removeAttr: function( name ) {
+		return this.each( function() {
+			jQuery.removeAttr( this, name );
+		} );
+	}
+} );
+
+jQuery.extend( {
+	attr: function( elem, name, value ) {
+		var ret, hooks,
+			nType = elem.nodeType;
+
+		// Don't get/set attributes on text, comment and attribute nodes
+		if ( nType === 3 || nType === 8 || nType === 2 ) {
+			return;
+		}
+
+		// Fallback to prop when attributes are not supported
+		if ( typeof elem.getAttribute === "undefined" ) {
+			return jQuery.prop( elem, name, value );
+		}
+
+		// Attribute hooks are determined by the lowercase version
+		// Grab necessary hook if one is defined
+		if ( nType !== 1 || !jQuery.isXMLDoc( elem ) ) {
+			hooks = jQuery.attrHooks[ name.toLowerCase() ] ||
+				( jQuery.expr.match.bool.test( name ) ? boolHook : undefined );
+		}
+
+		if ( value !== undefined ) {
+			if ( value === null ) {
+				jQuery.removeAttr( elem, name );
+				return;
+			}
+
+			if ( hooks && "set" in hooks &&
+				( ret = hooks.set( elem, value, name ) ) !== undefined ) {
+				return ret;
+			}
+
+			elem.setAttribute( name, value + "" );
+			return value;
+		}
+
+		if ( hooks && "get" in hooks && ( ret = hooks.get( elem, name ) ) !== null ) {
+			return ret;
+		}
+
+		ret = jQuery.find.attr( elem, name );
+
+		// Non-existent attributes return null, we normalize to undefined
+		return ret == null ? undefined : ret;
+	},
+
+	attrHooks: {
+		type: {
+			set: function( elem, value ) {
+				if ( !support.radioValue && value === "radio" &&
+					nodeName( elem, "input" ) ) {
+					var val = elem.value;
+					elem.setAttribute( "type", value );
+					if ( val ) {
+						elem.value = val;
+					}
+					return value;
+				}
+			}
+		}
+	},
+
+	removeAttr: function( elem, value ) {
+		var name,
+			i = 0,
+
+			// Attribute names can contain non-HTML whitespace characters
+			// https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
+			attrNames = value && value.match( rnothtmlwhite );
+
+		if ( attrNames && elem.nodeType === 1 ) {
+			while ( ( name = attrNames[ i++ ] ) ) {
+				elem.removeAttribute( name );
+			}
+		}
+	}
+} );
+
+// Hooks for boolean attributes
+boolHook = {
+	set: function( elem, value, name ) {
+		if ( value === false ) {
+
+			// Remove boolean attributes when set to false
+			jQuery.removeAttr( elem, name );
+		} else {
+			elem.setAttribute( name, name );
+		}
+		return name;
+	}
+};
+
+jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) {
+	var getter = attrHandle[ name ] || jQuery.find.attr;
+
+	attrHandle[ name ] = function( elem, name, isXML ) {
+		var ret, handle,
+			lowercaseName = name.toLowerCase();
+
+		if ( !isXML ) {
+
+			// Avoid an infinite loop by temporarily removing this function from the getter
+			handle = attrHandle[ lowercaseName ];
+			attrHandle[ lowercaseName ] = ret;
+			ret = getter( elem, name, isXML ) != null ?
+				lowercaseName :
+				null;
+			attrHandle[ lowercaseName ] = handle;
+		}
+		return ret;
+	};
+} );
+
+
+
+
+var rfocusable = /^(?:input|select|textarea|button)$/i,
+	rclickable = /^(?:a|area)$/i;
+
+jQuery.fn.extend( {
+	prop: function( name, value ) {
+		return access( this, jQuery.prop, name, value, arguments.length > 1 );
+	},
+
+	removeProp: function( name ) {
+		return this.each( function() {
+			delete this[ jQuery.propFix[ name ] || name ];
+		} );
+	}
+} );
+
+jQuery.extend( {
+	prop: function( elem, name, value ) {
+		var ret, hooks,
+			nType = elem.nodeType;
+
+		// Don't get/set properties on text, comment and attribute nodes
+		if ( nType === 3 || nType === 8 || nType === 2 ) {
+			return;
+		}
+
+		if ( nType !== 1 || !jQuery.isXMLDoc( elem ) ) {
+
+			// Fix name and attach hooks
+			name = jQuery.propFix[ name ] || name;
+			hooks = jQuery.propHooks[ name ];
+		}
+
+		if ( value !== undefined ) {
+			if ( hooks && "set" in hooks &&
+				( ret = hooks.set( elem, value, name ) ) !== undefined ) {
+				return ret;
+			}
+
+			return ( elem[ name ] = value );
+		}
+
+		if ( hooks && "get" in hooks && ( ret = hooks.get( elem, name ) ) !== null ) {
+			return ret;
+		}
+
+		return elem[ name ];
+	},
+
+	propHooks: {
+		tabIndex: {
+			get: function( elem ) {
+
+				// Support: IE <=9 - 11 only
+				// elem.tabIndex doesn't always return the
+				// correct value when it hasn't been explicitly set
+				// https://web.archive.org/web/20141116233347/http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
+				// Use proper attribute retrieval(#12072)
+				var tabindex = jQuery.find.attr( elem, "tabindex" );
+
+				if ( tabindex ) {
+					return parseInt( tabindex, 10 );
+				}
+
+				if (
+					rfocusable.test( elem.nodeName ) ||
+					rclickable.test( elem.nodeName ) &&
+					elem.href
+				) {
+					return 0;
+				}
+
+				return -1;
+			}
+		}
+	},
+
+	propFix: {
+		"for": "htmlFor",
+		"class": "className"
+	}
+} );
+
+// Support: IE <=11 only
+// Accessing the selectedIndex property
+// forces the browser to respect setting selected
+// on the option
+// The getter ensures a default option is selected
+// when in an optgroup
+// eslint rule "no-unused-expressions" is disabled for this code
+// since it considers such accessions noop
+if ( !support.optSelected ) {
+	jQuery.propHooks.selected = {
+		get: function( elem ) {
+
+			/* eslint no-unused-expressions: "off" */
+
+			var parent = elem.parentNode;
+			if ( parent && parent.parentNode ) {
+				parent.parentNode.selectedIndex;
+			}
+			return null;
+		},
+		set: function( elem ) {
+
+			/* eslint no-unused-expressions: "off" */
+
+			var parent = elem.parentNode;
+			if ( parent ) {
+				parent.selectedIndex;
+
+				if ( parent.parentNode ) {
+					parent.parentNode.selectedIndex;
+				}
+			}
+		}
+	};
+}
+
+jQuery.each( [
+	"tabIndex",
+	"readOnly",
+	"maxLength",
+	"cellSpacing",
+	"cellPadding",
+	"rowSpan",
+	"colSpan",
+	"useMap",
+	"frameBorder",
+	"contentEditable"
+], function() {
+	jQuery.propFix[ this.toLowerCase() ] = this;
+} );
+
+
+
+
+	// Strip and collapse whitespace according to HTML spec
+	// https://infra.spec.whatwg.org/#strip-and-collapse-ascii-whitespace
+	function stripAndCollapse( value ) {
+		var tokens = value.match( rnothtmlwhite ) || [];
+		return tokens.join( " " );
+	}
+
+
+function getClass( elem ) {
+	return elem.getAttribute && elem.getAttribute( "class" ) || "";
+}
+
+function classesToArray( value ) {
+	if ( Array.isArray( value ) ) {
+		return value;
+	}
+	if ( typeof value === "string" ) {
+		return value.match( rnothtmlwhite ) || [];
+	}
+	return [];
+}
+
+jQuery.fn.extend( {
+	addClass: function( value ) {
+		var classes, elem, cur, curValue, clazz, j, finalValue,
+			i = 0;
+
+		if ( isFunction( value ) ) {
+			return this.each( function( j ) {
+				jQuery( this ).addClass( value.call( this, j, getClass( this ) ) );
+			} );
+		}
+
+		classes = classesToArray( value );
+
+		if ( classes.length ) {
+			while ( ( elem = this[ i++ ] ) ) {
+				curValue = getClass( elem );
+				cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
+
+				if ( cur ) {
+					j = 0;
+					while ( ( clazz = classes[ j++ ] ) ) {
+						if ( cur.indexOf( " " + clazz + " " ) < 0 ) {
+							cur += clazz + " ";
+						}
+					}
+
+					// Only assign if different to avoid unneeded rendering.
+					finalValue = stripAndCollapse( cur );
+					if ( curValue !== finalValue ) {
+						elem.setAttribute( "class", finalValue );
+					}
+				}
+			}
+		}
+
+		return this;
+	},
+
+	removeClass: function( value ) {
+		var classes, elem, cur, curValue, clazz, j, finalValue,
+			i = 0;
+
+		if ( isFunction( value ) ) {
+			return this.each( function( j ) {
+				jQuery( this ).removeClass( value.call( this, j, getClass( this ) ) );
+			} );
+		}
+
+		if ( !arguments.length ) {
+			return this.attr( "class", "" );
+		}
+
+		classes = classesToArray( value );
+
+		if ( classes.length ) {
+			while ( ( elem = this[ i++ ] ) ) {
+				curValue = getClass( elem );
+
+				// This expression is here for better compressibility (see addClass)
+				cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
+
+				if ( cur ) {
+					j = 0;
+					while ( ( clazz = classes[ j++ ] ) ) {
+
+						// Remove *all* instances
+						while ( cur.indexOf( " " + clazz + " " ) > -1 ) {
+							cur = cur.replace( " " + clazz + " ", " " );
+						}
+					}
+
+					// Only assign if different to avoid unneeded rendering.
+					finalValue = stripAndCollapse( cur );
+					if ( curValue !== finalValue ) {
+						elem.setAttribute( "class", finalValue );
+					}
+				}
+			}
+		}
+
+		return this;
+	},
+
+	toggleClass: function( value, stateVal ) {
+		var type = typeof value,
+			isValidValue = type === "string" || Array.isArray( value );
+
+		if ( typeof stateVal === "boolean" && isValidValue ) {
+			return stateVal ? this.addClass( value ) : this.removeClass( value );
+		}
+
+		if ( isFunction( value ) ) {
+			return this.each( function( i ) {
+				jQuery( this ).toggleClass(
+					value.call( this, i, getClass( this ), stateVal ),
+					stateVal
+				);
+			} );
+		}
+
+		return this.each( function() {
+			var className, i, self, classNames;
+
+			if ( isValidValue ) {
+
+				// Toggle individual class names
+				i = 0;
+				self = jQuery( this );
+				classNames = classesToArray( value );
+
+				while ( ( className = classNames[ i++ ] ) ) {
+
+					// Check each className given, space separated list
+					if ( self.hasClass( className ) ) {
+						self.removeClass( className );
+					} else {
+						self.addClass( className );
+					}
+				}
+
+			// Toggle whole class name
+			} else if ( value === undefined || type === "boolean" ) {
+				className = getClass( this );
+				if ( className ) {
+
+					// Store className if set
+					dataPriv.set( this, "__className__", className );
+				}
+
+				// If the element has a class name or if we're passed `false`,
+				// then remove the whole classname (if there was one, the above saved it).
+				// Otherwise bring back whatever was previously saved (if anything),
+				// falling back to the empty string if nothing was stored.
+				if ( this.setAttribute ) {
+					this.setAttribute( "class",
+						className || value === false ?
+						"" :
+						dataPriv.get( this, "__className__" ) || ""
+					);
+				}
+			}
+		} );
+	},
+
+	hasClass: function( selector ) {
+		var className, elem,
+			i = 0;
+
+		className = " " + selector + " ";
+		while ( ( elem = this[ i++ ] ) ) {
+			if ( elem.nodeType === 1 &&
+				( " " + stripAndCollapse( getClass( elem ) ) + " " ).indexOf( className ) > -1 ) {
+					return true;
+			}
+		}
+
+		return false;
+	}
+} );
+
+
+
+
+var rreturn = /\r/g;
+
+jQuery.fn.extend( {
+	val: function( value ) {
+		var hooks, ret, valueIsFunction,
+			elem = this[ 0 ];
+
+		if ( !arguments.length ) {
+			if ( elem ) {
+				hooks = jQuery.valHooks[ elem.type ] ||
+					jQuery.valHooks[ elem.nodeName.toLowerCase() ];
+
+				if ( hooks &&
+					"get" in hooks &&
+					( ret = hooks.get( elem, "value" ) ) !== undefined
+				) {
+					return ret;
+				}
+
+				ret = elem.value;
+
+				// Handle most common string cases
+				if ( typeof ret === "string" ) {
+					return ret.replace( rreturn, "" );
+				}
+
+				// Handle cases where value is null/undef or number
+				return ret == null ? "" : ret;
+			}
+
+			return;
+		}
+
+		valueIsFunction = isFunction( value );
+
+		return this.each( function( i ) {
+			var val;
+
+			if ( this.nodeType !== 1 ) {
+				return;
+			}
+
+			if ( valueIsFunction ) {
+				val = value.call( this, i, jQuery( this ).val() );
+			} else {
+				val = value;
+			}
+
+			// Treat null/undefined as ""; convert numbers to string
+			if ( val == null ) {
+				val = "";
+
+			} else if ( typeof val === "number" ) {
+				val += "";
+
+			} else if ( Array.isArray( val ) ) {
+				val = jQuery.map( val, function( value ) {
+					return value == null ? "" : value + "";
+				} );
+			}
+
+			hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];
+
+			// If set returns undefined, fall back to normal setting
+			if ( !hooks || !( "set" in hooks ) || hooks.set( this, val, "value" ) === undefined ) {
+				this.value = val;
+			}
+		} );
+	}
+} );
+
+jQuery.extend( {
+	valHooks: {
+		option: {
+			get: function( elem ) {
+
+				var val = jQuery.find.attr( elem, "value" );
+				return val != null ?
+					val :
+
+					// Support: IE <=10 - 11 only
+					// option.text throws exceptions (#14686, #14858)
+					// Strip and collapse whitespace
+					// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
+					stripAndCollapse( jQuery.text( elem ) );
+			}
+		},
+		select: {
+			get: function( elem ) {
+				var value, option, i,
+					options = elem.options,
+					index = elem.selectedIndex,
+					one = elem.type === "select-one",
+					values = one ? null : [],
+					max = one ? index + 1 : options.length;
+
+				if ( index < 0 ) {
+					i = max;
+
+				} else {
+					i = one ? index : 0;
+				}
+
+				// Loop through all the selected options
+				for ( ; i < max; i++ ) {
+					option = options[ i ];
+
+					// Support: IE <=9 only
+					// IE8-9 doesn't update selected after form reset (#2551)
+					if ( ( option.selected || i === index ) &&
+
+							// Don't return options that are disabled or in a disabled optgroup
+							!option.disabled &&
+							( !option.parentNode.disabled ||
+								!nodeName( option.parentNode, "optgroup" ) ) ) {
+
+						// Get the specific value for the option
+						value = jQuery( option ).val();
+
+						// We don't need an array for one selects
+						if ( one ) {
+							return value;
+						}
+
+						// Multi-Selects return an array
+						values.push( value );
+					}
+				}
+
+				return values;
+			},
+
+			set: function( elem, value ) {
+				var optionSet, option,
+					options = elem.options,
+					values = jQuery.makeArray( value ),
+					i = options.length;
+
+				while ( i-- ) {
+					option = options[ i ];
+
+					/* eslint-disable no-cond-assign */
+
+					if ( option.selected =
+						jQuery.inArray( jQuery.valHooks.option.get( option ), values ) > -1
+					) {
+						optionSet = true;
+					}
+
+					/* eslint-enable no-cond-assign */
+				}
+
+				// Force browsers to behave consistently when non-matching value is set
+				if ( !optionSet ) {
+					elem.selectedIndex = -1;
+				}
+				return values;
+			}
+		}
+	}
+} );
+
+// Radios and checkboxes getter/setter
+jQuery.each( [ "radio", "checkbox" ], function() {
+	jQuery.valHooks[ this ] = {
+		set: function( elem, value ) {
+			if ( Array.isArray( value ) ) {
+				return ( elem.checked = jQuery.inArray( jQuery( elem ).val(), value ) > -1 );
+			}
+		}
+	};
+	if ( !support.checkOn ) {
+		jQuery.valHooks[ this ].get = function( elem ) {
+			return elem.getAttribute( "value" ) === null ? "on" : elem.value;
+		};
+	}
+} );
+
+
+
+
+// Return jQuery for attributes-only inclusion
+
+
+support.focusin = "onfocusin" in window;
+
+
+var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
+	stopPropagationCallback = function( e ) {
+		e.stopPropagation();
+	};
+
+jQuery.extend( jQuery.event, {
+
+	trigger: function( event, data, elem, onlyHandlers ) {
+
+		var i, cur, tmp, bubbleType, ontype, handle, special, lastElement,
+			eventPath = [ elem || document ],
+			type = hasOwn.call( event, "type" ) ? event.type : event,
+			namespaces = hasOwn.call( event, "namespace" ) ? event.namespace.split( "." ) : [];
+
+		cur = lastElement = tmp = elem = elem || document;
+
+		// Don't do events on text and comment nodes
+		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
+			return;
+		}
+
+		// focus/blur morphs to focusin/out; ensure we're not firing them right now
+		if ( rfocusMorph.test( type + jQuery.event.triggered ) ) {
+			return;
+		}
+
+		if ( type.indexOf( "." ) > -1 ) {
+
+			// Namespaced trigger; create a regexp to match event type in handle()
+			namespaces = type.split( "." );
+			type = namespaces.shift();
+			namespaces.sort();
+		}
+		ontype = type.indexOf( ":" ) < 0 && "on" + type;
+
+		// Caller can pass in a jQuery.Event object, Object, or just an event type string
+		event = event[ jQuery.expando ] ?
+			event :
+			new jQuery.Event( type, typeof event === "object" && event );
+
+		// Trigger bitmask: & 1 for native handlers; & 2 for jQuery (always true)
+		event.isTrigger = onlyHandlers ? 2 : 3;
+		event.namespace = namespaces.join( "." );
+		event.rnamespace = event.namespace ?
+			new RegExp( "(^|\\.)" + namespaces.join( "\\.(?:.*\\.|)" ) + "(\\.|$)" ) :
+			null;
+
+		// Clean up the event in case it is being reused
+		event.result = undefined;
+		if ( !event.target ) {
+			event.target = elem;
+		}
+
+		// Clone any incoming data and prepend the event, creating the handler arg list
+		data = data == null ?
+			[ event ] :
+			jQuery.makeArray( data, [ event ] );
+
+		// Allow special events to draw outside the lines
+		special = jQuery.event.special[ type ] || {};
+		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
+			return;
+		}
+
+		// Determine event propagation path in advance, per W3C events spec (#9951)
+		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
+		if ( !onlyHandlers && !special.noBubble && !isWindow( elem ) ) {
+
+			bubbleType = special.delegateType || type;
+			if ( !rfocusMorph.test( bubbleType + type ) ) {
+				cur = cur.parentNode;
+			}
+			for ( ; cur; cur = cur.parentNode ) {
+				eventPath.push( cur );
+				tmp = cur;
+			}
+
+			// Only add window if we got to document (e.g., not plain obj or detached DOM)
+			if ( tmp === ( elem.ownerDocument || document ) ) {
+				eventPath.push( tmp.defaultView || tmp.parentWindow || window );
+			}
+		}
+
+		// Fire handlers on the event path
+		i = 0;
+		while ( ( cur = eventPath[ i++ ] ) && !event.isPropagationStopped() ) {
+			lastElement = cur;
+			event.type = i > 1 ?
+				bubbleType :
+				special.bindType || type;
+
+			// jQuery handler
+			handle = ( dataPriv.get( cur, "events" ) || {} )[ event.type ] &&
+				dataPriv.get( cur, "handle" );
+			if ( handle ) {
+				handle.apply( cur, data );
+			}
+
+			// Native handler
+			handle = ontype && cur[ ontype ];
+			if ( handle && handle.apply && acceptData( cur ) ) {
+				event.result = handle.apply( cur, data );
+				if ( event.result === false ) {
+					event.preventDefault();
+				}
+			}
+		}
+		event.type = type;
+
+		// If nobody prevented the default action, do it now
+		if ( !onlyHandlers && !event.isDefaultPrevented() ) {
+
+			if ( ( !special._default ||
+				special._default.apply( eventPath.pop(), data ) === false ) &&
+				acceptData( elem ) ) {
+
+				// Call a native DOM method on the target with the same name as the event.
+				// Don't do default actions on window, that's where global variables be (#6170)
+				if ( ontype && isFunction( elem[ type ] ) && !isWindow( elem ) ) {
+
+					// Don't re-trigger an onFOO event when we call its FOO() method
+					tmp = elem[ ontype ];
+
+					if ( tmp ) {
+						elem[ ontype ] = null;
+					}
+
+					// Prevent re-triggering of the same event, since we already bubbled it above
+					jQuery.event.triggered = type;
+
+					if ( event.isPropagationStopped() ) {
+						lastElement.addEventListener( type, stopPropagationCallback );
+					}
+
+					elem[ type ]();
+
+					if ( event.isPropagationStopped() ) {
+						lastElement.removeEventListener( type, stopPropagationCallback );
+					}
+
+					jQuery.event.triggered = undefined;
+
+					if ( tmp ) {
+						elem[ ontype ] = tmp;
+					}
+				}
+			}
+		}
+
+		return event.result;
+	},
+
+	// Piggyback on a donor event to simulate a different one
+	// Used only for `focus(in | out)` events
+	simulate: function( type, elem, event ) {
+		var e = jQuery.extend(
+			new jQuery.Event(),
+			event,
+			{
+				type: type,
+				isSimulated: true
+			}
+		);
+
+		jQuery.event.trigger( e, null, elem );
+	}
+
+} );
+
+jQuery.fn.extend( {
+
+	trigger: function( type, data ) {
+		return this.each( function() {
+			jQuery.event.trigger( type, data, this );
+		} );
+	},
+	triggerHandler: function( type, data ) {
+		var elem = this[ 0 ];
+		if ( elem ) {
+			return jQuery.event.trigger( type, data, elem, true );
+		}
+	}
+} );
+
+
+// Support: Firefox <=44
+// Firefox doesn't have focus(in | out) events
+// Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
+//
+// Support: Chrome <=48 - 49, Safari <=9.0 - 9.1
+// focus(in | out) events fire after focus & blur events,
+// which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
+// Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
+if ( !support.focusin ) {
+	jQuery.each( { focus: "focusin", blur: "focusout" }, function( orig, fix ) {
+
+		// Attach a single capturing handler on the document while someone wants focusin/focusout
+		var handler = function( event ) {
+			jQuery.event.simulate( fix, event.target, jQuery.event.fix( event ) );
+		};
+
+		jQuery.event.special[ fix ] = {
+			setup: function() {
+				var doc = this.ownerDocument || this,
+					attaches = dataPriv.access( doc, fix );
+
+				if ( !attaches ) {
+					doc.addEventListener( orig, handler, true );
+				}
+				dataPriv.access( doc, fix, ( attaches || 0 ) + 1 );
+			},
+			teardown: function() {
+				var doc = this.ownerDocument || this,
+					attaches = dataPriv.access( doc, fix ) - 1;
+
+				if ( !attaches ) {
+					doc.removeEventListener( orig, handler, true );
+					dataPriv.remove( doc, fix );
+
+				} else {
+					dataPriv.access( doc, fix, attaches );
+				}
+			}
+		};
+	} );
+}
+var location = window.location;
+
+var nonce = Date.now();
+
+var rquery = ( /\?/ );
+
+
+
+// Cross-browser xml parsing
+jQuery.parseXML = function( data ) {
+	var xml;
+	if ( !data || typeof data !== "string" ) {
+		return null;
+	}
+
+	// Support: IE 9 - 11 only
+	// IE throws on parseFromString with invalid input.
+	try {
+		xml = ( new window.DOMParser() ).parseFromString( data, "text/xml" );
+	} catch ( e ) {
+		xml = undefined;
+	}
+
+	if ( !xml || xml.getElementsByTagName( "parsererror" ).length ) {
+		jQuery.error( "Invalid XML: " + data );
+	}
+	return xml;
+};
+
+
+var
+	rbracket = /\[\]$/,
+	rCRLF = /\r?\n/g,
+	rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i,
+	rsubmittable = /^(?:input|select|textarea|keygen)/i;
+
+function buildParams( prefix, obj, traditional, add ) {
+	var name;
+
+	if ( Array.isArray( obj ) ) {
+
+		// Serialize array item.
+		jQuery.each( obj, function( i, v ) {
+			if ( traditional || rbracket.test( prefix ) ) {
+
+				// Treat each array item as a scalar.
+				add( prefix, v );
+
+			} else {
+
+				// Item is non-scalar (array or object), encode its numeric index.
+				buildParams(
+					prefix + "[" + ( typeof v === "object" && v != null ? i : "" ) + "]",
+					v,
+					traditional,
+					add
+				);
+			}
+		} );
+
+	} else if ( !traditional && toType( obj ) === "object" ) {
+
+		// Serialize object item.
+		for ( name in obj ) {
+			buildParams( prefix + "[" + name + "]", obj[ name ], traditional, add );
+		}
+
+	} else {
+
+		// Serialize scalar item.
+		add( prefix, obj );
+	}
+}
+
+// Serialize an array of form elements or a set of
+// key/values into a query string
+jQuery.param = function( a, traditional ) {
+	var prefix,
+		s = [],
+		add = function( key, valueOrFunction ) {
+
+			// If value is a function, invoke it and use its return value
+			var value = isFunction( valueOrFunction ) ?
+				valueOrFunction() :
+				valueOrFunction;
+
+			s[ s.length ] = encodeURIComponent( key ) + "=" +
+				encodeURIComponent( value == null ? "" : value );
+		};
+
+	// If an array was passed in, assume that it is an array of form elements.
+	if ( Array.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
+
+		// Serialize the form elements
+		jQuery.each( a, function() {
+			add( this.name, this.value );
+		} );
+
+	} else {
+
+		// If traditional, encode the "old" way (the way 1.3.2 or older
+		// did it), otherwise encode params recursively.
+		for ( prefix in a ) {
+			buildParams( prefix, a[ prefix ], traditional, add );
+		}
+	}
+
+	// Return the resulting serialization
+	return s.join( "&" );
+};
+
+jQuery.fn.extend( {
+	serialize: function() {
+		return jQuery.param( this.serializeArray() );
+	},
+	serializeArray: function() {
+		return this.map( function() {
+
+			// Can add propHook for "elements" to filter or add form elements
+			var elements = jQuery.prop( this, "elements" );
+			return elements ? jQuery.makeArray( elements ) : this;
+		} )
+		.filter( function() {
+			var type = this.type;
+
+			// Use .is( ":disabled" ) so that fieldset[disabled] works
+			return this.name && !jQuery( this ).is( ":disabled" ) &&
+				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
+				( this.checked || !rcheckableType.test( type ) );
+		} )
+		.map( function( i, elem ) {
+			var val = jQuery( this ).val();
+
+			if ( val == null ) {
+				return null;
+			}
+
+			if ( Array.isArray( val ) ) {
+				return jQuery.map( val, function( val ) {
+					return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+				} );
+			}
+
+			return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+		} ).get();
+	}
+} );
+
+
+var
+	r20 = /%20/g,
+	rhash = /#.*$/,
+	rantiCache = /([?&])_=[^&]*/,
+	rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg,
+
+	// #7653, #8125, #8152: local protocol detection
+	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
+	rnoContent = /^(?:GET|HEAD)$/,
+	rprotocol = /^\/\//,
+
+	/* Prefilters
+	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
+	 * 2) These are called:
+	 *    - BEFORE asking for a transport
+	 *    - AFTER param serialization (s.data is a string if s.processData is true)
+	 * 3) key is the dataType
+	 * 4) the catchall symbol "*" can be used
+	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+	 */
+	prefilters = {},
+
+	/* Transports bindings
+	 * 1) key is the dataType
+	 * 2) the catchall symbol "*" can be used
+	 * 3) selection will start with transport dataType and THEN go to "*" if needed
+	 */
+	transports = {},
+
+	// Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
+	allTypes = "*/".concat( "*" ),
+
+	// Anchor tag for parsing the document origin
+	originAnchor = document.createElement( "a" );
+	originAnchor.href = location.href;
+
+// Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
+function addToPrefiltersOrTransports( structure ) {
+
+	// dataTypeExpression is optional and defaults to "*"
+	return function( dataTypeExpression, func ) {
+
+		if ( typeof dataTypeExpression !== "string" ) {
+			func = dataTypeExpression;
+			dataTypeExpression = "*";
+		}
+
+		var dataType,
+			i = 0,
+			dataTypes = dataTypeExpression.toLowerCase().match( rnothtmlwhite ) || [];
+
+		if ( isFunction( func ) ) {
+
+			// For each dataType in the dataTypeExpression
+			while ( ( dataType = dataTypes[ i++ ] ) ) {
+
+				// Prepend if requested
+				if ( dataType[ 0 ] === "+" ) {
+					dataType = dataType.slice( 1 ) || "*";
+					( structure[ dataType ] = structure[ dataType ] || [] ).unshift( func );
+
+				// Otherwise append
+				} else {
+					( structure[ dataType ] = structure[ dataType ] || [] ).push( func );
+				}
+			}
+		}
+	};
+}
+
+// Base inspection function for prefilters and transports
+function inspectPrefiltersOrTransports( structure, options, originalOptions, jqXHR ) {
+
+	var inspected = {},
+		seekingTransport = ( structure === transports );
+
+	function inspect( dataType ) {
+		var selected;
+		inspected[ dataType ] = true;
+		jQuery.each( structure[ dataType ] || [], function( _, prefilterOrFactory ) {
+			var dataTypeOrTransport = prefilterOrFactory( options, originalOptions, jqXHR );
+			if ( typeof dataTypeOrTransport === "string" &&
+				!seekingTransport && !inspected[ dataTypeOrTransport ] ) {
+
+				options.dataTypes.unshift( dataTypeOrTransport );
+				inspect( dataTypeOrTransport );
+				return false;
+			} else if ( seekingTransport ) {
+				return !( selected = dataTypeOrTransport );
+			}
+		} );
+		return selected;
+	}
+
+	return inspect( options.dataTypes[ 0 ] ) || !inspected[ "*" ] && inspect( "*" );
+}
+
+// A special extend for ajax options
+// that takes "flat" options (not to be deep extended)
+// Fixes #9887
+function ajaxExtend( target, src ) {
+	var key, deep,
+		flatOptions = jQuery.ajaxSettings.flatOptions || {};
+
+	for ( key in src ) {
+		if ( src[ key ] !== undefined ) {
+			( flatOptions[ key ] ? target : ( deep || ( deep = {} ) ) )[ key ] = src[ key ];
+		}
+	}
+	if ( deep ) {
+		jQuery.extend( true, target, deep );
+	}
+
+	return target;
+}
+
+/* Handles responses to an ajax request:
+ * - finds the right dataType (mediates between content-type and expected dataType)
+ * - returns the corresponding response
+ */
+function ajaxHandleResponses( s, jqXHR, responses ) {
+
+	var ct, type, finalDataType, firstDataType,
+		contents = s.contents,
+		dataTypes = s.dataTypes;
+
+	// Remove auto dataType and get content-type in the process
+	while ( dataTypes[ 0 ] === "*" ) {
+		dataTypes.shift();
+		if ( ct === undefined ) {
+			ct = s.mimeType || jqXHR.getResponseHeader( "Content-Type" );
+		}
+	}
+
+	// Check if we're dealing with a known content-type
+	if ( ct ) {
+		for ( type in contents ) {
+			if ( contents[ type ] && contents[ type ].test( ct ) ) {
+				dataTypes.unshift( type );
+				break;
+			}
+		}
+	}
+
+	// Check to see if we have a response for the expected dataType
+	if ( dataTypes[ 0 ] in responses ) {
+		finalDataType = dataTypes[ 0 ];
+	} else {
+
+		// Try convertible dataTypes
+		for ( type in responses ) {
+			if ( !dataTypes[ 0 ] || s.converters[ type + " " + dataTypes[ 0 ] ] ) {
+				finalDataType = type;
+				break;
+			}
+			if ( !firstDataType ) {
+				firstDataType = type;
+			}
+		}
+
+		// Or just use first one
+		finalDataType = finalDataType || firstDataType;
+	}
+
+	// If we found a dataType
+	// We add the dataType to the list if needed
+	// and return the corresponding response
+	if ( finalDataType ) {
+		if ( finalDataType !== dataTypes[ 0 ] ) {
+			dataTypes.unshift( finalDataType );
+		}
+		return responses[ finalDataType ];
+	}
+}
+
+/* Chain conversions given the request and the original response
+ * Also sets the responseXXX fields on the jqXHR instance
+ */
+function ajaxConvert( s, response, jqXHR, isSuccess ) {
+	var conv2, current, conv, tmp, prev,
+		converters = {},
+
+		// Work with a copy of dataTypes in case we need to modify it for conversion
+		dataTypes = s.dataTypes.slice();
+
+	// Create converters map with lowercased keys
+	if ( dataTypes[ 1 ] ) {
+		for ( conv in s.converters ) {
+			converters[ conv.toLowerCase() ] = s.converters[ conv ];
+		}
+	}
+
+	current = dataTypes.shift();
+
+	// Convert to each sequential dataType
+	while ( current ) {
+
+		if ( s.responseFields[ current ] ) {
+			jqXHR[ s.responseFields[ current ] ] = response;
+		}
+
+		// Apply the dataFilter if provided
+		if ( !prev && isSuccess && s.dataFilter ) {
+			response = s.dataFilter( response, s.dataType );
+		}
+
+		prev = current;
+		current = dataTypes.shift();
+
+		if ( current ) {
+
+			// There's only work to do if current dataType is non-auto
+			if ( current === "*" ) {
+
+				current = prev;
+
+			// Convert response if prev dataType is non-auto and differs from current
+			} else if ( prev !== "*" && prev !== current ) {
+
+				// Seek a direct converter
+				conv = converters[ prev + " " + current ] || converters[ "* " + current ];
+
+				// If none found, seek a pair
+				if ( !conv ) {
+					for ( conv2 in converters ) {
+
+						// If conv2 outputs current
+						tmp = conv2.split( " " );
+						if ( tmp[ 1 ] === current ) {
+
+							// If prev can be converted to accepted input
+							conv = converters[ prev + " " + tmp[ 0 ] ] ||
+								converters[ "* " + tmp[ 0 ] ];
+							if ( conv ) {
+
+								// Condense equivalence converters
+								if ( conv === true ) {
+									conv = converters[ conv2 ];
+
+								// Otherwise, insert the intermediate dataType
+								} else if ( converters[ conv2 ] !== true ) {
+									current = tmp[ 0 ];
+									dataTypes.unshift( tmp[ 1 ] );
+								}
+								break;
+							}
+						}
+					}
+				}
+
+				// Apply converter (if not an equivalence)
+				if ( conv !== true ) {
+
+					// Unless errors are allowed to bubble, catch and return them
+					if ( conv && s.throws ) {
+						response = conv( response );
+					} else {
+						try {
+							response = conv( response );
+						} catch ( e ) {
+							return {
+								state: "parsererror",
+								error: conv ? e : "No conversion from " + prev + " to " + current
+							};
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return { state: "success", data: response };
+}
+
+jQuery.extend( {
+
+	// Counter for holding the number of active queries
+	active: 0,
+
+	// Last-Modified header cache for next request
+	lastModified: {},
+	etag: {},
+
+	ajaxSettings: {
+		url: location.href,
+		type: "GET",
+		isLocal: rlocalProtocol.test( location.protocol ),
+		global: true,
+		processData: true,
+		async: true,
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+
+		/*
+		timeout: 0,
+		data: null,
+		dataType: null,
+		username: null,
+		password: null,
+		cache: null,
+		throws: false,
+		traditional: false,
+		headers: {},
+		*/
+
+		accepts: {
+			"*": allTypes,
+			text: "text/plain",
+			html: "text/html",
+			xml: "application/xml, text/xml",
+			json: "application/json, text/javascript"
+		},
+
+		contents: {
+			xml: /\bxml\b/,
+			html: /\bhtml/,
+			json: /\bjson\b/
+		},
+
+		responseFields: {
+			xml: "responseXML",
+			text: "responseText",
+			json: "responseJSON"
+		},
+
+		// Data converters
+		// Keys separate source (or catchall "*") and destination types with a single space
+		converters: {
+
+			// Convert anything to text
+			"* text": String,
+
+			// Text to html (true = no transformation)
+			"text html": true,
+
+			// Evaluate text as a json expression
+			"text json": JSON.parse,
+
+			// Parse text as xml
+			"text xml": jQuery.parseXML
+		},
+
+		// For options that shouldn't be deep extended:
+		// you can add your own custom options here if
+		// and when you create one that shouldn't be
+		// deep extended (see ajaxExtend)
+		flatOptions: {
+			url: true,
+			context: true
+		}
+	},
+
+	// Creates a full fledged settings object into target
+	// with both ajaxSettings and settings fields.
+	// If target is omitted, writes into ajaxSettings.
+	ajaxSetup: function( target, settings ) {
+		return settings ?
+
+			// Building a settings object
+			ajaxExtend( ajaxExtend( target, jQuery.ajaxSettings ), settings ) :
+
+			// Extending ajaxSettings
+			ajaxExtend( jQuery.ajaxSettings, target );
+	},
+
+	ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
+	ajaxTransport: addToPrefiltersOrTransports( transports ),
+
+	// Main method
+	ajax: function( url, options ) {
+
+		// If url is an object, simulate pre-1.5 signature
+		if ( typeof url === "object" ) {
+			options = url;
+			url = undefined;
+		}
+
+		// Force options to be an object
+		options = options || {};
+
+		var transport,
+
+			// URL without anti-cache param
+			cacheURL,
+
+			// Response headers
+			responseHeadersString,
+			responseHeaders,
+
+			// timeout handle
+			timeoutTimer,
+
+			// Url cleanup var
+			urlAnchor,
+
+			// Request state (becomes false upon send and true upon completion)
+			completed,
+
+			// To know if global events are to be dispatched
+			fireGlobals,
+
+			// Loop variable
+			i,
+
+			// uncached part of the url
+			uncached,
+
+			// Create the final options object
+			s = jQuery.ajaxSetup( {}, options ),
+
+			// Callbacks context
+			callbackContext = s.context || s,
+
+			// Context for global events is callbackContext if it is a DOM node or jQuery collection
+			globalEventContext = s.context &&
+				( callbackContext.nodeType || callbackContext.jquery ) ?
+					jQuery( callbackContext ) :
+					jQuery.event,
+
+			// Deferreds
+			deferred = jQuery.Deferred(),
+			completeDeferred = jQuery.Callbacks( "once memory" ),
+
+			// Status-dependent callbacks
+			statusCode = s.statusCode || {},
+
+			// Headers (they are sent all at once)
+			requestHeaders = {},
+			requestHeadersNames = {},
+
+			// Default abort message
+			strAbort = "canceled",
+
+			// Fake xhr
+			jqXHR = {
+				readyState: 0,
+
+				// Builds headers hashtable if needed
+				getResponseHeader: function( key ) {
+					var match;
+					if ( completed ) {
+						if ( !responseHeaders ) {
+							responseHeaders = {};
+							while ( ( match = rheaders.exec( responseHeadersString ) ) ) {
+								responseHeaders[ match[ 1 ].toLowerCase() ] = match[ 2 ];
+							}
+						}
+						match = responseHeaders[ key.toLowerCase() ];
+					}
+					return match == null ? null : match;
+				},
+
+				// Raw string
+				getAllResponseHeaders: function() {
+					return completed ? responseHeadersString : null;
+				},
+
+				// Caches the header
+				setRequestHeader: function( name, value ) {
+					if ( completed == null ) {
+						name = requestHeadersNames[ name.toLowerCase() ] =
+							requestHeadersNames[ name.toLowerCase() ] || name;
+						requestHeaders[ name ] = value;
+					}
+					return this;
+				},
+
+				// Overrides response content-type header
+				overrideMimeType: function( type ) {
+					if ( completed == null ) {
+						s.mimeType = type;
+					}
+					return this;
+				},
+
+				// Status-dependent callbacks
+				statusCode: function( map ) {
+					var code;
+					if ( map ) {
+						if ( completed ) {
+
+							// Execute the appropriate callbacks
+							jqXHR.always( map[ jqXHR.status ] );
+						} else {
+
+							// Lazy-add the new callbacks in a way that preserves old ones
+							for ( code in map ) {
+								statusCode[ code ] = [ statusCode[ code ], map[ code ] ];
+							}
+						}
+					}
+					return this;
+				},
+
+				// Cancel the request
+				abort: function( statusText ) {
+					var finalText = statusText || strAbort;
+					if ( transport ) {
+						transport.abort( finalText );
+					}
+					done( 0, finalText );
+					return this;
+				}
+			};
+
+		// Attach deferreds
+		deferred.promise( jqXHR );
+
+		// Add protocol if not provided (prefilters might expect it)
+		// Handle falsy url in the settings object (#10093: consistency with old signature)
+		// We also use the url parameter if available
+		s.url = ( ( url || s.url || location.href ) + "" )
+			.replace( rprotocol, location.protocol + "//" );
+
+		// Alias method option to type as per ticket #12004
+		s.type = options.method || options.type || s.method || s.type;
+
+		// Extract dataTypes list
+		s.dataTypes = ( s.dataType || "*" ).toLowerCase().match( rnothtmlwhite ) || [ "" ];
+
+		// A cross-domain request is in order when the origin doesn't match the current origin.
+		if ( s.crossDomain == null ) {
+			urlAnchor = document.createElement( "a" );
+
+			// Support: IE <=8 - 11, Edge 12 - 15
+			// IE throws exception on accessing the href property if url is malformed,
+			// e.g. http://example.com:80x/
+			try {
+				urlAnchor.href = s.url;
+
+				// Support: IE <=8 - 11 only
+				// Anchor's host property isn't correctly set when s.url is relative
+				urlAnchor.href = urlAnchor.href;
+				s.crossDomain = originAnchor.protocol + "//" + originAnchor.host !==
+					urlAnchor.protocol + "//" + urlAnchor.host;
+			} catch ( e ) {
+
+				// If there is an error parsing the URL, assume it is crossDomain,
+				// it can be rejected by the transport if it is invalid
+				s.crossDomain = true;
+			}
+		}
+
+		// Convert data if not already a string
+		if ( s.data && s.processData && typeof s.data !== "string" ) {
+			s.data = jQuery.param( s.data, s.traditional );
+		}
+
+		// Apply prefilters
+		inspectPrefiltersOrTransports( prefilters, s, options, jqXHR );
+
+		// If request was aborted inside a prefilter, stop there
+		if ( completed ) {
+			return jqXHR;
+		}
+
+		// We can fire global events as of now if asked to
+		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
+		fireGlobals = jQuery.event && s.global;
+
+		// Watch for a new set of requests
+		if ( fireGlobals && jQuery.active++ === 0 ) {
+			jQuery.event.trigger( "ajaxStart" );
+		}
+
+		// Uppercase the type
+		s.type = s.type.toUpperCase();
+
+		// Determine if request has content
+		s.hasContent = !rnoContent.test( s.type );
+
+		// Save the URL in case we're toying with the If-Modified-Since
+		// and/or If-None-Match header later on
+		// Remove hash to simplify url manipulation
+		cacheURL = s.url.replace( rhash, "" );
+
+		// More options handling for requests with no content
+		if ( !s.hasContent ) {
+
+			// Remember the hash so we can put it back
+			uncached = s.url.slice( cacheURL.length );
+
+			// If data is available and should be processed, append data to url
+			if ( s.data && ( s.processData || typeof s.data === "string" ) ) {
+				cacheURL += ( rquery.test( cacheURL ) ? "&" : "?" ) + s.data;
+
+				// #9682: remove data so that it's not used in an eventual retry
+				delete s.data;
+			}
+
+			// Add or update anti-cache param if needed
+			if ( s.cache === false ) {
+				cacheURL = cacheURL.replace( rantiCache, "$1" );
+				uncached = ( rquery.test( cacheURL ) ? "&" : "?" ) + "_=" + ( nonce++ ) + uncached;
+			}
+
+			// Put hash and anti-cache on the URL that will be requested (gh-1732)
+			s.url = cacheURL + uncached;
+
+		// Change '%20' to '+' if this is encoded form body content (gh-2658)
+		} else if ( s.data && s.processData &&
+			( s.contentType || "" ).indexOf( "application/x-www-form-urlencoded" ) === 0 ) {
+			s.data = s.data.replace( r20, "+" );
+		}
+
+		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+		if ( s.ifModified ) {
+			if ( jQuery.lastModified[ cacheURL ] ) {
+				jqXHR.setRequestHeader( "If-Modified-Since", jQuery.lastModified[ cacheURL ] );
+			}
+			if ( jQuery.etag[ cacheURL ] ) {
+				jqXHR.setRequestHeader( "If-None-Match", jQuery.etag[ cacheURL ] );
+			}
+		}
+
+		// Set the correct header, if data is being sent
+		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
+			jqXHR.setRequestHeader( "Content-Type", s.contentType );
+		}
+
+		// Set the Accepts header for the server, depending on the dataType
+		jqXHR.setRequestHeader(
+			"Accept",
+			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[ 0 ] ] ?
+				s.accepts[ s.dataTypes[ 0 ] ] +
+					( s.dataTypes[ 0 ] !== "*" ? ", " + allTypes + "; q=0.01" : "" ) :
+				s.accepts[ "*" ]
+		);
+
+		// Check for headers option
+		for ( i in s.headers ) {
+			jqXHR.setRequestHeader( i, s.headers[ i ] );
+		}
+
+		// Allow custom headers/mimetypes and early abort
+		if ( s.beforeSend &&
+			( s.beforeSend.call( callbackContext, jqXHR, s ) === false || completed ) ) {
+
+			// Abort if not done already and return
+			return jqXHR.abort();
+		}
+
+		// Aborting is no longer a cancellation
+		strAbort = "abort";
+
+		// Install callbacks on deferreds
+		completeDeferred.add( s.complete );
+		jqXHR.done( s.success );
+		jqXHR.fail( s.error );
+
+		// Get transport
+		transport = inspectPrefiltersOrTransports( transports, s, options, jqXHR );
+
+		// If no transport, we auto-abort
+		if ( !transport ) {
+			done( -1, "No Transport" );
+		} else {
+			jqXHR.readyState = 1;
+
+			// Send global event
+			if ( fireGlobals ) {
+				globalEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
+			}
+
+			// If request was aborted inside ajaxSend, stop there
+			if ( completed ) {
+				return jqXHR;
+			}
+
+			// Timeout
+			if ( s.async && s.timeout > 0 ) {
+				timeoutTimer = window.setTimeout( function() {
+					jqXHR.abort( "timeout" );
+				}, s.timeout );
+			}
+
+			try {
+				completed = false;
+				transport.send( requestHeaders, done );
+			} catch ( e ) {
+
+				// Rethrow post-completion exceptions
+				if ( completed ) {
+					throw e;
+				}
+
+				// Propagate others as results
+				done( -1, e );
+			}
+		}
+
+		// Callback for when everything is done
+		function done( status, nativeStatusText, responses, headers ) {
+			var isSuccess, success, error, response, modified,
+				statusText = nativeStatusText;
+
+			// Ignore repeat invocations
+			if ( completed ) {
+				return;
+			}
+
+			completed = true;
+
+			// Clear timeout if it exists
+			if ( timeoutTimer ) {
+				window.clearTimeout( timeoutTimer );
+			}
+
+			// Dereference transport for early garbage collection
+			// (no matter how long the jqXHR object will be used)
+			transport = undefined;
+
+			// Cache response headers
+			responseHeadersString = headers || "";
+
+			// Set readyState
+			jqXHR.readyState = status > 0 ? 4 : 0;
+
+			// Determine if successful
+			isSuccess = status >= 200 && status < 300 || status === 304;
+
+			// Get response data
+			if ( responses ) {
+				response = ajaxHandleResponses( s, jqXHR, responses );
+			}
+
+			// Convert no matter what (that way responseXXX fields are always set)
+			response = ajaxConvert( s, response, jqXHR, isSuccess );
+
+			// If successful, handle type chaining
+			if ( isSuccess ) {
+
+				// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+				if ( s.ifModified ) {
+					modified = jqXHR.getResponseHeader( "Last-Modified" );
+					if ( modified ) {
+						jQuery.lastModified[ cacheURL ] = modified;
+					}
+					modified = jqXHR.getResponseHeader( "etag" );
+					if ( modified ) {
+						jQuery.etag[ cacheURL ] = modified;
+					}
+				}
+
+				// if no content
+				if ( status === 204 || s.type === "HEAD" ) {
+					statusText = "nocontent";
+
+				// if not modified
+				} else if ( status === 304 ) {
+					statusText = "notmodified";
+
+				// If we have data, let's convert it
+				} else {
+					statusText = response.state;
+					success = response.data;
+					error = response.error;
+					isSuccess = !error;
+				}
+			} else {
+
+				// Extract error from statusText and normalize for non-aborts
+				error = statusText;
+				if ( status || !statusText ) {
+					statusText = "error";
+					if ( status < 0 ) {
+						status = 0;
+					}
+				}
+			}
+
+			// Set data for the fake xhr object
+			jqXHR.status = status;
+			jqXHR.statusText = ( nativeStatusText || statusText ) + "";
+
+			// Success/Error
+			if ( isSuccess ) {
+				deferred.resolveWith( callbackContext, [ success, statusText, jqXHR ] );
+			} else {
+				deferred.rejectWith( callbackContext, [ jqXHR, statusText, error ] );
+			}
+
+			// Status-dependent callbacks
+			jqXHR.statusCode( statusCode );
+			statusCode = undefined;
+
+			if ( fireGlobals ) {
+				globalEventContext.trigger( isSuccess ? "ajaxSuccess" : "ajaxError",
+					[ jqXHR, s, isSuccess ? success : error ] );
+			}
+
+			// Complete
+			completeDeferred.fireWith( callbackContext, [ jqXHR, statusText ] );
+
+			if ( fireGlobals ) {
+				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
+
+				// Handle the global AJAX counter
+				if ( !( --jQuery.active ) ) {
+					jQuery.event.trigger( "ajaxStop" );
+				}
+			}
+		}
+
+		return jqXHR;
+	},
+
+	getJSON: function( url, data, callback ) {
+		return jQuery.get( url, data, callback, "json" );
+	},
+
+	getScript: function( url, callback ) {
+		return jQuery.get( url, undefined, callback, "script" );
+	}
+} );
+
+jQuery.each( [ "get", "post" ], function( i, method ) {
+	jQuery[ method ] = function( url, data, callback, type ) {
+
+		// Shift arguments if data argument was omitted
+		if ( isFunction( data ) ) {
+			type = type || callback;
+			callback = data;
+			data = undefined;
+		}
+
+		// The url can be an options object (which then must have .url)
+		return jQuery.ajax( jQuery.extend( {
+			url: url,
+			type: method,
+			dataType: type,
+			data: data,
+			success: callback
+		}, jQuery.isPlainObject( url ) && url ) );
+	};
+} );
+
+
+jQuery._evalUrl = function( url ) {
+	return jQuery.ajax( {
+		url: url,
+
+		// Make this explicit, since user can override this through ajaxSetup (#11264)
+		type: "GET",
+		dataType: "script",
+		cache: true,
+		async: false,
+		global: false,
+		"throws": true
+	} );
+};
+
+
+jQuery.fn.extend( {
+	wrapAll: function( html ) {
+		var wrap;
+
+		if ( this[ 0 ] ) {
+			if ( isFunction( html ) ) {
+				html = html.call( this[ 0 ] );
+			}
+
+			// The elements to wrap the target around
+			wrap = jQuery( html, this[ 0 ].ownerDocument ).eq( 0 ).clone( true );
+
+			if ( this[ 0 ].parentNode ) {
+				wrap.insertBefore( this[ 0 ] );
+			}
+
+			wrap.map( function() {
+				var elem = this;
+
+				while ( elem.firstElementChild ) {
+					elem = elem.firstElementChild;
+				}
+
+				return elem;
+			} ).append( this );
+		}
+
+		return this;
+	},
+
+	wrapInner: function( html ) {
+		if ( isFunction( html ) ) {
+			return this.each( function( i ) {
+				jQuery( this ).wrapInner( html.call( this, i ) );
+			} );
+		}
+
+		return this.each( function() {
+			var self = jQuery( this ),
+				contents = self.contents();
+
+			if ( contents.length ) {
+				contents.wrapAll( html );
+
+			} else {
+				self.append( html );
+			}
+		} );
+	},
+
+	wrap: function( html ) {
+		var htmlIsFunction = isFunction( html );
+
+		return this.each( function( i ) {
+			jQuery( this ).wrapAll( htmlIsFunction ? html.call( this, i ) : html );
+		} );
+	},
+
+	unwrap: function( selector ) {
+		this.parent( selector ).not( "body" ).each( function() {
+			jQuery( this ).replaceWith( this.childNodes );
+		} );
+		return this;
+	}
+} );
+
+
+jQuery.expr.pseudos.hidden = function( elem ) {
+	return !jQuery.expr.pseudos.visible( elem );
+};
+jQuery.expr.pseudos.visible = function( elem ) {
+	return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+};
+
+
+
+
+jQuery.ajaxSettings.xhr = function() {
+	try {
+		return new window.XMLHttpRequest();
+	} catch ( e ) {}
+};
+
+var xhrSuccessStatus = {
+
+		// File protocol always yields status code 0, assume 200
+		0: 200,
+
+		// Support: IE <=9 only
+		// #1450: sometimes IE returns 1223 when it should be 204
+		1223: 204
+	},
+	xhrSupported = jQuery.ajaxSettings.xhr();
+
+support.cors = !!xhrSupported && ( "withCredentials" in xhrSupported );
+support.ajax = xhrSupported = !!xhrSupported;
+
+jQuery.ajaxTransport( function( options ) {
+	var callback, errorCallback;
+
+	// Cross domain only allowed if supported through XMLHttpRequest
+	if ( support.cors || xhrSupported && !options.crossDomain ) {
+		return {
+			send: function( headers, complete ) {
+				var i,
+					xhr = options.xhr();
+
+				xhr.open(
+					options.type,
+					options.url,
+					options.async,
+					options.username,
+					options.password
+				);
+
+				// Apply custom fields if provided
+				if ( options.xhrFields ) {
+					for ( i in options.xhrFields ) {
+						xhr[ i ] = options.xhrFields[ i ];
+					}
+				}
+
+				// Override mime type if needed
+				if ( options.mimeType && xhr.overrideMimeType ) {
+					xhr.overrideMimeType( options.mimeType );
+				}
+
+				// X-Requested-With header
+				// For cross-domain requests, seeing as conditions for a preflight are
+				// akin to a jigsaw puzzle, we simply never set it to be sure.
+				// (it can always be set on a per-request basis or even using ajaxSetup)
+				// For same-domain requests, won't change header if already provided.
+				if ( !options.crossDomain && !headers[ "X-Requested-With" ] ) {
+					headers[ "X-Requested-With" ] = "XMLHttpRequest";
+				}
+
+				// Set headers
+				for ( i in headers ) {
+					xhr.setRequestHeader( i, headers[ i ] );
+				}
+
+				// Callback
+				callback = function( type ) {
+					return function() {
+						if ( callback ) {
+							callback = errorCallback = xhr.onload =
+								xhr.onerror = xhr.onabort = xhr.ontimeout =
+									xhr.onreadystatechange = null;
+
+							if ( type === "abort" ) {
+								xhr.abort();
+							} else if ( type === "error" ) {
+
+								// Support: IE <=9 only
+								// On a manual native abort, IE9 throws
+								// errors on any property access that is not readyState
+								if ( typeof xhr.status !== "number" ) {
+									complete( 0, "error" );
+								} else {
+									complete(
+
+										// File: protocol always yields status 0; see #8605, #14207
+										xhr.status,
+										xhr.statusText
+									);
+								}
+							} else {
+								complete(
+									xhrSuccessStatus[ xhr.status ] || xhr.status,
+									xhr.statusText,
+
+									// Support: IE <=9 only
+									// IE9 has no XHR2 but throws on binary (trac-11426)
+									// For XHR2 non-text, let the caller handle it (gh-2498)
+									( xhr.responseType || "text" ) !== "text"  ||
+									typeof xhr.responseText !== "string" ?
+										{ binary: xhr.response } :
+										{ text: xhr.responseText },
+									xhr.getAllResponseHeaders()
+								);
+							}
+						}
+					};
+				};
+
+				// Listen to events
+				xhr.onload = callback();
+				errorCallback = xhr.onerror = xhr.ontimeout = callback( "error" );
+
+				// Support: IE 9 only
+				// Use onreadystatechange to replace onabort
+				// to handle uncaught aborts
+				if ( xhr.onabort !== undefined ) {
+					xhr.onabort = errorCallback;
+				} else {
+					xhr.onreadystatechange = function() {
+
+						// Check readyState before timeout as it changes
+						if ( xhr.readyState === 4 ) {
+
+							// Allow onerror to be called first,
+							// but that will not handle a native abort
+							// Also, save errorCallback to a variable
+							// as xhr.onerror cannot be accessed
+							window.setTimeout( function() {
+								if ( callback ) {
+									errorCallback();
+								}
+							} );
+						}
+					};
+				}
+
+				// Create the abort callback
+				callback = callback( "abort" );
+
+				try {
+
+					// Do send the request (this may raise an exception)
+					xhr.send( options.hasContent && options.data || null );
+				} catch ( e ) {
+
+					// #14683: Only rethrow if this hasn't been notified as an error yet
+					if ( callback ) {
+						throw e;
+					}
+				}
+			},
+
+			abort: function() {
+				if ( callback ) {
+					callback();
+				}
+			}
+		};
+	}
+} );
+
+
+
+
+// Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
+jQuery.ajaxPrefilter( function( s ) {
+	if ( s.crossDomain ) {
+		s.contents.script = false;
+	}
+} );
+
+// Install script dataType
+jQuery.ajaxSetup( {
+	accepts: {
+		script: "text/javascript, application/javascript, " +
+			"application/ecmascript, application/x-ecmascript"
+	},
+	contents: {
+		script: /\b(?:java|ecma)script\b/
+	},
+	converters: {
+		"text script": function( text ) {
+			jQuery.globalEval( text );
+			return text;
+		}
+	}
+} );
+
+// Handle cache's special case and crossDomain
+jQuery.ajaxPrefilter( "script", function( s ) {
+	if ( s.cache === undefined ) {
+		s.cache = false;
+	}
+	if ( s.crossDomain ) {
+		s.type = "GET";
+	}
+} );
+
+// Bind script tag hack transport
+jQuery.ajaxTransport( "script", function( s ) {
+
+	// This transport only deals with cross domain requests
+	if ( s.crossDomain ) {
+		var script, callback;
+		return {
+			send: function( _, complete ) {
+				script = jQuery( "<script>" ).prop( {
+					charset: s.scriptCharset,
+					src: s.url
+				} ).on(
+					"load error",
+					callback = function( evt ) {
+						script.remove();
+						callback = null;
+						if ( evt ) {
+							complete( evt.type === "error" ? 404 : 200, evt.type );
+						}
+					}
+				);
+
+				// Use native DOM manipulation to avoid our domManip AJAX trickery
+				document.head.appendChild( script[ 0 ] );
+			},
+			abort: function() {
+				if ( callback ) {
+					callback();
+				}
+			}
+		};
+	}
+} );
+
+
+
+
+var oldCallbacks = [],
+	rjsonp = /(=)\?(?=&|$)|\?\?/;
+
+// Default jsonp settings
+jQuery.ajaxSetup( {
+	jsonp: "callback",
+	jsonpCallback: function() {
+		var callback = oldCallbacks.pop() || ( jQuery.expando + "_" + ( nonce++ ) );
+		this[ callback ] = true;
+		return callback;
+	}
+} );
+
+// Detect, normalize options and install callbacks for jsonp requests
+jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
+
+	var callbackName, overwritten, responseContainer,
+		jsonProp = s.jsonp !== false && ( rjsonp.test( s.url ) ?
+			"url" :
+			typeof s.data === "string" &&
+				( s.contentType || "" )
+					.indexOf( "application/x-www-form-urlencoded" ) === 0 &&
+				rjsonp.test( s.data ) && "data"
+		);
+
+	// Handle iff the expected data type is "jsonp" or we have a parameter to set
+	if ( jsonProp || s.dataTypes[ 0 ] === "jsonp" ) {
+
+		// Get callback name, remembering preexisting value associated with it
+		callbackName = s.jsonpCallback = isFunction( s.jsonpCallback ) ?
+			s.jsonpCallback() :
+			s.jsonpCallback;
+
+		// Insert callback into url or form data
+		if ( jsonProp ) {
+			s[ jsonProp ] = s[ jsonProp ].replace( rjsonp, "$1" + callbackName );
+		} else if ( s.jsonp !== false ) {
+			s.url += ( rquery.test( s.url ) ? "&" : "?" ) + s.jsonp + "=" + callbackName;
+		}
+
+		// Use data converter to retrieve json after script execution
+		s.converters[ "script json" ] = function() {
+			if ( !responseContainer ) {
+				jQuery.error( callbackName + " was not called" );
+			}
+			return responseContainer[ 0 ];
+		};
+
+		// Force json dataType
+		s.dataTypes[ 0 ] = "json";
+
+		// Install callback
+		overwritten = window[ callbackName ];
+		window[ callbackName ] = function() {
+			responseContainer = arguments;
+		};
+
+		// Clean-up function (fires after converters)
+		jqXHR.always( function() {
+
+			// If previous value didn't exist - remove it
+			if ( overwritten === undefined ) {
+				jQuery( window ).removeProp( callbackName );
+
+			// Otherwise restore preexisting value
+			} else {
+				window[ callbackName ] = overwritten;
+			}
+
+			// Save back as free
+			if ( s[ callbackName ] ) {
+
+				// Make sure that re-using the options doesn't screw things around
+				s.jsonpCallback = originalSettings.jsonpCallback;
+
+				// Save the callback name for future use
+				oldCallbacks.push( callbackName );
+			}
+
+			// Call if it was a function and we have a response
+			if ( responseContainer && isFunction( overwritten ) ) {
+				overwritten( responseContainer[ 0 ] );
+			}
+
+			responseContainer = overwritten = undefined;
+		} );
+
+		// Delegate to script
+		return "script";
+	}
+} );
+
+
+
+
+// Support: Safari 8 only
+// In Safari 8 documents created via document.implementation.createHTMLDocument
+// collapse sibling forms: the second one becomes a child of the first one.
+// Because of that, this security measure has to be disabled in Safari 8.
+// https://bugs.webkit.org/show_bug.cgi?id=137337
+support.createHTMLDocument = ( function() {
+	var body = document.implementation.createHTMLDocument( "" ).body;
+	body.innerHTML = "<form></form><form></form>";
+	return body.childNodes.length === 2;
+} )();
+
+
+// Argument "data" should be string of html
+// context (optional): If specified, the fragment will be created in this context,
+// defaults to document
+// keepScripts (optional): If true, will include scripts passed in the html string
+jQuery.parseHTML = function( data, context, keepScripts ) {
+	if ( typeof data !== "string" ) {
+		return [];
+	}
+	if ( typeof context === "boolean" ) {
+		keepScripts = context;
+		context = false;
+	}
+
+	var base, parsed, scripts;
+
+	if ( !context ) {
+
+		// Stop scripts or inline event handlers from being executed immediately
+		// by using document.implementation
+		if ( support.createHTMLDocument ) {
+			context = document.implementation.createHTMLDocument( "" );
+
+			// Set the base href for the created document
+			// so any parsed elements with URLs
+			// are based on the document's URL (gh-2965)
+			base = context.createElement( "base" );
+			base.href = document.location.href;
+			context.head.appendChild( base );
+		} else {
+			context = document;
+		}
+	}
+
+	parsed = rsingleTag.exec( data );
+	scripts = !keepScripts && [];
+
+	// Single tag
+	if ( parsed ) {
+		return [ context.createElement( parsed[ 1 ] ) ];
+	}
+
+	parsed = buildFragment( [ data ], context, scripts );
+
+	if ( scripts && scripts.length ) {
+		jQuery( scripts ).remove();
+	}
+
+	return jQuery.merge( [], parsed.childNodes );
+};
+
+
+/**
+ * Load a url into a page
+ */
+jQuery.fn.load = function( url, params, callback ) {
+	var selector, type, response,
+		self = this,
+		off = url.indexOf( " " );
+
+	if ( off > -1 ) {
+		selector = stripAndCollapse( url.slice( off ) );
+		url = url.slice( 0, off );
+	}
+
+	// If it's a function
+	if ( isFunction( params ) ) {
+
+		// We assume that it's the callback
+		callback = params;
+		params = undefined;
+
+	// Otherwise, build a param string
+	} else if ( params && typeof params === "object" ) {
+		type = "POST";
+	}
+
+	// If we have elements to modify, make the request
+	if ( self.length > 0 ) {
+		jQuery.ajax( {
+			url: url,
+
+			// If "type" variable is undefined, then "GET" method will be used.
+			// Make value of this field explicit since
+			// user can override it through ajaxSetup method
+			type: type || "GET",
+			dataType: "html",
+			data: params
+		} ).done( function( responseText ) {
+
+			// Save response for use in complete callback
+			response = arguments;
+
+			self.html( selector ?
+
+				// If a selector was specified, locate the right elements in a dummy div
+				// Exclude scripts to avoid IE 'Permission Denied' errors
+				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
+
+				// Otherwise use the full result
+				responseText );
+
+		// If the request succeeds, this function gets "data", "status", "jqXHR"
+		// but they are ignored because response was set above.
+		// If it fails, this function gets "jqXHR", "status", "error"
+		} ).always( callback && function( jqXHR, status ) {
+			self.each( function() {
+				callback.apply( this, response || [ jqXHR.responseText, status, jqXHR ] );
+			} );
+		} );
+	}
+
+	return this;
+};
+
+
+
+
+// Attach a bunch of functions for handling common AJAX events
+jQuery.each( [
+	"ajaxStart",
+	"ajaxStop",
+	"ajaxComplete",
+	"ajaxError",
+	"ajaxSuccess",
+	"ajaxSend"
+], function( i, type ) {
+	jQuery.fn[ type ] = function( fn ) {
+		return this.on( type, fn );
+	};
+} );
+
+
+
+
+jQuery.expr.pseudos.animated = function( elem ) {
+	return jQuery.grep( jQuery.timers, function( fn ) {
+		return elem === fn.elem;
+	} ).length;
+};
+
+
+
+
+jQuery.offset = {
+	setOffset: function( elem, options, i ) {
+		var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition,
+			position = jQuery.css( elem, "position" ),
+			curElem = jQuery( elem ),
+			props = {};
+
+		// Set position first, in-case top/left are set even on static elem
+		if ( position === "static" ) {
+			elem.style.position = "relative";
+		}
+
+		curOffset = curElem.offset();
+		curCSSTop = jQuery.css( elem, "top" );
+		curCSSLeft = jQuery.css( elem, "left" );
+		calculatePosition = ( position === "absolute" || position === "fixed" ) &&
+			( curCSSTop + curCSSLeft ).indexOf( "auto" ) > -1;
+
+		// Need to be able to calculate position if either
+		// top or left is auto and position is either absolute or fixed
+		if ( calculatePosition ) {
+			curPosition = curElem.position();
+			curTop = curPosition.top;
+			curLeft = curPosition.left;
+
+		} else {
+			curTop = parseFloat( curCSSTop ) || 0;
+			curLeft = parseFloat( curCSSLeft ) || 0;
+		}
+
+		if ( isFunction( options ) ) {
+
+			// Use jQuery.extend here to allow modification of coordinates argument (gh-1848)
+			options = options.call( elem, i, jQuery.extend( {}, curOffset ) );
+		}
+
+		if ( options.top != null ) {
+			props.top = ( options.top - curOffset.top ) + curTop;
+		}
+		if ( options.left != null ) {
+			props.left = ( options.left - curOffset.left ) + curLeft;
+		}
+
+		if ( "using" in options ) {
+			options.using.call( elem, props );
+
+		} else {
+			curElem.css( props );
+		}
+	}
+};
+
+jQuery.fn.extend( {
+
+	// offset() relates an element's border box to the document origin
+	offset: function( options ) {
+
+		// Preserve chaining for setter
+		if ( arguments.length ) {
+			return options === undefined ?
+				this :
+				this.each( function( i ) {
+					jQuery.offset.setOffset( this, options, i );
+				} );
+		}
+
+		var rect, win,
+			elem = this[ 0 ];
+
+		if ( !elem ) {
+			return;
+		}
+
+		// Return zeros for disconnected and hidden (display: none) elements (gh-2310)
+		// Support: IE <=11 only
+		// Running getBoundingClientRect on a
+		// disconnected node in IE throws an error
+		if ( !elem.getClientRects().length ) {
+			return { top: 0, left: 0 };
+		}
+
+		// Get document-relative position by adding viewport scroll to viewport-relative gBCR
+		rect = elem.getBoundingClientRect();
+		win = elem.ownerDocument.defaultView;
+		return {
+			top: rect.top + win.pageYOffset,
+			left: rect.left + win.pageXOffset
+		};
+	},
+
+	// position() relates an element's margin box to its offset parent's padding box
+	// This corresponds to the behavior of CSS absolute positioning
+	position: function() {
+		if ( !this[ 0 ] ) {
+			return;
+		}
+
+		var offsetParent, offset, doc,
+			elem = this[ 0 ],
+			parentOffset = { top: 0, left: 0 };
+
+		// position:fixed elements are offset from the viewport, which itself always has zero offset
+		if ( jQuery.css( elem, "position" ) === "fixed" ) {
+
+			// Assume position:fixed implies availability of getBoundingClientRect
+			offset = elem.getBoundingClientRect();
+
+		} else {
+			offset = this.offset();
+
+			// Account for the *real* offset parent, which can be the document or its root element
+			// when a statically positioned element is identified
+			doc = elem.ownerDocument;
+			offsetParent = elem.offsetParent || doc.documentElement;
+			while ( offsetParent &&
+				( offsetParent === doc.body || offsetParent === doc.documentElement ) &&
+				jQuery.css( offsetParent, "position" ) === "static" ) {
+
+				offsetParent = offsetParent.parentNode;
+			}
+			if ( offsetParent && offsetParent !== elem && offsetParent.nodeType === 1 ) {
+
+				// Incorporate borders into its offset, since they are outside its content origin
+				parentOffset = jQuery( offsetParent ).offset();
+				parentOffset.top += jQuery.css( offsetParent, "borderTopWidth", true );
+				parentOffset.left += jQuery.css( offsetParent, "borderLeftWidth", true );
+			}
+		}
+
+		// Subtract parent offsets and element margins
+		return {
+			top: offset.top - parentOffset.top - jQuery.css( elem, "marginTop", true ),
+			left: offset.left - parentOffset.left - jQuery.css( elem, "marginLeft", true )
+		};
+	},
+
+	// This method will return documentElement in the following cases:
+	// 1) For the element inside the iframe without offsetParent, this method will return
+	//    documentElement of the parent window
+	// 2) For the hidden or detached element
+	// 3) For body or html element, i.e. in case of the html node - it will return itself
+	//
+	// but those exceptions were never presented as a real life use-cases
+	// and might be considered as more preferable results.
+	//
+	// This logic, however, is not guaranteed and can change at any point in the future
+	offsetParent: function() {
+		return this.map( function() {
+			var offsetParent = this.offsetParent;
+
+			while ( offsetParent && jQuery.css( offsetParent, "position" ) === "static" ) {
+				offsetParent = offsetParent.offsetParent;
+			}
+
+			return offsetParent || documentElement;
+		} );
+	}
+} );
+
+// Create scrollLeft and scrollTop methods
+jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( method, prop ) {
+	var top = "pageYOffset" === prop;
+
+	jQuery.fn[ method ] = function( val ) {
+		return access( this, function( elem, method, val ) {
+
+			// Coalesce documents and windows
+			var win;
+			if ( isWindow( elem ) ) {
+				win = elem;
+			} else if ( elem.nodeType === 9 ) {
+				win = elem.defaultView;
+			}
+
+			if ( val === undefined ) {
+				return win ? win[ prop ] : elem[ method ];
+			}
+
+			if ( win ) {
+				win.scrollTo(
+					!top ? val : win.pageXOffset,
+					top ? val : win.pageYOffset
+				);
+
+			} else {
+				elem[ method ] = val;
+			}
+		}, method, val, arguments.length );
+	};
+} );
+
+// Support: Safari <=7 - 9.1, Chrome <=37 - 49
+// Add the top/left cssHooks using jQuery.fn.position
+// Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
+// Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
+// getComputedStyle returns percent when specified for top/left/bottom/right;
+// rather than make the css module depend on the offset module, just check for it here
+jQuery.each( [ "top", "left" ], function( i, prop ) {
+	jQuery.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
+		function( elem, computed ) {
+			if ( computed ) {
+				computed = curCSS( elem, prop );
+
+				// If curCSS returns percentage, fallback to offset
+				return rnumnonpx.test( computed ) ?
+					jQuery( elem ).position()[ prop ] + "px" :
+					computed;
+			}
+		}
+	);
+} );
+
+
+// Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
+jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
+	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
+		function( defaultExtra, funcName ) {
+
+		// Margin is only for outerHeight, outerWidth
+		jQuery.fn[ funcName ] = function( margin, value ) {
+			var chainable = arguments.length && ( defaultExtra || typeof margin !== "boolean" ),
+				extra = defaultExtra || ( margin === true || value === true ? "margin" : "border" );
+
+			return access( this, function( elem, type, value ) {
+				var doc;
+
+				if ( isWindow( elem ) ) {
+
+					// $( window ).outerWidth/Height return w/h including scrollbars (gh-1729)
+					return funcName.indexOf( "outer" ) === 0 ?
+						elem[ "inner" + name ] :
+						elem.document.documentElement[ "client" + name ];
+				}
+
+				// Get document width or height
+				if ( elem.nodeType === 9 ) {
+					doc = elem.documentElement;
+
+					// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height],
+					// whichever is greatest
+					return Math.max(
+						elem.body[ "scroll" + name ], doc[ "scroll" + name ],
+						elem.body[ "offset" + name ], doc[ "offset" + name ],
+						doc[ "client" + name ]
+					);
+				}
+
+				return value === undefined ?
+
+					// Get width or height on the element, requesting but not forcing parseFloat
+					jQuery.css( elem, type, extra ) :
+
+					// Set width or height on the element
+					jQuery.style( elem, type, value, extra );
+			}, type, chainable ? margin : undefined, chainable );
+		};
+	} );
+} );
+
+
+jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
+	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
+	function( i, name ) {
+
+	// Handle event binding
+	jQuery.fn[ name ] = function( data, fn ) {
+		return arguments.length > 0 ?
+			this.on( name, null, data, fn ) :
+			this.trigger( name );
+	};
+} );
+
+jQuery.fn.extend( {
+	hover: function( fnOver, fnOut ) {
+		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
+	}
+} );
+
+
+
+
+jQuery.fn.extend( {
+
+	bind: function( types, data, fn ) {
+		return this.on( types, null, data, fn );
+	},
+	unbind: function( types, fn ) {
+		return this.off( types, null, fn );
+	},
+
+	delegate: function( selector, types, data, fn ) {
+		return this.on( types, selector, data, fn );
+	},
+	undelegate: function( selector, types, fn ) {
+
+		// ( namespace ) or ( selector, types [, fn] )
+		return arguments.length === 1 ?
+			this.off( selector, "**" ) :
+			this.off( types, selector || "**", fn );
+	}
+} );
+
+// Bind a function to a context, optionally partially applying any
+// arguments.
+// jQuery.proxy is deprecated to promote standards (specifically Function#bind)
+// However, it is not slated for removal any time soon
+jQuery.proxy = function( fn, context ) {
+	var tmp, args, proxy;
+
+	if ( typeof context === "string" ) {
+		tmp = fn[ context ];
+		context = fn;
+		fn = tmp;
+	}
+
+	// Quick check to determine if target is callable, in the spec
+	// this throws a TypeError, but we will just return undefined.
+	if ( !isFunction( fn ) ) {
+		return undefined;
+	}
+
+	// Simulated bind
+	args = slice.call( arguments, 2 );
+	proxy = function() {
+		return fn.apply( context || this, args.concat( slice.call( arguments ) ) );
+	};
+
+	// Set the guid of unique handler to the same of original handler, so it can be removed
+	proxy.guid = fn.guid = fn.guid || jQuery.guid++;
+
+	return proxy;
+};
+
+jQuery.holdReady = function( hold ) {
+	if ( hold ) {
+		jQuery.readyWait++;
+	} else {
+		jQuery.ready( true );
+	}
+};
+jQuery.isArray = Array.isArray;
+jQuery.parseJSON = JSON.parse;
+jQuery.nodeName = nodeName;
+jQuery.isFunction = isFunction;
+jQuery.isWindow = isWindow;
+jQuery.camelCase = camelCase;
+jQuery.type = toType;
+
+jQuery.now = Date.now;
+
+jQuery.isNumeric = function( obj ) {
+
+	// As of jQuery 3.0, isNumeric is limited to
+	// strings and numbers (primitives or objects)
+	// that can be coerced to finite numbers (gh-2662)
+	var type = jQuery.type( obj );
+	return ( type === "number" || type === "string" ) &&
+
+		// parseFloat NaNs numeric-cast false positives ("")
+		// ...but misinterprets leading-number strings, particularly hex literals ("0x...")
+		// subtraction forces infinities to NaN
+		!isNaN( obj - parseFloat( obj ) );
+};
+
+
+
+
+// Register as a named AMD module, since jQuery can be concatenated with other
+// files that may use define, but not via a proper concatenation script that
+// understands anonymous AMD modules. A named AMD is safest and most robust
+// way to register. Lowercase jquery is used because AMD module names are
+// derived from file names, and jQuery is normally delivered in a lowercase
+// file name. Do this after creating the global so that if an AMD module wants
+// to call noConflict to hide this version of jQuery, it will work.
+
+// Note that for maximum portability, libraries that are not jQuery should
+// declare themselves as anonymous modules, and avoid setting a global if an
+// AMD loader is present. jQuery is a special case. For more information, see
+// https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
+
+if ( true ) {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() {
+		return jQuery;
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+}
+
+
+
+
+var
+
+	// Map over jQuery in case of overwrite
+	_jQuery = window.jQuery,
+
+	// Map over the $ in case of overwrite
+	_$ = window.$;
+
+jQuery.noConflict = function( deep ) {
+	if ( window.$ === jQuery ) {
+		window.$ = _$;
+	}
+
+	if ( deep && window.jQuery === jQuery ) {
+		window.jQuery = _jQuery;
+	}
+
+	return jQuery;
+};
+
+// Expose jQuery and $ identifiers, even in AMD
+// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
+// and CommonJS for browser emulators (#13566)
+if ( !noGlobal ) {
+	window.jQuery = window.$ = jQuery;
+}
+
+
+
+
+return jQuery;
+} );
+
+
+/***/ }),
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38291,7 +48677,7 @@ var _desc, _value, _class, _descriptor, _descriptor2;
 
 var _mobx = __webpack_require__(114);
 
-var _axios = __webpack_require__(419);
+var _axios = __webpack_require__(420);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -38410,13 +48796,13 @@ var Store = (_class = function () {
 exports.default = new Store();
 
 /***/ }),
-/* 419 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(420);
+module.exports = __webpack_require__(421);
 
 /***/ }),
-/* 420 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38424,7 +48810,7 @@ module.exports = __webpack_require__(420);
 
 var utils = __webpack_require__(22);
 var bind = __webpack_require__(164);
-var Axios = __webpack_require__(422);
+var Axios = __webpack_require__(423);
 var defaults = __webpack_require__(115);
 
 /**
@@ -38459,14 +48845,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(168);
-axios.CancelToken = __webpack_require__(436);
+axios.CancelToken = __webpack_require__(437);
 axios.isCancel = __webpack_require__(167);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(437);
+axios.spread = __webpack_require__(438);
 
 module.exports = axios;
 
@@ -38475,7 +48861,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 421 */
+/* 422 */
 /***/ (function(module, exports) {
 
 /*!
@@ -38502,7 +48888,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 422 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38510,8 +48896,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(115);
 var utils = __webpack_require__(22);
-var InterceptorManager = __webpack_require__(431);
-var dispatchRequest = __webpack_require__(432);
+var InterceptorManager = __webpack_require__(432);
+var dispatchRequest = __webpack_require__(433);
 
 /**
  * Create a new instance of Axios
@@ -38588,7 +48974,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 423 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38607,7 +48993,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 424 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38640,7 +49026,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 425 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38668,7 +49054,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 426 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38741,7 +49127,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 427 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38801,7 +49187,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 428 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38876,7 +49262,7 @@ module.exports = (
 
 
 /***/ }),
-/* 429 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38919,7 +49305,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 430 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38979,7 +49365,7 @@ module.exports = (
 
 
 /***/ }),
-/* 431 */
+/* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39038,18 +49424,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 432 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(22);
-var transformData = __webpack_require__(433);
+var transformData = __webpack_require__(434);
 var isCancel = __webpack_require__(167);
 var defaults = __webpack_require__(115);
-var isAbsoluteURL = __webpack_require__(434);
-var combineURLs = __webpack_require__(435);
+var isAbsoluteURL = __webpack_require__(435);
+var combineURLs = __webpack_require__(436);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -39131,7 +49517,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 433 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39158,7 +49544,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 434 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39179,7 +49565,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 435 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39200,7 +49586,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 436 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39264,7 +49650,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 437 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39298,7 +49684,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 438 */
+/* 439 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/jpeg;base64,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"

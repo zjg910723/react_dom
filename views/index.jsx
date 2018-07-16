@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import { HashRouter as Router,Route, Link, Switch, withRouter } from 'react-router-dom'
 
 import Nav from './components/nav'
+
+
 import ActiveRouter from './pages/Router'
 
 
@@ -18,6 +20,8 @@ window.addEventListener('error', (data)=> {
 
 
 class Main extends React.Component {
+
+
     render(){
         var FirstNav = withRouter(Nav);
         var FirstActiveRouter = withRouter(ActiveRouter);
