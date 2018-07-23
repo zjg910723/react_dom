@@ -7,8 +7,9 @@ module.exports = {
                     // customProperties: {
                     //     variables: require("./varibles.js")
                     // }
-            }
+            },
+            warnForDuplicates: false
         }),
-        // require('autoprefixer')(),
+        // require('cssnano')(),
     ]
 }

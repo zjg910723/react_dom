@@ -2,8 +2,10 @@ const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
+const ENV = "development";
 
-module.exports = () => {
+
+module.exports = (ENV) => {
 
     return {
         //入口文件
@@ -52,5 +54,7 @@ module.exports = () => {
                 modules: path.resolve(__dirname, 'node_modules'),
             }
         },
+        mode: 'development',
+        devtool: 'inline-source-map'
     }
 }

@@ -1,22 +1,24 @@
-import './styles/style.scss'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { HashRouter as Router,Route, Link, Switch, withRouter } from 'react-router-dom'
+import './styles/style.scss';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { HashRouter as Router, withRouter } from 'react-router-dom';
 
-import Nav from './components/nav'
-
-
-import ActiveRouter from './pages/Router'
+import Nav from './components/nav';
+import ActiveRouter from './routes/Router';
 
 
-import Store from './store/store'
-import Imagea from './11.jpg'
+import Store from './store/store';
 
 window.addEventListener('error', (data)=> {
     console.log(data.message);
     console.log(`错误位于： ${data.lineno}行`);
-},false)
+},false);
 
+
+
+
+
+import Image from './images/11.jpg';
 
 
 class Main extends React.Component {
@@ -27,11 +29,10 @@ class Main extends React.Component {
         var FirstActiveRouter = withRouter(ActiveRouter);
         return (
             <Router hashType="noslash">
-                
                 <div>
                     <FirstNav store={Store} />
                     <div>
-                        <img src={Imagea} alt=""/>
+                        <img src={Image} alt=""/>
                         <FirstActiveRouter store={Store}/>
                     </div>
                 </div>

@@ -1,9 +1,10 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const _env = '';
 
 
-module.exports = () => {
+module.exports = (_env) => {
 
     return {
         //入口文件
@@ -28,6 +29,15 @@ module.exports = () => {
                     test: /\.(jsx|js)$/,
                     use: ['babel-loader'],
                     exclude: /node_modules/
+                },
+                {
+                    test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
+                    // use: [
+                    //     `file-loader?name=[name].[ext]&publicPath=../../assets/wow_event/${envFile}/images/&outputPath=./../images/`
+                    // ],
+                    use: [
+                        `url-loader`
+                    ]
                 }
             ],
         },
@@ -43,5 +53,6 @@ module.exports = () => {
                 modules: path.resolve(__dirname, 'node_modules'),
             }
         },
+        mode: 'production',
     }
 }

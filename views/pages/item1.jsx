@@ -7,7 +7,28 @@ import { observer, computed } from "mobx-react"
         super(props);
     }
     state = {
-        list:[]
+        list:[], 
+        count: 0
+    }
+    incrementMultiple() {  
+        this.setState({count: this.state.count + 1});  
+        console.log(this.state.count);
+        this.setState({count: this.state.count + 1}); 
+        console.log(this.state.count); 
+        setTimeout(() => {
+            this.setState({ count: this.state.count + 1 });
+            console.log(this.state.count);
+        }, 1000);
+        
+    }
+    componentDidMount() {
+        // this.props.store.getCustomerList();
+        // mobx.autorun(() => {
+        //     this.setState({
+        //         list: mobx.toJS(this.props.store.list)
+        //     })
+        // })
+        this.incrementMultiple();
     }
     render(){
         return (
@@ -27,13 +48,6 @@ import { observer, computed } from "mobx-react"
             </div>
         )
     }
-    componentDidMount(){
-        this.props.store.getCustomerList();
-        mobx.autorun(() => {
-            this.setState({
-                list: mobx.toJS(this.props.store.list)
-            })
-        })
-    }
+    
 }
 export default Item1;
