@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from "jquery";
 
 class Item3 extends React.Component {
     handleClick(e) {
@@ -10,7 +9,7 @@ class Item3 extends React.Component {
         return (
             <div>
                 <button className="" onClick={this.handleClick.bind(this)}>晚上阿斯利康的</button>
-                内容3
+                内容3123123123123123
             </div>
         )
     }

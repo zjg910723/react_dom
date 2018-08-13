@@ -1,20 +1,20 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const ENV = "development";
 
 
-module.exports = (ENV) => {
-
+module.exports = () => {
     return {
-        //入口文件
-        entry: ["babel-polyfill", path.join(__dirname, 'views', 'index.jsx')],
-        //出口文件
+        //入口文件配置
+        entry: ["babel-polyfill", path.join(__dirname, "views", "index.jsx")],
+        //出口文件配置
         output: {
-            filename: 'main.js',
-            path: path.resolve(__dirname, 'assets/scripts'),
-            publicPath: "/"
+            path: path.resolve(__dirname, "assets"),
+            filename: 'scripts/[name].js',
+            chunkFilename: 'scripts/[name].[chunkhash].js',
+            publicPath: 'assets/',
         },
         module: {
             rules: [{
@@ -27,24 +27,45 @@ module.exports = (ENV) => {
 
                 },
                 {
+                    test: /\.vue$/,
+                    loader: 'vue-loader'
+                },
+                {
                     test: /\.(jsx|js)$/,
                     use: ['babel-loader'],
                     exclude: /node_modules/
                 },
                 {
                     test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
-                    // use: [
-                    //     `file-loader?name=[name].[ext]&publicPath=../../assets/wow_event/${envFile}/images/&outputPath=./../images/`
-                    // ],
                     use: [
-                        `url-loader`
+                        `file-loader`,
+                        {
+                            loader: 'file-loader',
+                            options: { // 这里的options选项参数可以定义多大的图片转换为base64
+                                limit: 50000, // 表示小于50kb的图片转为base64,大于50kb的是路径
+                                outputPath: 'images' //定义输出的图片文件夹
+                            }
+                        },
+                        // {
+                        //     loader: 'image-webpack-loader',
+                        //     options: {
+                        //         bypassOnDebug: true, // webpack@1.x
+                        //         disable: true, // webpack@2.x and newer
+                        //     },
+                        // },
                     ]
                 }
-            ],
+
+            ]
         },
         plugins: [
-            new ExtractTextPlugin("../stylesheets/style.css"),
+            new ExtractTextPlugin("stylesheets/style.css"),
             // new UglifyJSPlugin()
+            new HtmlWebpackPlugin({
+                inject: true,
+                filename: 'index.html',
+                template: path.resolve(__dirname, "index.html")
+            }),
 
         ],
         resolve: {
@@ -54,7 +75,7 @@ module.exports = (ENV) => {
                 modules: path.resolve(__dirname, 'node_modules'),
             }
         },
-        mode: 'development',
-        devtool: 'inline-source-map'
+        mode: "development"
     }
+
 }

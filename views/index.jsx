@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 
 import Nav from './components/nav';
-import ActiveRouter from './routes/Router';
+import ActiveRouter from './routes/router';
 
 
 import Store from './store/store';
