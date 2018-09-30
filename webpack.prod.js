@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = (_env) => {
-
     return {
         //入口文件
         entry: ["babel-polyfill", path.join(__dirname, 'views', 'index.jsx')],
@@ -14,12 +13,11 @@ module.exports = (_env) => {
             path: path.resolve(__dirname, "assets"),
             filename: 'scripts/[name].js',
             chunkFilename: 'scripts/[name].[chunkhash].js',
-            publicPath: 'assets/',
+            publicPath: '',
         },
         module: {
             rules: [{
                     test: /\.(css|scss)$/,
-                    // use: ["style-loader", "css-loader", "postcss-loader"],
                     use: ExtractTextPlugin.extract({
                         fallback: "style-loader",
                         use: ["css-loader", "postcss-loader"],
@@ -33,12 +31,12 @@ module.exports = (_env) => {
                 },
                 {
                     test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
-                    // use: [
-                    //     `file-loader?name=[name].[ext]&publicPath=../../assets/wow_event/${envFile}/images/&outputPath=./../images/`
-                    // ],
-                    use: [
-                        `url-loader`
-                    ]
+                    use: [{
+                        loader: "file-loader",
+                        options: {
+                            name: "images/[name].[ext]",
+                        }
+                    }]
                 }
             ],
         },
@@ -47,9 +45,21 @@ module.exports = (_env) => {
             new HtmlWebpackPlugin({
                 inject: true,
                 filename: 'index.html',
-                template: path.resolve(__dirname, "index.html")
+                template: path.resolve(__dirname, "index.html"),
+                minify: { //压缩HTML文件
+                    removeComments: true, //移除HTML中的注释
+                    collapseWhitespace: true //删除空白符与换行符
+                }
             }),
-            new UglifyJSPlugin()
+            new UglifyJSPlugin({
+                uglifyOptions: {
+                    compress: {
+                        warnings: false,
+                        drop_debugger: true,
+                        drop_console: true
+                    }
+                },
+            }),
 
         ],
         resolve: {

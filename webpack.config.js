@@ -37,23 +37,12 @@ module.exports = () => {
                 },
                 {
                     test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
-                    use: [
-                        `file-loader`,
-                        {
-                            loader: 'file-loader',
-                            options: { // 这里的options选项参数可以定义多大的图片转换为base64
-                                limit: 50000, // 表示小于50kb的图片转为base64,大于50kb的是路径
-                                outputPath: 'images' //定义输出的图片文件夹
-                            }
-                        },
-                        // {
-                        //     loader: 'image-webpack-loader',
-                        //     options: {
-                        //         bypassOnDebug: true, // webpack@1.x
-                        //         disable: true, // webpack@2.x and newer
-                        //     },
-                        // },
-                    ]
+                    use: [{
+                        loader: "file-loader",
+                        options: {
+                            name: "images/[name].[ext]",
+                        }
+                    }]
                 }
 
             ]

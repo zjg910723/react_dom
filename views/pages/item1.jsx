@@ -11,15 +11,7 @@ import { observer, computed } from "mobx-react"
         count: 0
     }
     incrementMultiple() {  
-        this.setState({count: this.state.count + 1});  
-        console.log(this.state.count);
-        this.setState({count: this.state.count + 1}); 
-        console.log(this.state.count); 
-        setTimeout(() => {
-            this.setState({ count: this.state.count + 1 });
-            console.log(this.state.count);
-        }, 1000);
-        
+        this.setState(() =>({count: this.state.count + 1}));  
     }
     componentDidMount() {
         // this.props.store.getCustomerList();
@@ -28,7 +20,6 @@ import { observer, computed } from "mobx-react"
         //         list: mobx.toJS(this.props.store.list)
         //     })
         // })
-        this.incrementMultiple();
     }
     render(){
         return (
@@ -44,6 +35,7 @@ import { observer, computed } from "mobx-react"
                             )
                         })
                     }
+                    <li onClick={this.incrementMultiple.bind(this)}>123123123</li>
                 </ul>
             </div>
         )
